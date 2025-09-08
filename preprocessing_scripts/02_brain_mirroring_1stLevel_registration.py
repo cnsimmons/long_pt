@@ -16,18 +16,18 @@ PROCESSED_DIR = '/lab_data/behrmannlab/claire/long_pt'
 
 # Subject configuration with intact hemispheres
 SUBJECTS_INFO = {
-    'sub-004': {
-        'sessions': [1, 2, 3, 5, 6],
-        'intact_hemi': 'left',
-        'group': 'patient'
-    },
+    #'sub-004': {
+    #    'sessions': [1, 2, 3, 5, 6],
+   #     'intact_hemi': 'left',
+    #    'group': 'patient'
+    #},
     'sub-007': {
-        'sessions': [1, 2],
+        'sessions': [3, 4],
         'intact_hemi': 'right',
         'group': 'patient'
     },
     'sub-021': {
-        'sessions': [1, 3, 4],
+        'sessions': [2],
         'intact_hemi': 'left',
         'group': 'patient'
     }
