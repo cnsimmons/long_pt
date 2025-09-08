@@ -8,6 +8,8 @@ Creates and submits SLURM jobs for:
 - High level analysis
 Requires FSL and a conda environment named 'fmri' with necessary packages
 Make sure to adjust paths and parameters as needed
+
+to run: job_cmd = f'python 04_1stLevel.py {sub} {ses}'
 """
 
 import subprocess
@@ -18,7 +20,7 @@ import pandas as pd
 
 # Job parameters
 job_name = 'long_pt_feat'
-mem = 24
+mem = 20
 run_time = "1-00:00:00"
 pause_crit = 12  # Number of jobs before pausing
 pause_time = 5   # Minutes to pause
@@ -53,7 +55,6 @@ def setup_sbatch(job_name, script_name):
 #SBATCH -p cpu
 #SBATCH --cpus-per-task=1
 #SBATCH --gres=gpu:0
-#SBATCH --exclude=mind-0-15,mind-0-14,mind-0-16
 
 # Job memory request
 #SBATCH --mem={mem}gb
@@ -124,7 +125,7 @@ for sub, sessions in subject_sessions.items():
             
             if feat_dirs:  # Only submit if there are FEAT outputs
                 job_name_full = f'{sub}_ses{ses}_registration'
-                job_cmd = f'python firstlevel_registration.py {sub} {ses}'
+                job_cmd = f'python 04_1stLevel.py {sub} {ses}'
                 create_job(job_name_full, job_cmd)
                 n_jobs += 1
         
