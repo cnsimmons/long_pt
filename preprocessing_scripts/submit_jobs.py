@@ -10,6 +10,7 @@ Requires FSL and a conda environment named 'fmri' with necessary packages
 Make sure to adjust paths and parameters as needed
 
 to run: job_cmd = f'python 04_1stLevel.py {sub} {ses}'
+to monitor: squeue -u $USER
 """
 
 import subprocess
@@ -40,7 +41,6 @@ subject_sessions = {
 
 # Job control flags
 run_1stlevel = True      # Run FEAT first level
-run_registration = False # Run registration to anatomical space
 run_highlevel = False    # Run high level analysis (set to True later when needed)
 
 def setup_sbatch(job_name, script_name):
