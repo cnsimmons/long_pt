@@ -27,14 +27,14 @@ pause_crit = 12  # Number of jobs before pausing
 pause_time = 5   # Minutes to pause
 
 # Project parameters
-data_dir = '/lab_data/behrmannlab/claire/long_pt'
+data_dir = '/user_data/csimmon2/long_pt'
 task = 'loc'
 runs = ['01', '02', '03']
 
 # Subject and session mapping
 # Skip ses-01 for sub-004 and sub-007 since they're already processed
 subject_sessions = {
-    'sub-004': ['02', '03', '05', '06'],  # UD
+    'sub-004': ['03', '05', '06'],  # UD
     'sub-007': ['03', '04'],             # TC  
     'sub-021': ['01', '02', '03']        # OT
 }
