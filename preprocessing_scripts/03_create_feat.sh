@@ -1,19 +1,18 @@
 ## N.P. ses 1 for 004 & 007 subjects has been run for PTOC, this script will create .fsf for the other sessions
 ## previously known as the ChangeOut file
-## N.P. ses 1 for 004 & 007 subjects has been run for PTOC, this script will create .fsf for the other sessions
-## previously known as the ChangeOut file
 
 #!/bin/bash
 #
 # ChangeOut script for long_pt project - adapted from your original
 # Takes working FSF template and propagates to all needed sessions/runs
-#
+
 
 # Template configuration (using your working FSF)
 ogSub="007"
 ogSes="01" 
 ogRun="03"
 dataDir='/lab_data/behrmannlab/claire/long_pt'
+rawDataDir='/lab_data/behrmannlab/hemi/Raw'
 
 # Template FSF location
 ogDir="$dataDir/sub-${ogSub}/ses-${ogSes}/derivatives/fsl"
@@ -35,13 +34,10 @@ check_files_exist() {
     local run="$3"
     
     # Raw data is in the hemi/Raw directory
-    local rawDataDir="/lab_data/behrmannlab/hemi/Raw"
-    
-    # Define paths to check in raw data location
     local funcData="$rawDataDir/sub-${sub}/ses-${ses}/func/sub-${sub}_ses-${ses}_task-loc_run-${run}_bold.nii.gz"
-    local timingDir="$rawDataDir/sub-${sub}/ses-${ses}/func"
     
     # Special case: sub-007 ses-03 timing files are actually in ses-04
+    local timingDir="$rawDataDir/sub-${sub}/ses-${ses}/func"
     if [[ "$sub" == "007" && "$ses" == "03" ]]; then
         timingDir="$rawDataDir/sub-${sub}/ses-04/func"
     fi
@@ -52,24 +48,23 @@ check_files_exist() {
         return 1
     fi
     
-    # Check if timing directory exists
-    if [ ! -d "$timingDir" ]; then
-        echo "      Missing timing directory: $timingDir"
+    # Check if converted timing files exist
+    local covsDir="$dataDir/sub-${sub}/ses-${ses}/covs"
+    if [ ! -d "$covsDir" ]; then
+        echo "      Missing covs directory: $covsDir"
         return 1
     fi
     
-    # Check for timing files (BIDS format: sub-XXX_ses-XX_task-loc_run-XX_events.tsv)
-    local timingFilePattern
-    if [[ "$sub" == "007" && "$ses" == "03" ]]; then
-        timingFilePattern="sub-${sub}_ses-04_task-loc_run-${run}_events.tsv"
-    else
-        timingFilePattern="sub-${sub}_ses-${ses}_task-loc_run-${run}_events.tsv"
-    fi
+    local missing_timing=0
+    for condition in Face House Object Word Scramble; do
+        local timing_file="$covsDir/catloc_${sub}_run-${run}_${condition}.txt"
+        if [ ! -f "$timing_file" ]; then
+            echo "      Missing timing file: $timing_file"
+            missing_timing=1
+        fi
+    done
     
-    local timingFiles=$(find "$timingDir" -name "$timingFilePattern" 2>/dev/null | wc -l)
-    if [ "$timingFiles" -eq 0 ]; then
-        echo "      Missing timing files for run ${run} in: $timingDir"
-        echo "      Looking for: $timingFilePattern"
+    if [ $missing_timing -eq 1 ]; then
         return 1
     fi
     
@@ -119,6 +114,9 @@ for ses in "02" "03" "05" "06"; do
         sed -i "s/run${ogRun}/run${r}/g" "$runDir/run-${r}/1stLevel.fsf"
         sed -i "s/Run${ogRun}/Run${r}/g" "$runDir/run-${r}/1stLevel.fsf"
         
+        # Update functional data path to point to Raw directory
+        sed -i "s|/lab_data/behrmannlab/claire/long_pt/sub-004/ses-${ses}/func/|$rawDataDir/sub-004/ses-${ses}/func/|g" "$runDir/run-${r}/1stLevel.fsf"
+        
         echo "      Created ✓"
     done
 done
@@ -155,11 +153,8 @@ for ses in "03" "04"; do
         sed -i "s/run${ogRun}/run${r}/g" "$runDir/run-${r}/1stLevel.fsf"
         sed -i "s/Run${ogRun}/Run${r}/g" "$runDir/run-${r}/1stLevel.fsf"
         
-        # Special case: Handle timing file paths for ses-03 (timing files are in ses-04)
-        if [[ "$ses" == "03" ]]; then
-            sed -i "s|/timing/loc_007_run-${r}_|/ses-04/loc_007_run-${r}_|g" "$runDir/run-${r}/1stLevel.fsf"
-            sed -i "s|/ses-03/ses-04/|/ses-04/|g" "$runDir/run-${r}/1stLevel.fsf"
-        fi
+        # Update functional data path to point to Raw directory
+        sed -i "s|/lab_data/behrmannlab/claire/long_pt/sub-007/ses-${ses}/func/|$rawDataDir/sub-007/ses-${ses}/func/|g" "$runDir/run-${r}/1stLevel.fsf"
         
         echo "      Created ✓"
     done
@@ -201,6 +196,9 @@ for ses in "01" "02" "03"; do
         sed -i "s/run${ogRun}/run${r}/g" "$runDir/run-${r}/1stLevel.fsf"
         sed -i "s/Run${ogRun}/Run${r}/g" "$runDir/run-${r}/1stLevel.fsf"
         
+        # Update functional data path to point to Raw directory
+        sed -i "s|/lab_data/behrmannlab/claire/long_pt/sub-021/ses-${ses}/func/|$rawDataDir/sub-021/ses-${ses}/func/|g" "$runDir/run-${r}/1stLevel.fsf"
+        
         echo "      Created ✓"
     done
 done
@@ -211,3 +209,4 @@ echo "FSF files created! Ready for FEAT submission."
 echo ""
 echo "To test one FSF:"
 echo "feat $dataDir/sub-004/ses-02/derivatives/fsl/loc/run-01/1stLevel.fsf"
+`

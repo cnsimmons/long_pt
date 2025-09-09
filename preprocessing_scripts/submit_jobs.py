@@ -119,16 +119,6 @@ for sub, sessions in subject_sessions.items():
                 else:
                     print(f"⚠️  FSF file not found: {fsf_file}")
         
-        if run_registration:
-            # Submit registration jobs (only if FEAT output exists)
-            feat_dirs = glob(f'{sub_dir}/derivatives/fsl/{task}/run-*/1stLevel.feat')
-            
-            if feat_dirs:  # Only submit if there are FEAT outputs
-                job_name_full = f'{sub}_ses{ses}_registration'
-                job_cmd = f'python 04_1stLevel.py {sub} {ses}'
-                create_job(job_name_full, job_cmd)
-                n_jobs += 1
-        
         if run_highlevel:
             # Submit high level analysis jobs
             high_fsf = f'{sub_dir}/derivatives/fsl/{task}/HighLevel.fsf'
