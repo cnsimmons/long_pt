@@ -44,10 +44,11 @@ class VOTCROIExtractor:
         }
 
     def find_feat_directories(self):
-        """Find all completed FEAT directories"""
+        """Find all completed first-level FEAT directories"""
         feat_dirs = []
         for feat_path in self.base_dir.rglob("*.feat"):
-            if (feat_path / "report.html").exists():
+            # Only include first-level analyses, exclude higher-level
+            if (feat_path / "report.html").exists() and "1stLevel.feat" in str(feat_path):
                 feat_dirs.append(feat_path)
         return sorted(feat_dirs)
 
