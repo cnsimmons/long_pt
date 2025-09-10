@@ -93,51 +93,68 @@ class VOTCRSAAnalyzer:
         
         return correlation_matrix
 
+    # In your VOTCRSAAnalyzer class...
+
     def calculate_preferred_vs_others_correlation(self, correlation_matrix, condition_order, roi_info):
         """
-        Calculate RSA: correlation between preferred and non-preferred categories
-        THIS IS THE ACTUAL PAPER METHOD
+        Calculate RSA to EXACTLY match the paper's Matlab script.
+        - Uses specific, hard-coded indices from the Matlab script.
+        - Applies Fisher z-transform BEFORE averaging correlations.
         """
+        
+        # This dictionary maps ROI types to the exact indices used in the Matlab script.
+        # Assumes condition_order is ['faces', 'houses', 'objects', 'words', 'scrambled']
+        # Indices are 0-based for Python.
+        
+        # Matlab (1-based) -> Python (0-based) translation:
+        # VWFA/STG/IFG: (5, 1:4) -> row 4 (scrambled), cols [0, 1, 2, 3]
+        # FFA/STS: (1, 2:5) -> row 0 (faces), cols [1, 2, 3, 4]
+        # pF/LOC: (2, [1 3:5]) -> row 1 (houses), cols [0, 2, 3, 4]
+        # PPA/TOS: (3, [1 2 4 5]) -> row 2 (objects), cols [0, 1, 3, 4]
+        
+        matlab_style_preferences = {
+            'IFG':  {'row_idx': 4, 'col_indices': [0, 1, 2, 3]},
+            'STG':  {'row_idx': 4, 'col_indices': [0, 1, 2, 3]},
+            'VWFA': {'row_idx': 4, 'col_indices': [0, 1, 2, 3]},
+            'FFA':  {'row_idx': 0, 'col_indices': [1, 2, 3, 4]},
+            'STS':  {'row_idx': 0, 'col_indices': [1, 2, 3, 4]},
+            'pF':   {'row_idx': 1, 'col_indices': [0, 2, 3, 4]},
+            'LOC':  {'row_idx': 1, 'col_indices': [0, 2, 3, 4]},
+            'PPA':  {'row_idx': 2, 'col_indices': [0, 1, 3, 4]},
+            'TOS':  {'row_idx': 2, 'col_indices': [0, 1, 3, 4]},
+            # Note: EVC was not in the final Matlab script's figure calculation loop.
+            # You can add it here if needed, but it may not be part of Fig 5.
+        }
         
         rsa_results = []
         
-        for roi_idx, roi_row in roi_info.iterrows():
-            # Handle different possible column names for ROI
-            roi_name = roi_row.get('roi', roi_row.get('roi_name', f'roi_{roi_idx}'))
-            roi_type = roi_row.get('roi_type', roi_name.replace('l', '').replace('r', ''))
+        for _, roi_row in roi_info.iterrows():
+            roi_name = roi_row.get('roi', 'unknown_roi')
+            roi_type = roi_row.get('roi_type', '').replace('l', '').replace('r', '')
             
-            if roi_type not in self.roi_preferences:
+            if roi_type not in matlab_style_preferences:
                 continue
                 
-            # Get preference definition
-            pref_def = self.roi_preferences[roi_type]
-            preferred = pref_def['preferred']
-            non_preferred = pref_def['non_preferred']
-            
-            # Find condition indices
+            pref_def = matlab_style_preferences[roi_type]
+            row_idx = pref_def['row_idx']
+            col_indices = pref_def['col_indices']
+
             try:
-                pref_idx = condition_order.index(preferred)
-                non_pref_indices = [condition_order.index(cond) 
-                                  for cond in non_preferred if cond in condition_order]
+                # Extract the raw correlation values based on the Matlab script's logic
+                correlations_to_average = correlation_matrix[row_idx, col_indices]
                 
-                if len(non_pref_indices) == 0:
-                    continue
+                # **FIX 2: Apply Fisher z-transform to EACH correlation value BEFORE averaging**
+                # Use np.arctanh which is equivalent to 0.5 * np.log((1+r)/(1-r))
+                # Add a small epsilon to avoid infinity with perfect correlations of 1 or -1
+                epsilon = 1e-9
+                fisher_z_values = np.arctanh(np.clip(correlations_to_average, -1 + epsilon, 1 - epsilon))
                 
-                # Extract correlations between preferred and non-preferred categories
-                correlations_with_others = []
-                for non_pref_idx in non_pref_indices:
-                    correlation = correlation_matrix[pref_idx, non_pref_idx]
-                    correlations_with_others.append(correlation)
+                # **FIX 1: Average the transformed values**
+                mean_fisher_z = np.mean(fisher_z_values)
                 
-                # Take mean correlation (as in paper)
-                mean_correlation = np.mean(correlations_with_others)
-                
-                # Fisher z-transform (as in paper: 0.5*log((1+r)/(1-r)))
-                if np.abs(mean_correlation) < 0.999:  # Avoid log(0)
-                    fisher_z = 0.5 * np.log((1 + mean_correlation) / (1 - mean_correlation))
-                else:
-                    fisher_z = np.sign(mean_correlation) * 5.0  # Cap extreme values
-                
+                # For reference, calculate the mean of raw correlations
+                mean_raw_correlation = np.mean(correlations_to_average)
+
                 rsa_results.append({
                     'roi': roi_name,
                     'roi_type': roi_type,
@@ -145,15 +162,14 @@ class VOTCRSAAnalyzer:
                     'x': roi_row.get('x', np.nan),
                     'y': roi_row.get('y', np.nan), 
                     'z': roi_row.get('z', np.nan),
-                    'preferred_category': preferred,
-                    'correlation_raw': mean_correlation,
-                    'correlation_fisher_z': fisher_z,
-                    'correlations_with_others': correlations_with_others,
-                    'n_comparisons': len(non_pref_indices)
+                    'preferred_category_matlab': condition_order[row_idx], # What Matlab used as the 'preferred'
+                    'correlation_raw_mean': mean_raw_correlation,
+                    'correlation_fisher_z': mean_fisher_z, # This is the value to plot
+                    'n_comparisons': len(col_indices)
                 })
                 
-            except (ValueError, IndexError) as e:
-                print(f"  Warning: Could not process {roi_type} {roi_name}: {e}")
+            except IndexError as e:
+                print(f"  Warning: Could not process {roi_type} {roi_name} due to indexing: {e}")
                 continue
                 
         return rsa_results
