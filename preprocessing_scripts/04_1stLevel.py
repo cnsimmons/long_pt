@@ -1,4 +1,3 @@
-## N.P. ses 1 for 004 & 007 has been run for PTOC, this script will create 1st level for the other sessions
 ## adapted from Vlad's script
 
 #!/usr/bin/env python3
@@ -18,7 +17,7 @@ sub = sys.argv[1]  # e.g., 'sub-004'
 ses = sys.argv[2]  # e.g., '02'
 
 # Project parameters
-data_dir = '/lab_data/behrmannlab/claire/long_pt'
+data_dir = '/user_data/csimmon2/long_pt'
 task = 'loc'
 runs = ['01', '02', '03', '04', '05']  # Updated to include more runs if applicable
 
