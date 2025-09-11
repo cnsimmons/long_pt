@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-FIXED RSA Analysis for VOTC Plasticity Study
+NOT CONFIRMED RSA Analysis for VOTC Plasticity Study
 Matches the paper's actual method: correlation-based RSA
 """
 

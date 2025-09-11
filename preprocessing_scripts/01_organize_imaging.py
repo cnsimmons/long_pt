@@ -9,7 +9,7 @@ from glob import glob
 
 # Configuration
 RAW_DIR = '/lab_data/behrmannlab/hemi/Raw'
-PROCESSED_DIR = '/lab_data/behrmannlab/claire/long_pt'
+PROCESSED_DIR = '/user_data/csimmon2/long_pt'
 
 # Subject and session configuration
 SUBJECTS_SESSIONS = {

@@ -20,7 +20,7 @@ ses = sys.argv[2]  # e.g., '02'
 # Project parameters
 data_dir = '/lab_data/behrmannlab/claire/long_pt'
 task = 'loc'
-runs = ['01', '02', '03']
+runs = ['01', '02', '03', '04', '05']  # Updated to include more runs if applicable
 
 # Subject and session directories
 sub_dir = f'{data_dir}/{sub}/ses-{ses}'
