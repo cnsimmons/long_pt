@@ -69,7 +69,7 @@ done
 echo ""
 echo "=== Processing UD (sub-007) ==="
 # UD (sub-007): Process ses-01,04,05 (skip ses-02 no func, ses-03 no events)
-ud_sessions=("01" "04" "05")
+ud_sessions=("01" "03" "04" "05")
 ud_runs=("01" "02" "03")
 
 for ses in "${ud_sessions[@]}"; do
