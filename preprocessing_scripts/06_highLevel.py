@@ -19,7 +19,7 @@ sub = sys.argv[1]  # e.g., 'sub-004'
 ses = sys.argv[2]  # e.g., '02'
 
 # Project parameters
-data_dir = '/lab_data/behrmannlab/claire/long_pt'
+data_dir = '/user_data/csimmon2/long_pt'  # not '/lab_data/behrmannlab/claire/long_pt'
 task = 'loc'
 mni = '/opt/fsl/6.0.3/data/standard/MNI152_T1_2mm_brain.nii.gz'  # MNI template for analysis
 

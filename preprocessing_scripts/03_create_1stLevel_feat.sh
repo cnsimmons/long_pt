@@ -1,11 +1,3 @@
-## N.P. ses 1 for 004 & 007 subjects has been run for PTOC, this script will create .fsf for the other sessions
-## previously known as the ChangeOut file
-
-#!/bin/bash
-#
-# ChangeOut script for long_pt project - adapted from your original
-# Takes working FSF template and propagates to all needed sessions/runs
-
 #!/bin/bash
 #
 # Create FEAT .fsf files for long_pt project
@@ -17,15 +9,26 @@ dataDir='/user_data/csimmon2/long_pt'
 rawDataDir='/lab_data/behrmannlab/hemi/Raw'
 
 # Template configuration
-templateSub="007"
-templateSes="01" 
-templateRun="03"
-templateFSF="$dataDir/sub-${templateSub}/ses-${templateSes}/derivatives/fsl/loc/run-${templateRun}/1stLevel.fsf"
+templateFSF="/lab_data/behrmannlab/vlad/ptoc/sub-004/ses-01/derivatives/fsl/loc/run-01/1stLevel.fsf"
 
 # Check template exists
 if [ ! -f "$templateFSF" ]; then
     echo "ERROR: Template FSF not found: $templateFSF"
-    exit 1
+    echo "Looking for templates in other locations..."
+    # Try alternative template locations
+    for alt_template in "$dataDir/sub-004/ses-01/derivatives/fsl/loc/run-01/1stLevel.fsf" \
+                       "$dataDir/sub-007/ses-01/derivatives/fsl/loc/run-01/1stLevel.fsf"; do
+        if [ -f "$alt_template" ]; then
+            templateFSF="$alt_template"
+            echo "Using alternative template: $templateFSF"
+            break
+        fi
+    done
+    
+    if [ ! -f "$templateFSF" ]; then
+        echo "No template FSF found. Please run preprocessing first."
+        exit 1
+    fi
 fi
 
 echo "Using template: $templateFSF"
@@ -61,13 +64,6 @@ check_files_exist() {
     done
     
     if [ $missing_timing -eq 1 ]; then
-        return 1
-    fi
-    
-    # Check structural image (in processed directory)
-    local structImage="$dataDir/sub-${sub}/ses-${ses}/anat/sub-${sub}_ses-${ses}_T1w_brain.nii.gz"
-    if [ ! -f "$structImage" ]; then
-        echo "      Missing structural image: $structImage"
         return 1
     fi
     
@@ -114,8 +110,11 @@ create_fsf() {
     sed -i "s|set fmri(custom4) \".*\"|set fmri(custom4) \"$covsDir/catloc_${sub}_run-${run}_Word.txt\"|g" "$fsfFile"
     sed -i "s|set fmri(custom5) \".*\"|set fmri(custom5) \"$covsDir/catloc_${sub}_run-${run}_Scramble.txt\"|g" "$fsfFile"
     
-    # Update structural image path (point to processed anat directory)
-    local structImage="$dataDir/sub-${sub}/ses-${ses}/anat/sub-${sub}_ses-${ses}_T1w_brain.nii.gz"
+    # Update structural image path - try both raw and processed locations
+    local structImage="$rawDataDir/sub-${sub}/ses-${ses}/anat/sub-${sub}_ses-${ses}_T1w.nii.gz"
+    if [ ! -f "$structImage" ]; then
+        structImage="$dataDir/sub-${sub}/ses-${ses}/anat/sub-${sub}_ses-${ses}_T1w_brain.nii.gz"
+    fi
     sed -i "s|set highres_files(1) \".*\"|set highres_files(1) \"$structImage\"|g" "$fsfFile"
     
     # Update output directory
@@ -131,9 +130,9 @@ runs=("01" "02" "03")
 # PROCESS EACH SUBJECT
 ###############################
 
-# sub-004 (UD): Need ses-02, 03, 05, 06 (already have ses-01)
-echo "Processing sub-004 (UD)..."
-for ses in "02" "03" "05" "06"; do
+# TC (sub-004): All 6 sessions
+echo "Processing TC (sub-004)..."
+for ses in "01" "02" "03" "05" "06" "07"; do
     echo "  Session ${ses}:"
     
     for run in "${runs[@]}"; do
@@ -148,23 +147,19 @@ for ses in "02" "03" "05" "06"; do
     done
 done
 
-# sub-007 (TC): Need ses-03, 04 (already have ses-01)  
+# UD (sub-007): Sessions 01, 04, 05
 echo ""
-echo "Processing sub-007 (TC)..."
-for ses in "03" "04"; do
+echo "Processing UD (sub-007)..."
+for ses in "01" "03" "04" "05"; do
     echo "  Session ${ses}:"
     
     for run in "${runs[@]}"; do
         echo "    Run ${run}:"
         
-        # Special case: ses-03 uses timing from ses-04, but may not have functional data for all runs
-        if [[ "$ses" == "03" ]]; then
-            # For ses-03, check if functional data exists first
-            funcData="$rawDataDir/sub-007/ses-${ses}/func/sub-007_ses-${ses}_task-loc_run-${run}_bold.nii.gz"
-            if [ ! -f "$funcData" ]; then
-                echo "      SKIPPING - no functional data for ses-03 run-${run}"
-                continue
-            fi
+        # Special case: ses-04 only has 2 runs
+        if [[ "$ses" == "04" && "$run" == "03" ]]; then
+            echo "      SKIPPING - run-03 not available for ses-04"
+            continue
         fi
         
         if ! check_files_exist "007" "$ses" "$run"; then
@@ -176,9 +171,9 @@ for ses in "03" "04"; do
     done
 done
 
-# sub-021 (OT): Need ses-01, 02, 03 (all new)
+# OT (sub-021): All 3 sessions
 echo ""
-echo "Processing sub-021 (OT)..."
+echo "Processing OT (sub-021)..."
 for ses in "01" "02" "03"; do
     echo "  Session ${ses}:"
     
@@ -203,6 +198,6 @@ find "$dataDir" -name "1stLevel.fsf" -path "*/derivatives/fsl/loc/run-*" | sort
 
 echo ""
 echo "To test a single FSF file:"
-echo "feat $dataDir/sub-004/ses-02/derivatives/fsl/loc/run-01/1stLevel.fsf"
+echo "feat $dataDir/sub-004/ses-01/derivatives/fsl/loc/run-01/1stLevel.fsf"
 echo ""
-echo "To run all analyses, use the batch submission script." 
+echo "To run all analyses, use the batch submission script."
