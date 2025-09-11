@@ -1,4 +1,3 @@
-## N.P. ses 1 for 004 & 007 has been run for PTOC, this script will create high level for the other sessions
 ## adapted from Vlad's script
 ## review copes and contrasts
 
@@ -26,12 +25,10 @@ mni = '/opt/fsl/6.0.3/data/standard/MNI152_T1_2mm_brain.nii.gz'  # MNI template 
 # Define cope numbers for different contrasts
 # You may need to adjust these based on your actual contrasts
 cope_info = {
-    'faces_vs_baseline': 1,
-    'objects_vs_baseline': 2, 
-    'houses_vs_baseline': 3,
-    'words_vs_baseline': 4,
-    'scrambled_vs_baseline': 5,
-    # Add more as needed based on your design
+    'group_mean': 1,
+    'face_vs_word': 2,
+    'word_vs_face': 3, 
+    'objects_vs_houses': 4,
 }
 
 # Subject and session directories

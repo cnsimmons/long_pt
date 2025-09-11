@@ -93,6 +93,10 @@ done
 
 # UD ses-04: 2 runs only
 runs=("01" "02")
+create_highlevel_fsf "007" "03" runs[@]
+
+# UD ses-04: 2 runs only
+runs=("01" "02")
 create_highlevel_fsf "007" "04" runs[@]
 
 # OT (sub-021)

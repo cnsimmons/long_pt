@@ -33,13 +33,14 @@ runs = ['01', '02', '03']
 
 # Subject and session mapping
 subject_sessions = {
-    'sub-004': ['01','03', '05', '06'],  # TC
-    'sub-007': ['01','03', '04'],        # UD 
+    'sub-004': ['01','03', '05', '06', '07'],  # TC
+    'sub-007': ['01','03', '04', '05'],        # UD 
     'sub-021': ['01', '02', '03']        # OT
 }
 
 # Job control flags
-run_1stlevel = True      # Run FEAT first level
+run_1stlevel = False      # Run FEAT first level
+run_registration = True  # Run registration to anatomical space
 run_highlevel = False    # Run high level analysis (set to True later when needed)
 
 def setup_sbatch(job_name, script_name):
@@ -117,6 +118,13 @@ for sub, sessions in subject_sessions.items():
                     n_jobs += 1
                 else:
                     print(f"⚠️  FSF file not found: {fsf_file}")
+                    
+        if run_registration:  # Add new flag at top
+            # Submit registration jobs
+            reg_job_cmd = f'python preprocessing_scripts/04_1stLevel.py {sub} {ses}'
+            job_name_full = f'{sub}_ses{ses}_registration'
+            create_job(job_name_full, reg_job_cmd)
+            n_jobs += 1
         
         if run_highlevel:
             # Submit high level analysis jobs
@@ -129,6 +137,7 @@ for sub, sessions in subject_sessions.items():
                 n_jobs += 1
             else:
                 print(f"⚠️  High level FSF file not found: {high_fsf}")
+                
         
         # Pause if we've submitted too many jobs
         if n_jobs >= pause_crit:
