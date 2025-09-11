@@ -32,10 +32,9 @@ task = 'loc'
 runs = ['01', '02', '03']
 
 # Subject and session mapping
-# Skip ses-01 for sub-004 and sub-007 since they're already processed
 subject_sessions = {
-    'sub-004': ['03', '05', '06'],  # UD
-    'sub-007': ['03', '04'],             # TC  
+    'sub-004': ['01','03', '05', '06'],  # TC
+    'sub-007': ['01','03', '04'],        # UD 
     'sub-021': ['01', '02', '03']        # OT
 }
 
