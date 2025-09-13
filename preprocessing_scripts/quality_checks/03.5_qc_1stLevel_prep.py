@@ -8,7 +8,7 @@ import subprocess
 from glob import glob
 
 # Project parameters (same as submit_jobs.py)
-data_dir = '/lab_data/behrmannlab/claire/long_pt'
+data_dir = '/user_data/csimmon2/long_pt'
 raw_data_dir = '/lab_data/behrmannlab/hemi/Raw'
 task = 'loc'
 runs = ['01', '02', '03']
