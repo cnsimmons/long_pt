@@ -9,7 +9,7 @@ dataDir='/user_data/csimmon2/long_pt'
 rawDataDir='/lab_data/behrmannlab/hemi/Raw'
 
 # Template configuration
-templateFSF="/lab_data/behrmannlab/vlad/ptoc/sub-004/ses-01/derivatives/fsl/loc/run-01/1stLevel.fsf"
+templateFSF="/user_data/csimmon2/long_pt/sub-004/ses-01/derivatives/fsl/loc/run-01/1stLevel.fsf"
 templateSub="004"
 templateSes="01"
 templateRun="01"

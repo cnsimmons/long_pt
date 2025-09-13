@@ -18,6 +18,7 @@ ses = sys.argv[2]  # e.g., '02'
 
 # Project parameters
 data_dir = '/user_data/csimmon2/long_pt'
+raw_dir = '/lab_data/behrmannlab/hemi/Raw'
 task = 'loc'
 runs = ['01', '02', '03', '04', '05']  # Updated to include more runs if applicable
 
