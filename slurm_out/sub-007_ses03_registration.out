@@ -1,0 +1,12 @@
+Processing sub-007 ses-03
+  sub-007 loc run-01
+    ✓ run-01 already registered (output exists)
+  sub-007 loc run-02
+    ✓ run-02 already registered (output exists)
+  sub-007 loc run-03
+    ✗ run-03 filtered_func_data.nii.gz does not exist - FEAT may not have completed
+  sub-007 loc run-04
+    ✗ run-04 filtered_func_data.nii.gz does not exist - FEAT may not have completed
+  sub-007 loc run-05
+    ✗ run-05 filtered_func_data.nii.gz does not exist - FEAT may not have completed
+Finished processing sub-007 ses-03
