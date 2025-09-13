@@ -93,6 +93,9 @@ create_fsf() {
     local structImage="$rawDataDir/sub-${sub}/ses-${ses}/anat/sub-${sub}_ses-${ses}_T1w.nii.gz"
     sed -i "s|set highres_files(1) \".*\"|set highres_files(1) \"$structImage\"|g" "$fsfFile"
     
+    # Update standard space template path to use raw data location
+    sed -i "s|/lab_data/behrmannlab/vlad/hemispace|$rawDataDir|g" "$fsfFile"
+    
     # Update output directory
     sed -i "s|set fmri(outputdir) \".*\"|set fmri(outputdir) \"$outputDir/1stLevel\"|g" "$fsfFile"
     
@@ -162,4 +165,4 @@ echo "Created FSF files:"
 find "$dataDir" -name "1stLevel.fsf" -path "*/derivatives/fsl/loc/run-*" | wc -l
 echo ""
 echo "Clean any failed FEAT directories before re-running:"
-echo "find $dataDir -name '1stLevel.feat' -type d | xargs rm -rf"ba
+echo "find $dataDir -name '1stLevel.feat' -type d | xargs rm -rf"
