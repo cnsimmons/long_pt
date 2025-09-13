@@ -1,24 +1,18 @@
 #!/bin/bash
 #
 # Create FEAT .fsf files for long_pt project
-# Corrected version with proper template variable handling
+# Updated version with corrected template and structural image paths
 #
 
 # Configuration
 dataDir='/user_data/csimmon2/long_pt'
 rawDataDir='/lab_data/behrmannlab/hemi/Raw'
 
-# Template configuration
-templateFSF="/user_data/csimmon2/long_pt/sub-004/ses-01/derivatives/fsl/loc/run-01/1stLevel.fsf"
+# Template configuration - UPDATED PATH
+templateFSF="/user_data/csimmon2/long_pt/sub-004/ses-01/derivatives/fsl/loc/run-01/1stLevel.feat/design.fsf"
 templateSub="004"
 templateSes="01"
 templateRun="01"
-
-# Check template exists
-if [ ! -f "$templateFSF" ]; then
-    echo "ERROR: Template FSF not found: $templateFSF"
-    exit 1
-fi
 
 echo "Using template: $templateFSF"
 echo ""
@@ -29,13 +23,13 @@ check_files_exist() {
     local ses="$2"
     local run="$3"
     
-    # Check functional data
+    # Check functional data (still in Raw)
     local funcData="$rawDataDir/sub-${sub}/ses-${ses}/func/sub-${sub}_ses-${ses}_task-loc_run-${run}_bold.nii.gz"
     if [ ! -f "$funcData" ]; then
         return 1
     fi
     
-    # Check timing files
+    # Check timing files (in long_pt)
     local covsDir="$dataDir/sub-${sub}/ses-${ses}/covs"
     if [ ! -d "$covsDir" ]; then
         return 1
@@ -47,6 +41,13 @@ check_files_exist() {
             return 1
         fi
     done
+    
+    # Check structural image (in long_pt) - T1w_brain version
+    local structImage="$dataDir/sub-${sub}/ses-${ses}/anat/sub-${sub}_ses-${ses}_T1w_brain.nii.gz"
+    if [ ! -f "$structImage" ]; then
+        echo "      WARNING: Structural image not found: $structImage"
+        return 1
+    fi
     
     return 0
 }
@@ -77,11 +78,11 @@ create_fsf() {
     sed -i "s/run${templateRun}/run${run}/g" "$fsfFile"
     sed -i "s/Run${templateRun}/Run${run}/g" "$fsfFile"
     
-    # Update functional data path
+    # Update functional data path (still from Raw)
     local funcData="$rawDataDir/sub-${sub}/ses-${ses}/func/sub-${sub}_ses-${ses}_task-loc_run-${run}_bold.nii.gz"
     sed -i "s|set feat_files(1) \".*\"|set feat_files(1) \"$funcData\"|g" "$fsfFile"
     
-    # Update timing file paths
+    # Update timing file paths (from long_pt)
     local covsDir="$dataDir/sub-${sub}/ses-${ses}/covs"
     sed -i "s|set fmri(custom1) \".*\"|set fmri(custom1) \"$covsDir/catloc_${sub}_run-${run}_Face.txt\"|g" "$fsfFile"
     sed -i "s|set fmri(custom2) \".*\"|set fmri(custom2) \"$covsDir/catloc_${sub}_run-${run}_House.txt\"|g" "$fsfFile"
@@ -89,12 +90,16 @@ create_fsf() {
     sed -i "s|set fmri(custom4) \".*\"|set fmri(custom4) \"$covsDir/catloc_${sub}_run-${run}_Word.txt\"|g" "$fsfFile"
     sed -i "s|set fmri(custom5) \".*\"|set fmri(custom5) \"$covsDir/catloc_${sub}_run-${run}_Scramble.txt\"|g" "$fsfFile"
     
-    # Update structural image path
-    local structImage="$rawDataDir/sub-${sub}/ses-${ses}/anat/sub-${sub}_ses-${ses}_T1w.nii.gz"
+    # CORRECTED: Update structural image path to use long_pt with T1w_brain
+    local structImage="$dataDir/sub-${sub}/ses-${ses}/anat/sub-${sub}_ses-${ses}_T1w_brain.nii.gz"
     sed -i "s|set highres_files(1) \".*\"|set highres_files(1) \"$structImage\"|g" "$fsfFile"
     
-    # Update standard space template path to use raw data location
-    sed -i "s|/lab_data/behrmannlab/vlad/hemispace|$rawDataDir|g" "$fsfFile"
+    # CORRECTED: Update standard space template to use long_pt instead of hemispace
+    # This handles both fmri(regstandard) and any other references to hemispace
+    sed -i "s|/lab_data/behrmannlab/vlad/hemispace|$dataDir|g" "$fsfFile"
+    
+    # CORRECTED: Also handle any references to T1w.nii.gz and change to T1w_brain.nii.gz
+    sed -i "s|T1w\.nii\.gz|T1w_brain.nii.gz|g" "$fsfFile"
     
     # Update output directory
     sed -i "s|set fmri(outputdir) \".*\"|set fmri(outputdir) \"$outputDir/1stLevel\"|g" "$fsfFile"

@@ -33,14 +33,14 @@ runs = ['01', '02', '03']
 
 # Subject and session mapping
 subject_sessions = {
-    'sub-004': ['01','03', '05', '06', '07'],  # TC
+    'sub-004': ['01', '02', '03', '05', '06', '07'],  # TC - ADDED '02'
     'sub-007': ['01','03', '04', '05'],        # UD 
     'sub-021': ['01', '02', '03']        # OT
 }
 
 # Job control flags
-run_1stlevel = False      # Run FEAT first level
-run_registration = True  # Run registration to anatomical space
+run_1stlevel = True      # Run FEAT first level
+run_registration = False  # Run registration to anatomical space
 run_highlevel = False    # Run high level analysis (set to True later when needed)
 
 def setup_sbatch(job_name, script_name):
@@ -109,7 +109,15 @@ for sub, sessions in subject_sessions.items():
             
             for run in runs:
                 fsf_file = f'{task_dir}/run-{run}/1stLevel.fsf'
-                
+                '''
+                # Skip specific subject/session/run combinations
+                if (sub == 'sub-004' and ses == '01' and run == '01'):
+                    print(f"⏭️  Skipping {sub} ses-{ses} run-{run} (already processed)")
+                    continue
+                if (sub == 'sub-007' and ses == '03' and run == '02'):
+                    print(f"⏭️  Skipping {sub} ses-{ses} run-{run} (already processed)")
+                    continue
+                '''
                 # Check if FSF file exists
                 if os.path.exists(fsf_file):
                     job_name_full = f'{sub}_ses{ses}_{task}_run{run}_feat'
