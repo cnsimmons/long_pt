@@ -1,117 +1,160 @@
-## adapted from Vlad's script
-## review copes and contrasts
-
 #!/usr/bin/env python3
 """
-Register each HighLevel to MNI space in a parallelized manner
-Adapted for long_pt project
+Submit FSL FEAT jobs for long_pt project
+Adapted from hemispace project - Vlad's script
+Creates and submits SLURM jobs for:
+- FEAT first level analysis
+- Registration to anatomical space
+- High level analysis
+Requires FSL and a conda environment named 'fmri' with necessary packages
+Make sure to adjust paths and parameters as needed
+
+to run: job_cmd = f'python 04_1stLevel.py {sub} {ses}'
+to monitor: squeue -u $USER
 """
 
-import numpy as np
-import pandas as pd
 import subprocess
+from glob import glob
 import os
-import sys
+import time
+import pandas as pd
 
-# Get command line arguments
-sub = sys.argv[1]  # e.g., 'sub-004'
-ses = sys.argv[2]  # e.g., '02'
+# Job parameters
+job_name = 'long_pt_feat'
+mem = 20
+run_time = "1-00:00:00"
+pause_crit = 12  # Number of jobs before pausing
+pause_time = 5   # Minutes to pause
 
 # Project parameters
-data_dir = '/user_data/csimmon2/long_pt'  # not '/lab_data/behrmannlab/claire/long_pt'
+data_dir = '/user_data/csimmon2/long_pt'
 task = 'loc'
-mni = '/opt/fsl/6.0.3/data/standard/MNI152_T1_2mm_brain.nii.gz'  # MNI template for analysis
+runs = ['01', '02', '03']
 
-# Define cope numbers for different contrasts
-# You may need to adjust these based on your actual contrasts
-cope_info = {
-    'group_mean': 1,
-    'face_vs_word': 2,
-    'word_vs_face': 3, 
-    'objects_vs_houses': 4,
+# Subject and session mapping
+subject_sessions = {
+    'sub-004': ['01', '02', '03', '05', '06', '07'],  # TC - ADDED '02'
+    'sub-007': ['01','03', '04', '05'],        # UD 
+    'sub-021': ['01', '02', '03']        # OT
 }
 
-# Subject and session directories
-sub_dir = f'{data_dir}/{sub}/ses-{ses}'
-anat_transform = f'{sub_dir}/anat/anat2stand.mat'
+# Job control flags
+run_1stlevel = True      # Run FEAT first level
+run_registration = False  # Run registration to anatomical space
+run_highlevel = False    # Run high level analysis (set to True later when needed)
 
-print(f"Registering high-level outputs for {sub} ses-{ses}")
+def setup_sbatch(job_name, script_name):
+    """Create SLURM sbatch script content"""
+    sbatch_setup = f"""#!/bin/bash -l
+# Job name
+#SBATCH --job-name={job_name}
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=csimmon2@andrew.cmu.edu
 
-# Check if anatomical transformation matrix exists
-if not os.path.exists(anat_transform):
-    print(f"⚠️  Anatomical transformation matrix not found: {anat_transform}")
-    print("   You may need to run FEAT with registration to standard space first")
-    sys.exit(1)
+# Submit job to cpu queue                
+#SBATCH -p cpu
+#SBATCH --cpus-per-task=1
+#SBATCH --gres=gpu:0
 
-# Process each cope
-for contrast_name, cope_num in cope_info.items():
-    print(f"  Processing {contrast_name} (cope{cope_num})")
+# Job memory request
+#SBATCH --mem={mem}gb
+
+# Time limit days-hrs:min:sec
+#SBATCH --time {run_time}
+
+# Standard output and error log
+#SBATCH --output=slurm_out/{job_name}.out
+
+# Load modules and activate environment
+module load fsl-6.0.3
+conda activate fmri
+
+{script_name}
+"""
+    return sbatch_setup
+
+def create_job(job_name, job_cmd):
+    """Create and submit a SLURM job"""
+    print(f"Submitting job: {job_name}")
+    print(f"Command: {job_cmd}")
     
-    # Paths for this cope
-    highlevel_dir = f'{sub_dir}/derivatives/fsl/{task}/HighLevel.gfeat'
-    cope_dir = f'{highlevel_dir}/cope{cope_num}.feat'
-    zstat_file = f'{cope_dir}/stats/zstat1.nii.gz'
-    out_file = f'{cope_dir}/stats/zstat1_reg.nii.gz'
+    # Create temporary script file
+    script_file = f"{job_name}.sh"
+    with open(script_file, "w") as f:
+        f.write(setup_sbatch(job_name, job_cmd))
     
-    # Check if high-level output exists
-    if os.path.exists(zstat_file):
-        if not os.path.exists(out_file):
-            # Register zstat to MNI space
-            bash_cmd = f'flirt -in {zstat_file} -ref {mni} -out {out_file} -applyxfm -init {anat_transform} -interp trilinear'
-            print(f"    Running: {bash_cmd}")
+    # Submit job
+    try:
+        result = subprocess.run(['sbatch', script_file], check=True, capture_output=True, text=True)
+        print(f"  ✓ Job submitted: {result.stdout.strip()}")
+    except subprocess.CalledProcessError as e:
+        print(f"  ✗ Error submitting job: {e}")
+    
+    # Clean up script file
+    os.remove(script_file)
+
+# Create output directory for slurm logs
+os.makedirs('slurm_out', exist_ok=True)
+
+# Job submission loop
+n_jobs = 0
+
+for sub, sessions in subject_sessions.items():
+    for ses in sessions:
+        sub_dir = f"{data_dir}/{sub}/ses-{ses}"
+        
+        if run_1stlevel:
+            # Submit FEAT first level jobs
+            task_dir = f'{sub_dir}/derivatives/fsl/{task}'
             
-            try:
-                subprocess.run(bash_cmd.split(), check=True)
-                print(f"    ✓ Successfully registered {contrast_name}")
-            except subprocess.CalledProcessError as e:
-                print(f"    ✗ Error registering {contrast_name}: {e}")
-        else:
-            print(f"    ✓ {contrast_name} already registered (output exists)")
-    else:
-        print(f"    ⚠️  zstat file not found: {zstat_file}")
-        print(f"       High-level FEAT may not have completed for {contrast_name}")
-
-# Also register cope files if they exist
-print(f"  Processing cope files...")
-for contrast_name, cope_num in cope_info.items():
-    cope_dir = f'{highlevel_dir}/cope{cope_num}.feat'
-    cope_file = f'{cope_dir}/stats/cope1.nii.gz'
-    out_cope_file = f'{cope_dir}/stats/cope1_reg.nii.gz'
-    
-    if os.path.exists(cope_file):
-        if not os.path.exists(out_cope_file):
-            bash_cmd = f'flirt -in {cope_file} -ref {mni} -out {out_cope_file} -applyxfm -init {anat_transform} -interp trilinear'
-            print(f"    Running: {bash_cmd}")
+            for run in runs:
+                fsf_file = f'{task_dir}/run-{run}/1stLevel.fsf'
+                
+                # Skip specific subject/session/run combinations
+                if (sub == 'sub-004' and ses == '01' and run == '01'):
+                    print(f"⏭️  Skipping {sub} ses-{ses} run-{run} (already processed)")
+                    continue
+                if (sub == 'sub-007' and ses == '03' and run == '02'):
+                    print(f"⏭️  Skipping {sub} ses-{ses} run-{run} (already processed)")
+                    continue
+                
+                # Check if FSF file exists
+                if os.path.exists(fsf_file):
+                    job_name_full = f'{sub}_ses{ses}_{task}_run{run}_feat'
+                    job_cmd = f'feat {fsf_file}'
+                    create_job(job_name_full, job_cmd)
+                    n_jobs += 1
+                else:
+                    print(f"⚠️  FSF file not found: {fsf_file}")
+                    
+        if run_registration:  # Add new flag at top
+            # Submit registration jobs
+            reg_job_cmd = f'python preprocessing_scripts/04_1stLevel.py {sub} {ses}'
+            job_name_full = f'{sub}_ses{ses}_registration'
+            create_job(job_name_full, reg_job_cmd)
+            n_jobs += 1
+        
+        if run_highlevel:
+            # Submit high level analysis jobs
+            high_fsf = f'{sub_dir}/derivatives/fsl/{task}/HighLevel.fsf'
             
-            try:
-                subprocess.run(bash_cmd.split(), check=True)
-                print(f"    ✓ Successfully registered cope for {contrast_name}")
-            except subprocess.CalledProcessError as e:
-                print(f"    ✗ Error registering cope for {contrast_name}: {e}")
-        else:
-            print(f"    ✓ cope for {contrast_name} already registered")
+            if os.path.exists(high_fsf):
+                job_name_full = f'{sub}_ses{ses}_{task}_highlevel'
+                job_cmd = f'feat {high_fsf}'
+                create_job(job_name_full, job_cmd)
+                n_jobs += 1
+            else:
+                print(f"⚠️  High level FSF file not found: {high_fsf}")
+                
+        
+        # Pause if we've submitted too many jobs
+        if n_jobs >= pause_crit:
+            print(f"\n🛑 Pausing for {pause_time} minutes after submitting {n_jobs} jobs...")
+            time.sleep(pause_time * 60)
+            n_jobs = 0
 
-print(f"Finished registering high-level outputs for {sub} ses-{ses}")
-
-# Summary of what was processed
-registered_zstats = []
-registered_copes = []
-
-for contrast_name, cope_num in cope_info.items():
-    cope_dir = f'{highlevel_dir}/cope{cope_num}.feat'
-    zstat_reg = f'{cope_dir}/stats/zstat1_reg.nii.gz'
-    cope_reg = f'{cope_dir}/stats/cope1_reg.nii.gz'
-    
-    if os.path.exists(zstat_reg):
-        registered_zstats.append(contrast_name)
-    if os.path.exists(cope_reg):
-        registered_copes.append(contrast_name)
-
-print(f"\nSummary:")
-print(f"  Registered zstats: {len(registered_zstats)}/{len(cope_info)} contrasts")
-print(f"  Registered copes: {len(registered_copes)}/{len(cope_info)} contrasts")
-
-if registered_zstats:
-    print(f"  Successfully registered zstats: {', '.join(registered_zstats)}")
-if registered_copes:
-    print(f"  Successfully registered copes: {', '.join(registered_copes)}")
+print(f"\n✅ Finished submitting all jobs!")
+print(f"Total jobs submitted: {n_jobs}")
+print("\nTo check job status: squeue -u $USER")
+print("To check job details: scontrol show job <job_id>")
+print("To cancel jobs: scancel <job_id> or scancel -u $USER")
