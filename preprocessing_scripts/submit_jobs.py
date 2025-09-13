@@ -39,8 +39,8 @@ subject_sessions = {
 }
 
 # Job control flags
-run_1stlevel = True      # Run FEAT first level
-run_registration = False  # Run registration to anatomical space
+run_1stlevel = False      # Run FEAT first level
+run_registration = True  # Run registration to anatomical space
 run_highlevel = False    # Run high level analysis (set to True later when needed)
 
 def setup_sbatch(job_name, script_name):
