@@ -50,27 +50,6 @@ create_highlevel_fsf() {
         done
     fi
     
-    # Add Face vs Word contrast (key for Figure 5)
-    cat >> "$fsf_file" << EOF
-
-# Additional contrasts for Figure 5
-set fmri(ncon_real) 4
-
-# Face vs Word contrast
-set fmri(conpic_real.2) 1
-set fmri(conname_real.2) "face_vs_word"
-set fmri(con_real2.1) 1
-
-# Word vs Face contrast  
-set fmri(conpic_real.3) 1
-set fmri(conname_real.3) "word_vs_face"
-set fmri(con_real3.1) 1
-
-# Objects vs Houses contrast
-set fmri(conpic_real.4) 1
-set fmri(conname_real.4) "objects_vs_houses"
-set fmri(con_real4.1) 1
-EOF
     
     echo "    Created: $fsf_file"
 }
