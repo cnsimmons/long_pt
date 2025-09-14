@@ -1,0 +1,14 @@
+Registering high-level outputs for sub-021 ses-01
+  Processing group_mean (cope1)
+    Running: flirt -in /user_data/csimmon2/long_pt/sub-021/ses-01/derivatives/fsl/loc/HighLevel.gfeat/cope1.feat/stats/zstat1.nii.gz -ref /opt/fsl/6.0.3/data/standard/MNI152_T1_2mm_brain.nii.gz -out /user_data/csimmon2/long_pt/sub-021/ses-01/derivatives/fsl/loc/HighLevel.gfeat/cope1.feat/stats/zstat1_reg.nii.gz -applyxfm -init /user_data/csimmon2/long_pt/sub-021/ses-01/anat/anat2stand.mat -interp trilinear
+    ✓ Successfully registered group_mean
+  Processing cope files...
+    Running: flirt -in /user_data/csimmon2/long_pt/sub-021/ses-01/derivatives/fsl/loc/HighLevel.gfeat/cope1.feat/stats/cope1.nii.gz -ref /opt/fsl/6.0.3/data/standard/MNI152_T1_2mm_brain.nii.gz -out /user_data/csimmon2/long_pt/sub-021/ses-01/derivatives/fsl/loc/HighLevel.gfeat/cope1.feat/stats/cope1_reg.nii.gz -applyxfm -init /user_data/csimmon2/long_pt/sub-021/ses-01/anat/anat2stand.mat -interp trilinear
+    ✓ Successfully registered cope for group_mean
+Finished registering high-level outputs for sub-021 ses-01
+
+Summary:
+  Registered zstats: 1/1 contrasts
+  Registered copes: 1/1 contrasts
+  Successfully registered zstats: group_mean
+  Successfully registered copes: group_mean

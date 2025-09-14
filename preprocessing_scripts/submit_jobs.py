@@ -6,10 +6,11 @@ Creates and submits SLURM jobs for:
 - FEAT first level analysis
 - Registration to anatomical space
 - High level analysis
+- MNI registration of high-level outputs
 Requires FSL and a conda environment named 'fmri' with necessary packages
 Make sure to adjust paths and parameters as needed
 
-to run: job_cmd = f'python 04_1stLevel.py {sub} {ses}'
+to run: python submit_jobs.py
 to monitor: squeue -u $USER
 """
 
@@ -33,7 +34,7 @@ runs = ['01', '02', '03']
 
 # Subject and session mapping
 subject_sessions = {
-    'sub-004': ['01', '02', '03', '05', '06', '07'],  # TC - ADDED '02'
+    'sub-004': ['01', '02', '03', '05', '06', '07'],  # TC
     'sub-007': ['01','03', '04', '05'],        # UD 
     'sub-021': ['01', '02', '03']        # OT
 }
@@ -41,8 +42,8 @@ subject_sessions = {
 # Job control flags
 run_1stlevel = False      # Run FEAT first level
 run_registration = False  # Run registration to anatomical space
-run_highlevel = False    # Run high level analysis (set to True later when needed)
-run_mni_reg = True  # New flag for MNI registration jobs
+run_highlevel = False     # Run high level analysis
+run_mni_registration = True  # Run registration of high-level outputs to MNI
 
 def setup_sbatch(job_name, script_name):
     """Create SLURM sbatch script content"""
@@ -90,9 +91,12 @@ def create_job(job_name, job_cmd):
         print(f"  ✓ Job submitted: {result.stdout.strip()}")
     except subprocess.CalledProcessError as e:
         print(f"  ✗ Error submitting job: {e}")
+        print(f"  ✗ sbatch stderr: {e.stderr}")
+        print(f"  ✗ sbatch stdout: {e.stdout}")
     
-    # Clean up script file
-    os.remove(script_file)
+    # Clean up script file (check if it exists first)
+    if os.path.exists(script_file):
+        os.remove(script_file)
 
 # Create output directory for slurm logs
 os.makedirs('slurm_out', exist_ok=True)
@@ -110,7 +114,7 @@ for sub, sessions in subject_sessions.items():
             
             for run in runs:
                 fsf_file = f'{task_dir}/run-{run}/1stLevel.fsf'
-                '''
+                
                 # Skip specific subject/session/run combinations
                 if (sub == 'sub-004' and ses == '01' and run == '01'):
                     print(f"⏭️  Skipping {sub} ses-{ses} run-{run} (already processed)")
@@ -118,7 +122,7 @@ for sub, sessions in subject_sessions.items():
                 if (sub == 'sub-007' and ses == '03' and run == '02'):
                     print(f"⏭️  Skipping {sub} ses-{ses} run-{run} (already processed)")
                     continue
-                '''
+                
                 # Check if FSF file exists
                 if os.path.exists(fsf_file):
                     job_name_full = f'{sub}_ses{ses}_{task}_run{run}_feat'
@@ -128,7 +132,7 @@ for sub, sessions in subject_sessions.items():
                 else:
                     print(f"⚠️  FSF file not found: {fsf_file}")
                     
-        if run_registration:  # Add new flag at top
+        if run_registration:
             # Submit registration jobs
             reg_job_cmd = f'python preprocessing_scripts/04_1stLevel.py {sub} {ses}'
             job_name_full = f'{sub}_ses{ses}_registration'
@@ -146,8 +150,8 @@ for sub, sessions in subject_sessions.items():
                 n_jobs += 1
             else:
                 print(f"⚠️  High level FSF file not found: {high_fsf}")
-                
-        if run_mni_reg:
+        
+        if run_mni_registration:
             # Submit MNI registration jobs for high-level outputs
             mni_job_cmd = f'python preprocessing_scripts/06_highLevel.py {sub} {ses}'
             job_name_full = f'{sub}_ses{ses}_mni_registration'
