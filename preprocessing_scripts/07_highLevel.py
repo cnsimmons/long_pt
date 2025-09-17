@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Register each HighLevel to ses01_ref space in a parallelized manner (that is register back to first session)
-Adapted for long_pt project
+Process high-level outputs in first-session space for long_pt project
+UPDATED: Works with first-session registration instead of MNI registration
 """
 
 import numpy as np
@@ -17,7 +17,8 @@ ses = sys.argv[2]  # e.g., '02'
 # Project parameters
 data_dir = '/user_data/csimmon2/long_pt'
 task = 'loc'
-mni = '/opt/fsl/6.0.3/data/standard/MNI152_T1_2mm_brain.nii.gz'  # MNI template for analysis
+
+# First-session anatomy as reference (instead of MNI template)
 ses01_ref = f'{data_dir}/{sub}/ses-01/anat/{sub}_ses-01_T1w_brain.nii.gz'
 
 # Define cope numbers for different contrasts
@@ -26,24 +27,31 @@ cope_info = {
     'group_mean': 1,
 }
 
-
-cope_info = {
-    'objects': 1,      # Objects vs baseline  
-    'houses': 2,       # Houses vs baseline
-    'objects_vs_houses': 3,  # Objects vs Houses competition
-}
-
 # Subject and session directories
 sub_dir = f'{data_dir}/{sub}/ses-{ses}'
-anat_transform = f'{sub_dir}/anat/anat2stand.mat'
 
-print(f"Registering high-level outputs for {sub} ses-{ses}")
+print(f"Processing high-level outputs for {sub} ses-{ses} in first-session space")
 
-# Check if anatomical transformation matrix exists
-if not os.path.exists(anat_transform):
-    print(f"⚠️  Anatomical transformation matrix not found: {anat_transform}")
-    print("   You may need to run FEAT with registration to standard space first")
+# Check if first-session anatomy exists
+if not os.path.exists(ses01_ref):
+    print(f"⚠️  First-session anatomy not found: {ses01_ref}")
+    print("   Make sure ses-01 anatomy exists for this subject")
     sys.exit(1)
+
+# Check if we need to register to ses-01 space (for non-ses-01 sessions)
+if ses == '01':
+    print(f"  Session 01: Maps already in correct space, no registration needed")
+    need_registration = False
+else:
+    # Check if transformation matrix exists
+    anat_transform = f'{sub_dir}/anat/anat2ses01.mat'
+    if os.path.exists(anat_transform):
+        print(f"  Found transformation matrix: {anat_transform}")
+        need_registration = True
+    else:
+        print(f"⚠️  No transformation matrix found: {anat_transform}")
+        print("   High-level outputs should already be in first-session space")
+        need_registration = False
 
 # Process each cope
 for contrast_name, cope_num in cope_info.items():
@@ -53,67 +61,85 @@ for contrast_name, cope_num in cope_info.items():
     highlevel_dir = f'{sub_dir}/derivatives/fsl/{task}/HighLevel.gfeat'
     cope_dir = f'{highlevel_dir}/cope{cope_num}.feat'
     zstat_file = f'{cope_dir}/stats/zstat1.nii.gz'
-    out_file = f'{cope_dir}/stats/zstat1_reg.nii.gz'
+    cope_file = f'{cope_dir}/stats/cope1.nii.gz'
     
-    # Check if high-level output exists
+    # Output files (ses01-registered versions)
+    zstat_ses01 = f'{cope_dir}/stats/zstat1_ses01.nii.gz'
+    cope_ses01 = f'{cope_dir}/stats/cope1_ses01.nii.gz'
+    
+    # Process zstat file
     if os.path.exists(zstat_file):
-        if not os.path.exists(out_file):
-            # Register zstat to ses01_ref space
-            bash_cmd = f'flirt -in {zstat_file} -ref {ses01_ref} -out {out_file} -applyxfm -init {anat_transform} -interp trilinear'
+        if need_registration and not os.path.exists(zstat_ses01):
+            # Register to first-session space
+            bash_cmd = f'flirt -in {zstat_file} -ref {ses01_ref} -out {zstat_ses01} -applyxfm -init {anat_transform} -interp trilinear'
             print(f"    Running: {bash_cmd}")
             
             try:
                 subprocess.run(bash_cmd.split(), check=True)
-                print(f"    ✓ Successfully registered {contrast_name}")
+                print(f"    ✓ Successfully registered zstat to ses-01 space")
             except subprocess.CalledProcessError as e:
-                print(f"    ✗ Error registering {contrast_name}: {e}")
+                print(f"    ✗ Error registering zstat: {e}")
+        
+        elif not need_registration:
+            # Create symbolic link or copy (maps should already be in ses-01 space)
+            if not os.path.exists(zstat_ses01):
+                os.symlink(os.path.abspath(zstat_file), zstat_ses01)
+                print(f"    ✓ Linked zstat (already in ses-01 space)")
+            else:
+                print(f"    ✓ zstat already processed")
         else:
-            print(f"    ✓ {contrast_name} already registered (output exists)")
+            print(f"    ✓ zstat already registered to ses-01 space")
     else:
         print(f"    ⚠️  zstat file not found: {zstat_file}")
         print(f"       High-level FEAT may not have completed for {contrast_name}")
 
-# Also register cope files if they exist
-print(f"  Processing cope files...")
-for contrast_name, cope_num in cope_info.items():
-    cope_dir = f'{highlevel_dir}/cope{cope_num}.feat'
-    cope_file = f'{cope_dir}/stats/cope1.nii.gz'
-    out_cope_file = f'{cope_dir}/stats/cope1_reg.nii.gz'
-    
+    # Process cope file
     if os.path.exists(cope_file):
-        if not os.path.exists(out_cope_file):
-            bash_cmd = f'flirt -in {cope_file} -ref {ses01_ref} -out {out_cope_file} -applyxfm -init {anat_transform} -interp trilinear'
+        if need_registration and not os.path.exists(cope_ses01):
+            # Register to first-session space
+            bash_cmd = f'flirt -in {cope_file} -ref {ses01_ref} -out {cope_ses01} -applyxfm -init {anat_transform} -interp trilinear'
             print(f"    Running: {bash_cmd}")
             
             try:
                 subprocess.run(bash_cmd.split(), check=True)
-                print(f"    ✓ Successfully registered cope for {contrast_name}")
+                print(f"    ✓ Successfully registered cope to ses-01 space")
             except subprocess.CalledProcessError as e:
-                print(f"    ✗ Error registering cope for {contrast_name}: {e}")
+                print(f"    ✗ Error registering cope: {e}")
+        
+        elif not need_registration:
+            # Create symbolic link or copy (maps should already be in ses-01 space)
+            if not os.path.exists(cope_ses01):
+                os.symlink(os.path.abspath(cope_file), cope_ses01)
+                print(f"    ✓ Linked cope (already in ses-01 space)")
+            else:
+                print(f"    ✓ cope already processed")
         else:
-            print(f"    ✓ cope for {contrast_name} already registered")
+            print(f"    ✓ cope already registered to ses-01 space")
+    else:
+        print(f"    ⚠️  cope file not found: {cope_file}")
 
-print(f"Finished registering high-level outputs for {sub} ses-{ses}")
+print(f"Finished processing high-level outputs for {sub} ses-{ses}")
 
-# Summary of what was processed
-registered_zstats = []
-registered_copes = []
+# Summary
+processed_zstats = []
+processed_copes = []
 
 for contrast_name, cope_num in cope_info.items():
     cope_dir = f'{highlevel_dir}/cope{cope_num}.feat'
-    zstat_reg = f'{cope_dir}/stats/zstat1_reg.nii.gz'
-    cope_reg = f'{cope_dir}/stats/cope1_reg.nii.gz'
+    zstat_ses01 = f'{cope_dir}/stats/zstat1_ses01.nii.gz'
+    cope_ses01 = f'{cope_dir}/stats/cope1_ses01.nii.gz'
     
-    if os.path.exists(zstat_reg):
-        registered_zstats.append(contrast_name)
-    if os.path.exists(cope_reg):
-        registered_copes.append(contrast_name)
+    if os.path.exists(zstat_ses01):
+        processed_zstats.append(contrast_name)
+    if os.path.exists(cope_ses01):
+        processed_copes.append(contrast_name)
 
 print(f"\nSummary:")
-print(f"  Registered zstats: {len(registered_zstats)}/{len(cope_info)} contrasts")
-print(f"  Registered copes: {len(registered_copes)}/{len(cope_info)} contrasts")
+print(f"  Processed zstats: {len(processed_zstats)}/{len(cope_info)} contrasts")
+print(f"  Processed copes: {len(processed_copes)}/{len(cope_info)} contrasts")
+print(f"  All outputs in first-session space: {ses01_ref}")
 
-if registered_zstats:
-    print(f"  Successfully registered zstats: {', '.join(registered_zstats)}")
-if registered_copes:
-    print(f"  Successfully registered copes: {', '.join(registered_copes)}")
+if processed_zstats:
+    print(f"  Successfully processed zstats: {', '.join(processed_zstats)}")
+if processed_copes:
+    print(f"  Successfully processed copes: {', '.join(processed_copes)}")
