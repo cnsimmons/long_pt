@@ -42,8 +42,8 @@ subject_sessions = {
 # Job control flags
 run_1stlevel = False      # Run FEAT first level
 run_registration = False  # Run registration to anatomical space
-run_highlevel = False     # Run high level analysis
-run_mni_registration = True  # Run registration of high-level outputs to MNI
+run_highlevel = True     # Run high level analysis
+run_mni_registration = False  # Run registration of high-level outputs to MNI
 
 def setup_sbatch(job_name, script_name):
     """Create SLURM sbatch script content"""
@@ -153,7 +153,7 @@ for sub, sessions in subject_sessions.items():
         
         if run_mni_registration:
             # Submit MNI registration jobs for high-level outputs
-            mni_job_cmd = f'python preprocessing_scripts/06_highLevel.py {sub} {ses}'
+            mni_job_cmd = f'python preprocessing_scripts/07_highLevel.py {sub} {ses}'
             job_name_full = f'{sub}_ses{ses}_mni_registration'
             create_job(job_name_full, mni_job_cmd)
             n_jobs += 1
