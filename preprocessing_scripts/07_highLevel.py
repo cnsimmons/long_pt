@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Register each HighLevel to MNI space in a parallelized manner
+Register each HighLevel to ses01_ref space in a parallelized manner (that is register back to first session)
 Adapted for long_pt project
 """
 
@@ -18,11 +18,19 @@ ses = sys.argv[2]  # e.g., '02'
 data_dir = '/user_data/csimmon2/long_pt'
 task = 'loc'
 mni = '/opt/fsl/6.0.3/data/standard/MNI152_T1_2mm_brain.nii.gz'  # MNI template for analysis
+ses01_ref = f'{data_dir}/{sub}/ses-01/anat/{sub}_ses-01_T1w_brain.nii.gz'
 
 # Define cope numbers for different contrasts
 # Updated to match the corrected HighLevel.fsf template (only group_mean)
 cope_info = {
     'group_mean': 1,
+}
+
+
+cope_info = {
+    'objects': 1,      # Objects vs baseline  
+    'houses': 2,       # Houses vs baseline
+    'objects_vs_houses': 3,  # Objects vs Houses competition
 }
 
 # Subject and session directories
@@ -50,8 +58,8 @@ for contrast_name, cope_num in cope_info.items():
     # Check if high-level output exists
     if os.path.exists(zstat_file):
         if not os.path.exists(out_file):
-            # Register zstat to MNI space
-            bash_cmd = f'flirt -in {zstat_file} -ref {mni} -out {out_file} -applyxfm -init {anat_transform} -interp trilinear'
+            # Register zstat to ses01_ref space
+            bash_cmd = f'flirt -in {zstat_file} -ref {ses01_ref} -out {out_file} -applyxfm -init {anat_transform} -interp trilinear'
             print(f"    Running: {bash_cmd}")
             
             try:
@@ -74,7 +82,7 @@ for contrast_name, cope_num in cope_info.items():
     
     if os.path.exists(cope_file):
         if not os.path.exists(out_cope_file):
-            bash_cmd = f'flirt -in {cope_file} -ref {mni} -out {out_cope_file} -applyxfm -init {anat_transform} -interp trilinear'
+            bash_cmd = f'flirt -in {cope_file} -ref {ses01_ref} -out {out_cope_file} -applyxfm -init {anat_transform} -interp trilinear'
             print(f"    Running: {bash_cmd}")
             
             try:
