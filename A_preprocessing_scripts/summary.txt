@@ -1,0 +1,86 @@
+# LONG_PT HEMISPHERECTOMY PREPROCESSING PIPELINE
+# FSL FEAT-based analysis for longitudinal category selectivity study
+
+## PREREQUISITES
+# - Raw BIDS data in /lab_data/behrmannlab/hemi/Raw
+# - FSL 6.0.3 loaded
+# - Conda environment 'fmri' activated
+
+## STEP 0: FS to FSL-BIDS Conversion (if needed)
+# Converts FreeSurfer outputs to FSL-compatible BIDS format
+
+## STEP 1: Data Organization
+bash 01_organize_imaging.sh
+# OR python 01_organize_imaging.py
+# - Creates processed directory structure in /user_data/csimmon2/long_pt
+# - Converts timing files from BIDS .tsv → FSL 3-column format
+# - Creates reference files pointing to raw data locations
+# Special case: sub-007 ses-03 uses converted .prt files
+
+## STEP 2: Anatomical Preprocessing (Brain Mirroring)
+python 02_brain_mirroring.py
+# - Skull strips T1w with FSL BET → T1w_brain.nii.gz
+# - Creates mirrored brains for hemispherectomy patients
+# - Registers mirrored brain → MNI (creates anat2stand.mat)
+# - Applies transform to real brain → T1w_brain_stand.nii.gz
+# - Creates inverse transform (mni2anat.mat)
+
+## STEP 3: Create First-Level FSF Files
+bash 03_create_fsf_files.sh
+# - Generates FEAT design files for each run
+# - Points to raw functional data
+# - Links to processed timing files in covs/
+# - Links to processed anatomical data
+
+## STEP 4: Run FEAT First-Level Analysis
+# Option A: Submit all jobs
+python submit_jobs.py  # Set run_1stlevel = True
+# Option B: Run single subject/session
+feat /user_data/csimmon2/long_pt/sub-XXX/ses-XX/derivatives/fsl/loc/run-XX/1stLevel.fsf
+
+## STEP 5: Register First-Level to Anatomical Space
+python 04_1stLevel.py sub-XXX XX
+# - Registers filtered_func_data.nii.gz → anatomical space
+# - Creates filtered_func_data_reg.nii.gz
+# - Uses transformation matrix from FEAT registration
+
+## STEP 6: Create Session-to-First-Session Registration
+bash 05_create_session_registration.sh
+# - Registers all sessions to ses-01 anatomy
+# - Creates anat2ses01.mat for each session
+# - Enables longitudinal comparison in common space
+
+## STEP 7: Create High-Level FSF Files
+bash 06_create_highlevel_fsf.sh
+# - Creates session-level analysis files
+# - Combines all runs within a session
+# - Registers to first-session anatomy (not MNI)
+
+## STEP 8: Run FEAT High-Level Analysis
+# Option A: Submit all jobs
+python submit_jobs.py  # Set run_highlevel = True
+# Option B: Run single subject/session
+feat /user_data/csimmon2/long_pt/sub-XXX/ses-XX/derivatives/fsl/loc/HighLevel.fsf
+
+## STEP 9: Register High-Level Outputs (if needed)
+python 07_highLevel.py sub-XXX XX
+# - Additional registration of high-level outputs
+# - Creates final contrasts in common space
+
+## SPECIAL CASES
+# sub-007 ses-03:
+# - Only 2 runs available (run-01, run-02)
+# - Events files converted from BrainVoyager .prt format
+# - Stored in processed directory: /user_data/csimmon2/long_pt/sub-007/ses-03/func/
+# - See README_ses-03_source.txt for details
+
+## MONITORING JOBS
+squeue -u $USER              # Check job status
+scontrol show job <job_id>   # Check job details
+scancel <job_id>             # Cancel specific job
+scancel -u $USER             # Cancel all your jobs
+
+## CHECKING OUTPUTS
+# First-level: .../run-XX/1stLevel.feat/
+# High-level: .../HighLevel.feat/
+# Registration matrices: .../anat/*.mat
