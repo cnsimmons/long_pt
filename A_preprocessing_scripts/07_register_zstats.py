@@ -20,7 +20,7 @@ subjects_sessions = {
 }
 
 # Zstats to register (based on your contrasts)
-zstats = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]  # All contrasts
+zstats = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]  # All contrasts
 
 for sub, config in subjects_sessions.items():
     for ses in config['sessions']:

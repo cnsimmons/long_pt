@@ -40,9 +40,9 @@ subject_sessions = {
 }
 
 # Job control flags
-run_1stlevel = False      # Run FEAT first level
+run_1stlevel = True      # Run FEAT first level
 run_registration = False  # Run registration to anatomical space
-run_highlevel = True     # Run high level analysis
+run_highlevel = False     # Run high level analysis
 run_mni_registration = False  # Run registration of high-level outputs to MNI
 
 def setup_sbatch(job_name, script_name):
