@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Extract voxel-wise contrast statistics from FG/OTS ROI
-Matches the Liu et al. analysis approach
+Extract voxel-wise category selectivity from FG/OTS ROI
+Computing t-statistics from cope and varcope files
 """
 
 import os
@@ -9,7 +9,6 @@ import numpy as np
 import pandas as pd
 import nibabel as nib
 from pathlib import Path
-from scipy import stats as scipy_stats
 
 class ContrastExtractor:
     def __init__(self, base_dir):
@@ -17,17 +16,9 @@ class ContrastExtractor:
         
         # Subject configuration
         self.subjects_info = {
-            'sub-004': {'intact_hemi': 'left', 'sessions': ['01', '02', '03', '05', '06', '07']},
-            'sub-007': {'intact_hemi': 'right', 'sessions': ['01', '03', '04', '05']},
+            'sub-004': {'intact_hemi': 'left', 'sessions': ['01', '02', '03', '05', '06']},
+            'sub-007': {'intact_hemi': 'left', 'sessions': ['01', '03', '04']},
             'sub-021': {'intact_hemi': 'left', 'sessions': ['01', '02', '03']}
-        }
-        
-        # Contrast definitions matching your localizer
-        self.contrasts = {
-            'face_word': {'cope': 'cope1.nii.gz', 'zstat': 'zstat1.nii.gz'},  # face > word or similar
-            'face_house': {'cope': 'cope1.nii.gz', 'zstat': 'zstat1.nii.gz'},  # faces > houses
-            'object_scramble': {'cope': 'cope3.nii.gz', 'zstat': 'zstat3.nii.gz'},  # objects > scrambled
-            # Add other contrasts as needed
         }
     
     def load_roi_mask(self, subject):
@@ -59,23 +50,57 @@ class ContrastExtractor:
         return world_coords, stat_values
     
     def extract_run_level_stats(self, subject, session, run, contrast_name):
-        """Extract statistics from a single run"""
-        # Path to run-level stats
+        """Compute t-statistics from cope and varcope files"""
         run_dir = self.base_dir / subject / f'ses-{session}' / 'derivatives' / 'fsl' / 'loc' / f'run-{run}' / '1stLevel.feat'
-        
-        # Use registered stats (in ses-01 space)
         stats_dir = run_dir / 'reg_standard' / 'stats'
         
-        contrast_file = stats_dir / self.contrasts[contrast_name]['zstat']
+        # Define contrasts
+        contrast_defs = {
+            'face_word': (1, 4),      # Face - Word
+            'object_house': (3, 2),   # Object - House
+        }
         
-        if not contrast_file.exists():
-            print(f"  Warning: {contrast_file} not found")
+        if contrast_name not in contrast_defs:
             return None
         
-        return nib.load(contrast_file)
+        c1, c2 = contrast_defs[contrast_name]
+        
+        # Load cope and varcope files
+        cope1_file = stats_dir / f'cope{c1}.nii.gz'
+        cope2_file = stats_dir / f'cope{c2}.nii.gz'
+        varcope1_file = stats_dir / f'varcope{c1}.nii.gz'
+        varcope2_file = stats_dir / f'varcope{c2}.nii.gz'
+        
+        required_files = [cope1_file, cope2_file, varcope1_file, varcope2_file]
+        if not all(f.exists() for f in required_files):
+            print(f"  Warning: Required files not found for {contrast_name}")
+            return None
+        
+        # Load data
+        cope1 = nib.load(cope1_file).get_fdata()
+        cope2 = nib.load(cope2_file).get_fdata()
+        varcope1 = nib.load(varcope1_file).get_fdata()
+        varcope2 = nib.load(varcope2_file).get_fdata()
+        
+        # Compute contrast
+        contrast = cope1 - cope2
+        
+        # Compute variance of contrast
+        var_contrast = varcope1 + varcope2
+        
+        # Compute t-statistic: contrast / sqrt(variance)
+        # Avoid division by zero
+        t_stat = np.divide(contrast, 
+                          np.sqrt(var_contrast), 
+                          out=np.zeros_like(contrast), 
+                          where=var_contrast > 0)
+        
+        # Return as nifti image
+        img = nib.load(cope1_file)
+        return nib.Nifti1Image(t_stat, img.affine, img.header)
     
     def extract_session_data(self, subject, session, contrast_name):
-        """Extract and average statistics across runs for one session"""
+        """Extract and average t-statistics across runs for one session"""
         print(f"  Extracting {subject} ses-{session} {contrast_name}...")
         
         # Load ROI mask
@@ -83,11 +108,11 @@ class ContrastExtractor:
         
         # Determine available runs for this session
         if subject == 'sub-007' and session in ['03', '04']:
-            runs = ['01', '02']  # Only 2 runs for UD ses-03 and ses-04
+            runs = ['01', '02']
         else:
             runs = ['01', '02', '03']
         
-        # Collect statistics from all runs
+        # Collect t-statistics from all runs
         run_stats = []
         for run in runs:
             stat_img = self.extract_run_level_stats(subject, session, run, contrast_name)
@@ -116,7 +141,7 @@ class ContrastExtractor:
             'contrast': contrast_name
         })
         
-        print(f"    Extracted {len(df)} voxels")
+        print(f"    Extracted {len(df)} voxels (min: {values.min():.2f}, max: {values.max():.2f}, mean: {values.mean():.2f})")
         return df
     
     def extract_all_sessions(self, subject, contrast_name):
@@ -133,18 +158,17 @@ class ContrastExtractor:
         
         return pd.concat(all_data, ignore_index=True)
     
-    def save_for_matlab(self, df, subject, contrast_name, output_dir):
-        """Save in format similar to original .mat files"""
+    def save_output(self, df, subject, contrast_name, output_dir):
+        """Save extracted data"""
         output_dir = Path(output_dir)
         output_dir.mkdir(parents=True, exist_ok=True)
         
-        # Save as CSV (can be loaded in MATLAB or Python)
+        # Save as CSV
         csv_file = output_dir / f'{subject}_{contrast_name}_FGOTS.csv'
         df.to_csv(csv_file, index=False)
-        
         print(f"Saved {csv_file}")
         
-        # Also save session-specific arrays matching .mat structure
+        # Save session-specific arrays
         for session in df['session'].unique():
             session_data = df[df['session'] == session][['x', 'y', 'z', 't_stat']].values
             npy_file = output_dir / f'{subject}_ses{session}_{contrast_name}_FGOTS.npy'
@@ -161,13 +185,13 @@ def main():
     for subject in ['sub-004', 'sub-007', 'sub-021']:
         print(f"\nProcessing {subject}...")
         
-        for contrast_name in ['face_word', 'object_scramble']:
+        for contrast_name in ['face_word', 'object_house']:
             print(f"  Contrast: {contrast_name}")
             
             df = extractor.extract_all_sessions(subject, contrast_name)
             
             if df is not None:
-                extractor.save_for_matlab(df, subject, contrast_name, output_dir)
+                extractor.save_output(df, subject, contrast_name, output_dir)
     
     print("\nExtraction complete!")
     print(f"Results saved to: {output_dir}")
