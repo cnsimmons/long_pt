@@ -12,7 +12,7 @@ INDICES=(37 38 39)  # Posterior fusiform, occipital fusiform, occipital fusiform
 # Subject info with intact hemisphere
 declare -A INTACT_HEMI
 INTACT_HEMI["sub-004"]="left"
-INTACT_HEMI["sub-007"]="left"   # CORRECTED: sub-007 has RIGHT resection, LEFT intact
+INTACT_HEMI["sub-007"]="left"   # CORRECTED: sub-007 has RIGHT resection, LEFT intact ## this can't be right??
 INTACT_HEMI["sub-021"]="left"
 
 for subject in sub-004 sub-007 sub-021; do
