@@ -32,16 +32,3 @@ EOF
 done
 
 echo "All 3 jobs submitted"
-
-'''# Load FreeSurfer
-module load freesurfer-7.1.0
-export SUBJECTS_DIR=/user_data/csimmon2/long_pt/derivatives/freesurfer
-
-# Open freeview for a subject
-freeview -v sub-004_ses01/mri/T1.mgz \
-         -v sub-004_ses01/mri/aseg.mgz:colormap=lut:opacity=0.2 \
-         -f sub-004_ses01/surf/lh.pial:edgecolor=red \
-         -f sub-004_ses01/surf/rh.pial:edgecolor=blue \
-         -f sub-004_ses01/surf/lh.inflated:visible=0 \
-         -f sub-004_ses01/surf/rh.inflated:visible=0
-'''
