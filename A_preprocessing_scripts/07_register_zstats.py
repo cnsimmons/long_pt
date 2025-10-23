@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Register zstat files to anatomical space for all subjects/sessions
+Register zstat files to anatomical space for all subjects/sessions (SESSION 1)
 Adapted for long_pt project
 """
 
@@ -25,7 +25,8 @@ zstats = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]  # All contrasts
 for sub, config in subjects_sessions.items():
     for ses in config['sessions']:
         sub_dir = f'{data_dir}/{sub}/ses-{ses}'
-        anat = f'{sub_dir}/anat/{sub}_ses-{ses}_T1w_brain.nii.gz'
+        #anat = f'{sub_dir}/anat/{sub}_ses-{ses}_T1w_brain.nii.gz'
+        anat = f'{data_dir}/{sub}/ses-01/anat/{sub}_ses-01_T1w_brain.nii.gz'
         
         # Determine runs for this session
         if sub == 'sub-007' and ses in ['03', '04']:
