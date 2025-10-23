@@ -1,7 +1,16 @@
 #!/usr/bin/env python3
 """
+
+UNNECESSARY - should not need to run this script since I'm running job script FEAT.
 Process high-level outputs in first-session space for long_pt project
 UPDATED: Works with first-session registration instead of MNI registration
+
+If HighLevel FEAT registered to MNI instead of ses-01, you'd need 09_highLevel.py to:
+
+Take MNI-space outputs
+Transform them to ses-01 space using anat2ses01.mat
+Align all sessions to first session for consistent extraction
+
 """
 
 import numpy as np
@@ -23,10 +32,23 @@ ses01_ref = f'{data_dir}/{sub}/ses-01/anat/{sub}_ses-01_T1w_brain.nii.gz'
 
 # Define cope numbers for different contrasts
 # Updated to match the corrected HighLevel.fsf template (only group_mean)
+# Fix - process all copes:
 cope_info = {
-    'group_mean': 1,
+    'cope1': 1,
+    'cope2': 2,
+    'cope3': 3,
+    'cope4': 4,
+    'cope5': 5,
+    'cope6': 6,
+    'cope7': 7,
+    'cope8': 8,
+    'cope9': 9,
+    'cope10': 10,
+    'cope11': 11,
+    'cope12': 12,
+    'cope13': 13,
+    'cope14': 14,
 }
-
 # Subject and session directories
 sub_dir = f'{data_dir}/{sub}/ses-{ses}'
 

@@ -1,0 +1,13 @@
+couldn't read file "/user_data/csimmon2/long_pt/sub-004/ses-07/derivatives/fsl/loc/run-01/1stLevel.feat/design.fsf": no such file or directory
+    while executing
+"source ${featdir}/design.fsf"
+    (procedure "feat5:getconname" line 2)
+    invoked from within
+"feat5:getconname $ff_one $nci "
+    invoked from within
+"if { $done_something == 0 } {
+
+    if { ! $fmri(inmelodic) } {
+       if { $fmri(level) == 1 } {
+	      for { set session 1 } { $session <= $fmri(mult..."
+    (file "/opt/fsl/6.0.3/bin/feat" line 390)
