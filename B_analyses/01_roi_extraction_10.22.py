@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Extract voxel-wise contrast statistics from FG/OTS ROI
-Uses HighLevel FEAT outputs in ses-01 anatomical space
+FIXED: Correct hemispheres for all subjects
 """
 
 import numpy as np
@@ -13,13 +13,13 @@ class ContrastExtractor:
     def __init__(self, base_dir):
         self.base_dir = Path(base_dir)
         
+        # FIXED: Correct hemisphere assignments
         self.subjects_info = {
-            'sub-004': {'sessions': ['01', '02', '03', '05', '06']},
-            'sub-007': {'sessions': ['01', '03', '04']},
-            'sub-021': {'sessions': ['01', '02', '03']}
+            'sub-004': {'sessions': ['01', '02', '03', '05', '06'], 'hemi': 'l'},  # LEFT
+            'sub-007': {'sessions': ['01', '03', '04'], 'hemi': 'l'},               # LEFT
+            'sub-021': {'sessions': ['01', '02', '03'], 'hemi': 'r'}                # RIGHT
         }
         
-        # Map contrast names to cope numbers
         self.contrasts = {
             'face_word': 13,
             'object_house': 14,
@@ -29,12 +29,18 @@ class ContrastExtractor:
         """Extract from HighLevel cope in ses-01 space"""
         print(f"  Extracting {subject} ses-{session} {contrast_name}...")
         
-        # Load ROI mask (in ses-01 space)
-        roi_path = self.base_dir / subject / 'ses-01' / 'ROIs' / 'l_VOTC_FG_OTS_mask.nii.gz'
+        # Load ROI mask (correct hemisphere)
+        hemi = self.subjects_info[subject]['hemi']
+        roi_path = self.base_dir / subject / 'ses-01' / 'ROIs' / f'{hemi}_VOTC_FG_OTS_mask.nii.gz'
+        
+        if not roi_path.exists():
+            print(f"    ERROR: ROI not found: {roi_path}")
+            return None
+            
         roi_img = nib.load(roi_path)
         roi_data = roi_img.get_fdata()
         
-        # Load HighLevel zstat (already in ses-01 space)
+        # Load HighLevel zstat
         cope_num = self.contrasts[contrast_name]
         highlevel_dir = self.base_dir / subject / f'ses-{session}' / 'derivatives' / 'fsl' / 'loc' / 'HighLevel.gfeat'
         zstat_file = highlevel_dir / f'cope{cope_num}.feat' / 'stats' / 'zstat1.nii.gz'

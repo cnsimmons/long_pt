@@ -23,7 +23,7 @@ FS_DIR = Path('/lab_data/behrmannlab/hemi/FS')
 SUBJECTS = {
     'sub-004': 'left',
     'sub-007': 'left', 
-    'sub-021': 'left'
+    'sub-021': 'right'
 }
 
 # Destrieux labels (empirically verified)
