@@ -191,3 +191,4 @@ if __name__ == "__main__":
     print("2. Update extraction script to use: l_VOTC_FG_OTS_mask.nii.gz")
     print("3. Run your contrast extraction pipeline")
     print("="*60 + "\n")
+    
