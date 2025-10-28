@@ -318,3 +318,79 @@ def main():
 
 if __name__ == "__main__":
     main()
+    
+    
+    
+# End of script
+
+# chatgpt says this is wrong so see below for alternative to consider later:
+'''#!/usr/bin/env python3
+"""
+create_mirror_brain_fixed.py
+
+Create hemisphere-mirrored brain for hemispherectomy patients without breaking the affine/header.
+Uses fslswapdim to swap the x axis so headers/affines remain consistent, then copies the
+desired half from the swapped image into the original to produce a mirrored brain.
+"""
+import os
+import subprocess
+import nibabel as nib
+import numpy as np
+
+def create_mirror_brain_fslswap(orig_brain, orig_mask, mirrored_out, hemi_mask_out, intact_hemi):
+    """
+    orig_brain: path to brain-extracted T1 (subject native)
+    orig_mask: path to brain mask for orig_brain
+    mirrored_out: path to write mirrored brain
+    hemi_mask_out: path to write hemisphere mask (keeps intact hemi)
+    intact_hemi: 'left' or 'right' (case-insensitive)
+    """
+    tmp_swapped = mirrored_out.replace('.nii.gz', '_swapped_tmp.nii.gz')
+
+    # 1) Create swapped image using fslswapdim which updates header/affine correctly
+    #    '-x y z' flips the x-axis (left-right) in voxel/world space
+    subprocess.run(['fslswapdim', orig_brain, '-x', 'y', 'z', tmp_swapped], check=True)
+
+    # 2) Load original and swapped images
+    orig_img = nib.load(orig_brain)
+    swapped_img = nib.load(tmp_swapped)
+    orig_data = orig_img.get_fdata()
+    swapped_data = swapped_img.get_fdata()
+    affine = orig_img.affine
+
+    # 3) Load mask and create hemi mask (voxel-space midpoint)
+    mask_img = nib.load(orig_mask)
+    mask_data = mask_img.get_fdata()
+    hemi_mask = (mask_data > 0).astype(np.uint8)
+
+    mid_x = orig_data.shape[0] // 2
+
+    # 4) Build mirrored data by replacing the non-intact hemi with the swapped hemi
+    anat_mirrored = orig_data.copy()
+    if intact_hemi.lower() == 'left':
+        anat_mirrored[mid_x:, :, :] = swapped_data[mid_x:, :, :]
+        hemi_mask[mid_x:, :, :] = 0
+    else:
+        anat_mirrored[:mid_x, :, :] = swapped_data[:mid_x, :, :]
+        hemi_mask[:mid_x, :, :] = 0
+
+    # 5) Save outputs with the original affine (header is consistent now)
+    nib.save(nib.Nifti1Image(anat_mirrored, affine), mirrored_out)
+    nib.save(nib.Nifti1Image(hemi_mask.astype(np.uint8), affine), hemi_mask_out)
+
+    # 6) Clean up
+    try:
+        os.remove(tmp_swapped)
+    except Exception:
+        pass
+
+    return mirrored_out, hemi_mask_out
+
+# Example usage:
+# create_mirror_brain_fslswap(
+#     '/path/to/sub-004_ses-01_T1w_brain.nii.gz',
+#     '/path/to/sub-004_ses-01_T1w_brain_mask.nii.gz',
+#     '/path/to/sub-004_ses-01_T1w_brain_mirrored.nii.gz',
+#     '/path/to/sub-004_ses-01_T1w_brain_mask_left.nii.gz',
+#     'left'
+# )'''
