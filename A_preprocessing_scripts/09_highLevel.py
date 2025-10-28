@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """
 
+Necesary for registering anatomical parcels for functional rois
+
 UNNECESSARY - should not need to run this script since I'm running job script FEAT.
 Process high-level outputs in first-session space for long_pt project
 UPDATED: Works with first-session registration instead of MNI registration
