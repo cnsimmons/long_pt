@@ -14,8 +14,8 @@ data_dir = '/user_data/csimmon2/long_pt'
 
 # Subject and session configuration
 subjects_sessions = {
-    'sub-004': {'sessions': ['01', '02', '03', '05', '06', '07'], 'runs': ['01', '02', '03']},
-    'sub-007': {'sessions': ['01', '03', '04', '05'], 'runs': ['01', '02', '03']},  # ses-03/04 have only 2 runs
+    'sub-004': {'sessions': ['01', '02', '03', '05', '06'], 'runs': ['01', '02', '03']},
+    'sub-007': {'sessions': ['01', '03', '04'], 'runs': ['01', '02', '03']},  # ses-03/04 have only 2 runs
     'sub-021': {'sessions': ['01', '02', '03'], 'runs': ['01', '02', '03']}
 }
 
