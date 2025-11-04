@@ -1,3 +1,5 @@
+DO not run without correcting templateFSF!
+
 #!/bin/bash
 #
 # Create FEAT .fsf files for long_pt project
