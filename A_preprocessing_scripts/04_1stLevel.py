@@ -1,5 +1,5 @@
-## adapted from Vlad's script 
-# note this script does not make zstat registered copies, just the filtered_func_data unlike the original ptoc script, now zstat is registered in 07_register_zstats.py
+## adapted from Vlad's script || Register timeseries to anatomical space
+# note this script does not make zstat registered copies, just the filtered_func_data unlike the original ptoc script, now zstat is registered elsewhere maybe in 07_register_zstats.py
 
 #!/usr/bin/env python3
 """

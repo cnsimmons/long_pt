@@ -22,7 +22,7 @@ import pandas as pd
 
 # Job parameters
 job_name = 'long_pt_feat'
-mem = 20
+mem = 48  # GB
 run_time = "1-00:00:00"
 pause_crit = 12  # Number of jobs before pausing
 pause_time = 1   # Minutes to pause
@@ -35,15 +35,15 @@ runs = ['01', '02', '03']
 # Subject and session mapping
 subject_sessions = {
     'sub-004': ['01', '02', '03', '05', '06'],  # TC
-    'sub-007': ['01','03', '04'],        # UD 
+    #'sub-007': ['01','03', '04'],        # UD 
     'sub-021': ['01', '02', '03']        # OT
 }
 
 # Job control flags
 run_1stlevel = False      # Run FEAT first level
-run_registration = False  # Run registration to anatomical space
+run_registration = True  # Run registration to anatomical space
 run_highlevel = False     # Run high level analysis
-run_mni_registration = True  # Run registration of high-level outputs to MNI
+run_mni_registration = False  # Run registration of high-level outputs to MNI
 
 def setup_sbatch(job_name, script_name):
     """Create SLURM sbatch script content"""
@@ -134,7 +134,7 @@ for sub, sessions in subject_sessions.items():
                     
         if run_registration:
             # Submit registration jobs
-            reg_job_cmd = f'python preprocessing_scripts/04_1stLevel.py {sub} {ses}'
+            reg_job_cmd = f'python A_preprocessing_scripts/04_1stLevel.py {sub} {ses}'
             job_name_full = f'{sub}_ses{ses}_registration'
             create_job(job_name_full, reg_job_cmd)
             n_jobs += 1
