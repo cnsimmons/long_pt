@@ -1,1 +1,52 @@
-python: can't open file '/user_data/csimmon2/git_repos/long_pt/preprocessing_scripts/09_highLevel.py': [Errno 2] No such file or directory
+Processing high-level outputs for sub-004 ses-02 in first-session space
+  Found transformation matrix: /user_data/csimmon2/long_pt/sub-004/ses-02/anat/anat2ses01.mat
+  Processing cope1 (cope1)
+    ✓ zstat already registered to ses-01 space
+    ✓ cope already registered to ses-01 space
+  Processing cope2 (cope2)
+    ✓ zstat already registered to ses-01 space
+    ✓ cope already registered to ses-01 space
+  Processing cope3 (cope3)
+    ✓ zstat already registered to ses-01 space
+    ✓ cope already registered to ses-01 space
+  Processing cope4 (cope4)
+    ✓ zstat already registered to ses-01 space
+    ✓ cope already registered to ses-01 space
+  Processing cope5 (cope5)
+    ✓ zstat already registered to ses-01 space
+    ✓ cope already registered to ses-01 space
+  Processing cope6 (cope6)
+    ✓ zstat already registered to ses-01 space
+    ✓ cope already registered to ses-01 space
+  Processing cope7 (cope7)
+    ✓ zstat already registered to ses-01 space
+    ✓ cope already registered to ses-01 space
+  Processing cope8 (cope8)
+    ✓ zstat already registered to ses-01 space
+    ✓ cope already registered to ses-01 space
+  Processing cope9 (cope9)
+    ✓ zstat already registered to ses-01 space
+    ✓ cope already registered to ses-01 space
+  Processing cope10 (cope10)
+    ✓ zstat already registered to ses-01 space
+    ✓ cope already registered to ses-01 space
+  Processing cope11 (cope11)
+    ✓ zstat already registered to ses-01 space
+    ✓ cope already registered to ses-01 space
+  Processing cope12 (cope12)
+    ✓ zstat already registered to ses-01 space
+    ✓ cope already registered to ses-01 space
+  Processing cope13 (cope13)
+    ✓ zstat already registered to ses-01 space
+    ✓ cope already registered to ses-01 space
+  Processing cope14 (cope14)
+    ✓ zstat already registered to ses-01 space
+    ✓ cope already registered to ses-01 space
+Finished processing high-level outputs for sub-004 ses-02
+
+Summary:
+  Processed zstats: 14/14 contrasts
+  Processed copes: 14/14 contrasts
+  All outputs in first-session space: /user_data/csimmon2/long_pt/sub-004/ses-01/anat/sub-004_ses-01_T1w_brain.nii.gz
+  Successfully processed zstats: cope1, cope2, cope3, cope4, cope5, cope6, cope7, cope8, cope9, cope10, cope11, cope12, cope13, cope14
+  Successfully processed copes: cope1, cope2, cope3, cope4, cope5, cope6, cope7, cope8, cope9, cope10, cope11, cope12, cope13, cope14

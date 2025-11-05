@@ -1,1 +1,80 @@
-python: can't open file '/user_data/csimmon2/git_repos/long_pt/preprocessing_scripts/09_highLevel.py': [Errno 2] No such file or directory
+Processing high-level outputs for sub-004 ses-03 in first-session space
+  Found transformation matrix: /user_data/csimmon2/long_pt/sub-004/ses-03/anat/anat2ses01.mat
+  Processing cope1 (cope1)
+    Running: flirt -in /user_data/csimmon2/long_pt/sub-004/ses-03/derivatives/fsl/loc/HighLevel.gfeat/cope1.feat/stats/zstat1.nii.gz -ref /user_data/csimmon2/long_pt/sub-004/ses-01/anat/sub-004_ses-01_T1w_brain.nii.gz -out /user_data/csimmon2/long_pt/sub-004/ses-03/derivatives/fsl/loc/HighLevel.gfeat/cope1.feat/stats/zstat1_ses01.nii.gz -applyxfm -init /user_data/csimmon2/long_pt/sub-004/ses-03/anat/anat2ses01.mat -interp trilinear
+    ✓ Successfully registered zstat to ses-01 space
+    Running: flirt -in /user_data/csimmon2/long_pt/sub-004/ses-03/derivatives/fsl/loc/HighLevel.gfeat/cope1.feat/stats/cope1.nii.gz -ref /user_data/csimmon2/long_pt/sub-004/ses-01/anat/sub-004_ses-01_T1w_brain.nii.gz -out /user_data/csimmon2/long_pt/sub-004/ses-03/derivatives/fsl/loc/HighLevel.gfeat/cope1.feat/stats/cope1_ses01.nii.gz -applyxfm -init /user_data/csimmon2/long_pt/sub-004/ses-03/anat/anat2ses01.mat -interp trilinear
+    ✓ Successfully registered cope to ses-01 space
+  Processing cope2 (cope2)
+    Running: flirt -in /user_data/csimmon2/long_pt/sub-004/ses-03/derivatives/fsl/loc/HighLevel.gfeat/cope2.feat/stats/zstat1.nii.gz -ref /user_data/csimmon2/long_pt/sub-004/ses-01/anat/sub-004_ses-01_T1w_brain.nii.gz -out /user_data/csimmon2/long_pt/sub-004/ses-03/derivatives/fsl/loc/HighLevel.gfeat/cope2.feat/stats/zstat1_ses01.nii.gz -applyxfm -init /user_data/csimmon2/long_pt/sub-004/ses-03/anat/anat2ses01.mat -interp trilinear
+    ✓ Successfully registered zstat to ses-01 space
+    Running: flirt -in /user_data/csimmon2/long_pt/sub-004/ses-03/derivatives/fsl/loc/HighLevel.gfeat/cope2.feat/stats/cope1.nii.gz -ref /user_data/csimmon2/long_pt/sub-004/ses-01/anat/sub-004_ses-01_T1w_brain.nii.gz -out /user_data/csimmon2/long_pt/sub-004/ses-03/derivatives/fsl/loc/HighLevel.gfeat/cope2.feat/stats/cope1_ses01.nii.gz -applyxfm -init /user_data/csimmon2/long_pt/sub-004/ses-03/anat/anat2ses01.mat -interp trilinear
+    ✓ Successfully registered cope to ses-01 space
+  Processing cope3 (cope3)
+    Running: flirt -in /user_data/csimmon2/long_pt/sub-004/ses-03/derivatives/fsl/loc/HighLevel.gfeat/cope3.feat/stats/zstat1.nii.gz -ref /user_data/csimmon2/long_pt/sub-004/ses-01/anat/sub-004_ses-01_T1w_brain.nii.gz -out /user_data/csimmon2/long_pt/sub-004/ses-03/derivatives/fsl/loc/HighLevel.gfeat/cope3.feat/stats/zstat1_ses01.nii.gz -applyxfm -init /user_data/csimmon2/long_pt/sub-004/ses-03/anat/anat2ses01.mat -interp trilinear
+    ✓ Successfully registered zstat to ses-01 space
+    Running: flirt -in /user_data/csimmon2/long_pt/sub-004/ses-03/derivatives/fsl/loc/HighLevel.gfeat/cope3.feat/stats/cope1.nii.gz -ref /user_data/csimmon2/long_pt/sub-004/ses-01/anat/sub-004_ses-01_T1w_brain.nii.gz -out /user_data/csimmon2/long_pt/sub-004/ses-03/derivatives/fsl/loc/HighLevel.gfeat/cope3.feat/stats/cope1_ses01.nii.gz -applyxfm -init /user_data/csimmon2/long_pt/sub-004/ses-03/anat/anat2ses01.mat -interp trilinear
+    ✓ Successfully registered cope to ses-01 space
+  Processing cope4 (cope4)
+    Running: flirt -in /user_data/csimmon2/long_pt/sub-004/ses-03/derivatives/fsl/loc/HighLevel.gfeat/cope4.feat/stats/zstat1.nii.gz -ref /user_data/csimmon2/long_pt/sub-004/ses-01/anat/sub-004_ses-01_T1w_brain.nii.gz -out /user_data/csimmon2/long_pt/sub-004/ses-03/derivatives/fsl/loc/HighLevel.gfeat/cope4.feat/stats/zstat1_ses01.nii.gz -applyxfm -init /user_data/csimmon2/long_pt/sub-004/ses-03/anat/anat2ses01.mat -interp trilinear
+    ✓ Successfully registered zstat to ses-01 space
+    Running: flirt -in /user_data/csimmon2/long_pt/sub-004/ses-03/derivatives/fsl/loc/HighLevel.gfeat/cope4.feat/stats/cope1.nii.gz -ref /user_data/csimmon2/long_pt/sub-004/ses-01/anat/sub-004_ses-01_T1w_brain.nii.gz -out /user_data/csimmon2/long_pt/sub-004/ses-03/derivatives/fsl/loc/HighLevel.gfeat/cope4.feat/stats/cope1_ses01.nii.gz -applyxfm -init /user_data/csimmon2/long_pt/sub-004/ses-03/anat/anat2ses01.mat -interp trilinear
+    ✓ Successfully registered cope to ses-01 space
+  Processing cope5 (cope5)
+    Running: flirt -in /user_data/csimmon2/long_pt/sub-004/ses-03/derivatives/fsl/loc/HighLevel.gfeat/cope5.feat/stats/zstat1.nii.gz -ref /user_data/csimmon2/long_pt/sub-004/ses-01/anat/sub-004_ses-01_T1w_brain.nii.gz -out /user_data/csimmon2/long_pt/sub-004/ses-03/derivatives/fsl/loc/HighLevel.gfeat/cope5.feat/stats/zstat1_ses01.nii.gz -applyxfm -init /user_data/csimmon2/long_pt/sub-004/ses-03/anat/anat2ses01.mat -interp trilinear
+    ✓ Successfully registered zstat to ses-01 space
+    Running: flirt -in /user_data/csimmon2/long_pt/sub-004/ses-03/derivatives/fsl/loc/HighLevel.gfeat/cope5.feat/stats/cope1.nii.gz -ref /user_data/csimmon2/long_pt/sub-004/ses-01/anat/sub-004_ses-01_T1w_brain.nii.gz -out /user_data/csimmon2/long_pt/sub-004/ses-03/derivatives/fsl/loc/HighLevel.gfeat/cope5.feat/stats/cope1_ses01.nii.gz -applyxfm -init /user_data/csimmon2/long_pt/sub-004/ses-03/anat/anat2ses01.mat -interp trilinear
+    ✓ Successfully registered cope to ses-01 space
+  Processing cope6 (cope6)
+    Running: flirt -in /user_data/csimmon2/long_pt/sub-004/ses-03/derivatives/fsl/loc/HighLevel.gfeat/cope6.feat/stats/zstat1.nii.gz -ref /user_data/csimmon2/long_pt/sub-004/ses-01/anat/sub-004_ses-01_T1w_brain.nii.gz -out /user_data/csimmon2/long_pt/sub-004/ses-03/derivatives/fsl/loc/HighLevel.gfeat/cope6.feat/stats/zstat1_ses01.nii.gz -applyxfm -init /user_data/csimmon2/long_pt/sub-004/ses-03/anat/anat2ses01.mat -interp trilinear
+    ✓ Successfully registered zstat to ses-01 space
+    Running: flirt -in /user_data/csimmon2/long_pt/sub-004/ses-03/derivatives/fsl/loc/HighLevel.gfeat/cope6.feat/stats/cope1.nii.gz -ref /user_data/csimmon2/long_pt/sub-004/ses-01/anat/sub-004_ses-01_T1w_brain.nii.gz -out /user_data/csimmon2/long_pt/sub-004/ses-03/derivatives/fsl/loc/HighLevel.gfeat/cope6.feat/stats/cope1_ses01.nii.gz -applyxfm -init /user_data/csimmon2/long_pt/sub-004/ses-03/anat/anat2ses01.mat -interp trilinear
+    ✓ Successfully registered cope to ses-01 space
+  Processing cope7 (cope7)
+    Running: flirt -in /user_data/csimmon2/long_pt/sub-004/ses-03/derivatives/fsl/loc/HighLevel.gfeat/cope7.feat/stats/zstat1.nii.gz -ref /user_data/csimmon2/long_pt/sub-004/ses-01/anat/sub-004_ses-01_T1w_brain.nii.gz -out /user_data/csimmon2/long_pt/sub-004/ses-03/derivatives/fsl/loc/HighLevel.gfeat/cope7.feat/stats/zstat1_ses01.nii.gz -applyxfm -init /user_data/csimmon2/long_pt/sub-004/ses-03/anat/anat2ses01.mat -interp trilinear
+    ✓ Successfully registered zstat to ses-01 space
+    Running: flirt -in /user_data/csimmon2/long_pt/sub-004/ses-03/derivatives/fsl/loc/HighLevel.gfeat/cope7.feat/stats/cope1.nii.gz -ref /user_data/csimmon2/long_pt/sub-004/ses-01/anat/sub-004_ses-01_T1w_brain.nii.gz -out /user_data/csimmon2/long_pt/sub-004/ses-03/derivatives/fsl/loc/HighLevel.gfeat/cope7.feat/stats/cope1_ses01.nii.gz -applyxfm -init /user_data/csimmon2/long_pt/sub-004/ses-03/anat/anat2ses01.mat -interp trilinear
+    ✓ Successfully registered cope to ses-01 space
+  Processing cope8 (cope8)
+    Running: flirt -in /user_data/csimmon2/long_pt/sub-004/ses-03/derivatives/fsl/loc/HighLevel.gfeat/cope8.feat/stats/zstat1.nii.gz -ref /user_data/csimmon2/long_pt/sub-004/ses-01/anat/sub-004_ses-01_T1w_brain.nii.gz -out /user_data/csimmon2/long_pt/sub-004/ses-03/derivatives/fsl/loc/HighLevel.gfeat/cope8.feat/stats/zstat1_ses01.nii.gz -applyxfm -init /user_data/csimmon2/long_pt/sub-004/ses-03/anat/anat2ses01.mat -interp trilinear
+    ✓ Successfully registered zstat to ses-01 space
+    Running: flirt -in /user_data/csimmon2/long_pt/sub-004/ses-03/derivatives/fsl/loc/HighLevel.gfeat/cope8.feat/stats/cope1.nii.gz -ref /user_data/csimmon2/long_pt/sub-004/ses-01/anat/sub-004_ses-01_T1w_brain.nii.gz -out /user_data/csimmon2/long_pt/sub-004/ses-03/derivatives/fsl/loc/HighLevel.gfeat/cope8.feat/stats/cope1_ses01.nii.gz -applyxfm -init /user_data/csimmon2/long_pt/sub-004/ses-03/anat/anat2ses01.mat -interp trilinear
+    ✓ Successfully registered cope to ses-01 space
+  Processing cope9 (cope9)
+    Running: flirt -in /user_data/csimmon2/long_pt/sub-004/ses-03/derivatives/fsl/loc/HighLevel.gfeat/cope9.feat/stats/zstat1.nii.gz -ref /user_data/csimmon2/long_pt/sub-004/ses-01/anat/sub-004_ses-01_T1w_brain.nii.gz -out /user_data/csimmon2/long_pt/sub-004/ses-03/derivatives/fsl/loc/HighLevel.gfeat/cope9.feat/stats/zstat1_ses01.nii.gz -applyxfm -init /user_data/csimmon2/long_pt/sub-004/ses-03/anat/anat2ses01.mat -interp trilinear
+    ✓ Successfully registered zstat to ses-01 space
+    Running: flirt -in /user_data/csimmon2/long_pt/sub-004/ses-03/derivatives/fsl/loc/HighLevel.gfeat/cope9.feat/stats/cope1.nii.gz -ref /user_data/csimmon2/long_pt/sub-004/ses-01/anat/sub-004_ses-01_T1w_brain.nii.gz -out /user_data/csimmon2/long_pt/sub-004/ses-03/derivatives/fsl/loc/HighLevel.gfeat/cope9.feat/stats/cope1_ses01.nii.gz -applyxfm -init /user_data/csimmon2/long_pt/sub-004/ses-03/anat/anat2ses01.mat -interp trilinear
+    ✓ Successfully registered cope to ses-01 space
+  Processing cope10 (cope10)
+    Running: flirt -in /user_data/csimmon2/long_pt/sub-004/ses-03/derivatives/fsl/loc/HighLevel.gfeat/cope10.feat/stats/zstat1.nii.gz -ref /user_data/csimmon2/long_pt/sub-004/ses-01/anat/sub-004_ses-01_T1w_brain.nii.gz -out /user_data/csimmon2/long_pt/sub-004/ses-03/derivatives/fsl/loc/HighLevel.gfeat/cope10.feat/stats/zstat1_ses01.nii.gz -applyxfm -init /user_data/csimmon2/long_pt/sub-004/ses-03/anat/anat2ses01.mat -interp trilinear
+    ✓ Successfully registered zstat to ses-01 space
+    Running: flirt -in /user_data/csimmon2/long_pt/sub-004/ses-03/derivatives/fsl/loc/HighLevel.gfeat/cope10.feat/stats/cope1.nii.gz -ref /user_data/csimmon2/long_pt/sub-004/ses-01/anat/sub-004_ses-01_T1w_brain.nii.gz -out /user_data/csimmon2/long_pt/sub-004/ses-03/derivatives/fsl/loc/HighLevel.gfeat/cope10.feat/stats/cope1_ses01.nii.gz -applyxfm -init /user_data/csimmon2/long_pt/sub-004/ses-03/anat/anat2ses01.mat -interp trilinear
+    ✓ Successfully registered cope to ses-01 space
+  Processing cope11 (cope11)
+    Running: flirt -in /user_data/csimmon2/long_pt/sub-004/ses-03/derivatives/fsl/loc/HighLevel.gfeat/cope11.feat/stats/zstat1.nii.gz -ref /user_data/csimmon2/long_pt/sub-004/ses-01/anat/sub-004_ses-01_T1w_brain.nii.gz -out /user_data/csimmon2/long_pt/sub-004/ses-03/derivatives/fsl/loc/HighLevel.gfeat/cope11.feat/stats/zstat1_ses01.nii.gz -applyxfm -init /user_data/csimmon2/long_pt/sub-004/ses-03/anat/anat2ses01.mat -interp trilinear
+    ✓ Successfully registered zstat to ses-01 space
+    Running: flirt -in /user_data/csimmon2/long_pt/sub-004/ses-03/derivatives/fsl/loc/HighLevel.gfeat/cope11.feat/stats/cope1.nii.gz -ref /user_data/csimmon2/long_pt/sub-004/ses-01/anat/sub-004_ses-01_T1w_brain.nii.gz -out /user_data/csimmon2/long_pt/sub-004/ses-03/derivatives/fsl/loc/HighLevel.gfeat/cope11.feat/stats/cope1_ses01.nii.gz -applyxfm -init /user_data/csimmon2/long_pt/sub-004/ses-03/anat/anat2ses01.mat -interp trilinear
+    ✓ Successfully registered cope to ses-01 space
+  Processing cope12 (cope12)
+    Running: flirt -in /user_data/csimmon2/long_pt/sub-004/ses-03/derivatives/fsl/loc/HighLevel.gfeat/cope12.feat/stats/zstat1.nii.gz -ref /user_data/csimmon2/long_pt/sub-004/ses-01/anat/sub-004_ses-01_T1w_brain.nii.gz -out /user_data/csimmon2/long_pt/sub-004/ses-03/derivatives/fsl/loc/HighLevel.gfeat/cope12.feat/stats/zstat1_ses01.nii.gz -applyxfm -init /user_data/csimmon2/long_pt/sub-004/ses-03/anat/anat2ses01.mat -interp trilinear
+    ✓ Successfully registered zstat to ses-01 space
+    Running: flirt -in /user_data/csimmon2/long_pt/sub-004/ses-03/derivatives/fsl/loc/HighLevel.gfeat/cope12.feat/stats/cope1.nii.gz -ref /user_data/csimmon2/long_pt/sub-004/ses-01/anat/sub-004_ses-01_T1w_brain.nii.gz -out /user_data/csimmon2/long_pt/sub-004/ses-03/derivatives/fsl/loc/HighLevel.gfeat/cope12.feat/stats/cope1_ses01.nii.gz -applyxfm -init /user_data/csimmon2/long_pt/sub-004/ses-03/anat/anat2ses01.mat -interp trilinear
+    ✓ Successfully registered cope to ses-01 space
+  Processing cope13 (cope13)
+    Running: flirt -in /user_data/csimmon2/long_pt/sub-004/ses-03/derivatives/fsl/loc/HighLevel.gfeat/cope13.feat/stats/zstat1.nii.gz -ref /user_data/csimmon2/long_pt/sub-004/ses-01/anat/sub-004_ses-01_T1w_brain.nii.gz -out /user_data/csimmon2/long_pt/sub-004/ses-03/derivatives/fsl/loc/HighLevel.gfeat/cope13.feat/stats/zstat1_ses01.nii.gz -applyxfm -init /user_data/csimmon2/long_pt/sub-004/ses-03/anat/anat2ses01.mat -interp trilinear
+    ✓ Successfully registered zstat to ses-01 space
+    Running: flirt -in /user_data/csimmon2/long_pt/sub-004/ses-03/derivatives/fsl/loc/HighLevel.gfeat/cope13.feat/stats/cope1.nii.gz -ref /user_data/csimmon2/long_pt/sub-004/ses-01/anat/sub-004_ses-01_T1w_brain.nii.gz -out /user_data/csimmon2/long_pt/sub-004/ses-03/derivatives/fsl/loc/HighLevel.gfeat/cope13.feat/stats/cope1_ses01.nii.gz -applyxfm -init /user_data/csimmon2/long_pt/sub-004/ses-03/anat/anat2ses01.mat -interp trilinear
+    ✓ Successfully registered cope to ses-01 space
+  Processing cope14 (cope14)
+    Running: flirt -in /user_data/csimmon2/long_pt/sub-004/ses-03/derivatives/fsl/loc/HighLevel.gfeat/cope14.feat/stats/zstat1.nii.gz -ref /user_data/csimmon2/long_pt/sub-004/ses-01/anat/sub-004_ses-01_T1w_brain.nii.gz -out /user_data/csimmon2/long_pt/sub-004/ses-03/derivatives/fsl/loc/HighLevel.gfeat/cope14.feat/stats/zstat1_ses01.nii.gz -applyxfm -init /user_data/csimmon2/long_pt/sub-004/ses-03/anat/anat2ses01.mat -interp trilinear
+    ✓ Successfully registered zstat to ses-01 space
+    Running: flirt -in /user_data/csimmon2/long_pt/sub-004/ses-03/derivatives/fsl/loc/HighLevel.gfeat/cope14.feat/stats/cope1.nii.gz -ref /user_data/csimmon2/long_pt/sub-004/ses-01/anat/sub-004_ses-01_T1w_brain.nii.gz -out /user_data/csimmon2/long_pt/sub-004/ses-03/derivatives/fsl/loc/HighLevel.gfeat/cope14.feat/stats/cope1_ses01.nii.gz -applyxfm -init /user_data/csimmon2/long_pt/sub-004/ses-03/anat/anat2ses01.mat -interp trilinear
+    ✓ Successfully registered cope to ses-01 space
+Finished processing high-level outputs for sub-004 ses-03
+
+Summary:
+  Processed zstats: 14/14 contrasts
+  Processed copes: 14/14 contrasts
+  All outputs in first-session space: /user_data/csimmon2/long_pt/sub-004/ses-01/anat/sub-004_ses-01_T1w_brain.nii.gz
+  Successfully processed zstats: cope1, cope2, cope3, cope4, cope5, cope6, cope7, cope8, cope9, cope10, cope11, cope12, cope13, cope14
+  Successfully processed copes: cope1, cope2, cope3, cope4, cope5, cope6, cope7, cope8, cope9, cope10, cope11, cope12, cope13, cope14
