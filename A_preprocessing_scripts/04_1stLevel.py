@@ -41,9 +41,7 @@ for run in runs:
     if os.path.exists(filtered_func):
         if not os.path.exists(out_func):
             # Register filtered functional data to anatomical space
-            #bash_cmd = f'flirt -in {filtered_func} -ref {anat} -out {out_func} -applyxfm -init {run_dir}/reg/example_func2standard.mat -interp trilinear'
-            bash_cmd = f'flirt -in {filtered_func} -ref {anat} -out {out_func} -applyxfm -init {run_dir}/reg/example_func2highres.mat'
-
+            bash_cmd = f'flirt -in {filtered_func} -ref {anat} -out {out_func} -applyxfm -init {run_dir}/reg/example_func2standard.mat -interp trilinear'
             print(f"    Running: {bash_cmd}")
             
             try:
