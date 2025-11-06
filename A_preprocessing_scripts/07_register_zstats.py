@@ -15,7 +15,7 @@ data_dir = '/user_data/csimmon2/long_pt'
 # Subject and session configuration
 subjects_sessions = {
     'sub-004': {'sessions': ['01', '02', '03', '05', '06'], 'runs': ['01', '02', '03']},
-    #'sub-007': {'sessions': ['01', '03', '04'], 'runs': ['01', '02', '03']},  # ses-03/04 have only 2 runs
+    'sub-007': {'sessions': ['01', '03', '04'], 'runs': ['01', '02', '03']},  # ses-03/04 have only 2 runs
     'sub-021': {'sessions': ['01', '02', '03'], 'runs': ['01', '02', '03']}
 }
 
@@ -52,8 +52,7 @@ for sub, config in subjects_sessions.items():
                     continue
                 
                 if os.path.exists(zstat_func):
-                    #bash_cmd = f'flirt -in {zstat_func} -ref {anat} -out {zstat_out} -applyxfm -init {run_dir}/reg/example_func2highres.mat -interp trilinear'
-                    bash_cmd = f'flirt -in {zstat_func} -ref {anat} -out {zstat_out} -applyxfm -init {run_dir}/reg/example_func2standard.mat -interp trilinear'
+                    bash_cmd = f'flirt -in {zstat_func} -ref {anat} -out {zstat_out} -applyxfm -init {run_dir}/reg/example_func2highres.mat -interp trilinear'
                     try:
                         subprocess.run(bash_cmd.split(), check=True)
                         print(f"  ✓ Registered zstat{zstat}")
