@@ -25,7 +25,7 @@ job_name = 'long_pt_feat'
 mem = 48  # GB
 run_time = "1-00:00:00"
 pause_crit = 12  # Number of jobs before pausing
-pause_time = 5   # Minutes to pause
+pause_time = 1   # Minutes to pause
 
 # Project parameters
 data_dir = '/user_data/csimmon2/long_pt'
@@ -43,12 +43,11 @@ subject_sessions = {
 run_1stlevel = False      # Run FEAT first level
 run_registration = False  # Run registration to anatomical space
 run_highlevel = False     # Run high level analysis
-run_ses1_registration = True  # Run registration of high-level outputs to session 1
+run_mni_registration = True  # Run registration of high-level outputs to MNI
 
 def setup_sbatch(job_name, script_name):
     """Create SLURM sbatch script content"""
     sbatch_setup = f"""#!/bin/bash -l
-    
 # Job name
 #SBATCH --job-name={job_name}
 #SBATCH --mail-type=ALL
@@ -116,6 +115,16 @@ for sub, sessions in subject_sessions.items():
             for run in runs:
                 fsf_file = f'{task_dir}/run-{run}/1stLevel.fsf'
                 
+                '''
+                # Skip specific subject/session/run combinations
+                if (sub == 'sub-004' and ses == '01' and run == '01'):
+                    print(f"⏭️  Skipping {sub} ses-{ses} run-{run} (already processed)")
+                    continue
+                if (sub == 'sub-007' and ses == '03' and run == '02'):
+                    print(f"⏭️  Skipping {sub} ses-{ses} run-{run} (already processed)")
+                    continue
+                '''
+                
                 # Check if FSF file exists
                 if os.path.exists(fsf_file):
                     job_name_full = f'{sub}_ses{ses}_{task}_run{run}_feat'
@@ -144,11 +153,11 @@ for sub, sessions in subject_sessions.items():
             else:
                 print(f"⚠️  High level FSF file not found: {high_fsf}")
         
-        if run_ses1_registration:
+        if run_mni_registration:
             # Submit MNI registration jobs for high-level outputs || not highlevel its to session 1?
-            ses1_job_cmd = f'python A_preprocessing_scripts/09_highLevel.py {sub} {ses}'
-            job_name_full = f'{sub}_ses{ses}_2ses1_registration'
-            create_job(job_name_full, ses1_job_cmd)
+            mni_job_cmd = f'python A_preprocessing_scripts/09_highLevel.py {sub} {ses}'
+            job_name_full = f'{sub}_ses{ses}_mni_registration'
+            create_job(job_name_full, mni_job_cmd)
             n_jobs += 1
                 
         # Pause if we've submitted too many jobs

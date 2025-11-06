@@ -1,4 +1,5 @@
-# README!!!! This is not typically part of my pipeline - I don't know if this is just because of the data collection
+# README!!!! CORRECTED AS OF NOV 6: Vlad's data looks very similar - there are hot spots in the resection on the bold images - does not mean the images are flipped. Must revert do not use again. 
+# This is not typically part of my pipeline - I don't know if this is just because of the data collection ||| corrected
 #!/bin/bash
 #
 # Convert functional data from RADIOLOGICAL to NEUROLOGICAL orientation

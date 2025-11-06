@@ -1,13 +1,10 @@
 Processing sub-004 ses-06
   sub-004 loc run-01
-    Running: flirt -in /user_data/csimmon2/long_pt/sub-004/ses-06/derivatives/fsl/loc/run-01/1stLevel.feat/filtered_func_data.nii.gz -ref /user_data/csimmon2/long_pt/sub-004/ses-06/anat/sub-004_ses-06_T1w_brain.nii.gz -out /user_data/csimmon2/long_pt/sub-004/ses-06/derivatives/fsl/loc/run-01/1stLevel.feat/filtered_func_data_reg.nii.gz -applyxfm -init /user_data/csimmon2/long_pt/sub-004/ses-06/derivatives/fsl/loc/run-01/1stLevel.feat/reg/example_func2highres.mat
-    ✓ Successfully registered run-01
+    ✓ run-01 already registered (output exists)
   sub-004 loc run-02
-    Running: flirt -in /user_data/csimmon2/long_pt/sub-004/ses-06/derivatives/fsl/loc/run-02/1stLevel.feat/filtered_func_data.nii.gz -ref /user_data/csimmon2/long_pt/sub-004/ses-06/anat/sub-004_ses-06_T1w_brain.nii.gz -out /user_data/csimmon2/long_pt/sub-004/ses-06/derivatives/fsl/loc/run-02/1stLevel.feat/filtered_func_data_reg.nii.gz -applyxfm -init /user_data/csimmon2/long_pt/sub-004/ses-06/derivatives/fsl/loc/run-02/1stLevel.feat/reg/example_func2highres.mat
-    ✓ Successfully registered run-02
+    ✓ run-02 already registered (output exists)
   sub-004 loc run-03
-    Running: flirt -in /user_data/csimmon2/long_pt/sub-004/ses-06/derivatives/fsl/loc/run-03/1stLevel.feat/filtered_func_data.nii.gz -ref /user_data/csimmon2/long_pt/sub-004/ses-06/anat/sub-004_ses-06_T1w_brain.nii.gz -out /user_data/csimmon2/long_pt/sub-004/ses-06/derivatives/fsl/loc/run-03/1stLevel.feat/filtered_func_data_reg.nii.gz -applyxfm -init /user_data/csimmon2/long_pt/sub-004/ses-06/derivatives/fsl/loc/run-03/1stLevel.feat/reg/example_func2highres.mat
-    ✓ Successfully registered run-03
+    ✓ run-03 already registered (output exists)
   sub-004 loc run-04
     ✗ run-04 filtered_func_data.nii.gz does not exist - FEAT may not have completed
   sub-004 loc run-05
