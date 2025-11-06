@@ -1,4 +1,4 @@
-sqProcessing high-level outputs for sub-021 ses-02 in first-session space
+Processing high-level outputs for sub-021 ses-02 in first-session space
   Found transformation matrix: /user_data/csimmon2/long_pt/sub-021/ses-02/anat/anat2ses01.mat
   Processing cope1 (cope1)
     ⚠️  zstat file not found: /user_data/csimmon2/long_pt/sub-021/ses-02/derivatives/fsl/loc/HighLevel.gfeat/cope1.feat/stats/zstat1.nii.gz
