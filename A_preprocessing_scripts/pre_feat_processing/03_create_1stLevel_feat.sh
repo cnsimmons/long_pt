@@ -1,4 +1,4 @@
-DO not run without correcting templateFSF!
+DO not run without correcting templateFSF! THIS HAS ALSO NOT UPDATED FUNCTIONAL LOCATIONS!
 
 #!/bin/bash
 #
