@@ -42,9 +42,8 @@ subject_sessions = {
 # Job control flags
 run_1stlevel = False      # Run FEAT first level
 run_registration = False  # Run registration to anatomical space
-run_highlevel = True     # Run high level analysis
-run_ses1_registration = False  # Run registration of high-level outputs to session 1
-run_mni_registration = False  # Run registration of high-level outputs to MNI
+run_highlevel = False     # Run high level analysis
+run_ses1_registration = True  # Run registration of high-level outputs to session 1
 
 def setup_sbatch(job_name, script_name):
     """Create SLURM sbatch script content"""
@@ -116,16 +115,6 @@ for sub, sessions in subject_sessions.items():
             
             for run in runs:
                 fsf_file = f'{task_dir}/run-{run}/1stLevel.fsf'
-                
-                '''
-                # Skip specific subject/session/run combinations
-                if (sub == 'sub-004' and ses == '01' and run == '01'):
-                    print(f"⏭️  Skipping {sub} ses-{ses} run-{run} (already processed)")
-                    continue
-                if (sub == 'sub-007' and ses == '03' and run == '02'):
-                    print(f"⏭️  Skipping {sub} ses-{ses} run-{run} (already processed)")
-                    continue
-                '''
                 
                 # Check if FSF file exists
                 if os.path.exists(fsf_file):
