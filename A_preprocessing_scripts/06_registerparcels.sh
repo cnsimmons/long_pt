@@ -7,7 +7,7 @@ MNI_BRAIN="${FSLDIR}/data/standard/MNI152_T1_2mm_brain.nii.gz"
 BASE_DIR="/user_data/csimmon2/long_pt"
 CSV_FILE="/user_data/csimmon2/git_repos/long_pt/long_pt_sub_info.csv"
 
-SKIP_SUBS=("004" "007" "021" "108")
+SKIP_SUBS=("004" "021" "108")
 INDICES=(37 38 39)  # Fusiform parcels
 
 declare -A SESSION_START
