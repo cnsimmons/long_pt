@@ -1,0 +1,50 @@
+Processing high-level outputs for sub-062 ses-01 in first-session space
+  Session 01: Maps already in correct space, no registration needed
+  Processing cope1 (cope1)
+    ✓ Linked zstat
+    ✓ Linked cope
+  Processing cope2 (cope2)
+    ✓ Linked zstat
+    ✓ Linked cope
+  Processing cope3 (cope3)
+    ✓ Linked zstat
+    ✓ Linked cope
+  Processing cope4 (cope4)
+    ✓ Linked zstat
+    ✓ Linked cope
+  Processing cope5 (cope5)
+    ✓ Linked zstat
+    ✓ Linked cope
+  Processing cope6 (cope6)
+    ✓ Linked zstat
+    ✓ Linked cope
+  Processing cope7 (cope7)
+    ✓ Linked zstat
+    ✓ Linked cope
+  Processing cope8 (cope8)
+    ✓ Linked zstat
+    ✓ Linked cope
+  Processing cope9 (cope9)
+    ✓ Linked zstat
+    ✓ Linked cope
+  Processing cope10 (cope10)
+    ✓ Linked zstat
+    ✓ Linked cope
+  Processing cope11 (cope11)
+    ✓ Linked zstat
+    ✓ Linked cope
+  Processing cope12 (cope12)
+    ✓ Linked zstat
+    ✓ Linked cope
+  Processing cope13 (cope13)
+    ✓ Linked zstat
+    ✓ Linked cope
+  Processing cope14 (cope14)
+    ✓ Linked zstat
+    ✓ Linked cope
+Finished processing sub-062 ses-01
+
+Summary:
+  Processed zstats: 14/14
+  Processed copes: 14/14
+  Reference: /user_data/csimmon2/long_pt/sub-062/ses-01/anat/sub-062_ses-01_T1w_brain.nii.gz

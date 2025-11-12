@@ -1,5 +1,5 @@
-Processing high-level outputs for sub-007 ses-03 in first-session space
-  Found transformation matrix: /user_data/csimmon2/long_pt/sub-007/ses-03/anat/anat2ses01.mat
+Processing high-level outputs for sub-007 ses-02 in first-session space
+⚠️  No transformation matrix found: /user_data/csimmon2/long_pt/sub-007/ses-02/anat/anat2ses01.mat
   Processing cope1 (cope1)
     ⚠️  zstat file not found
     ⚠️  cope file not found
@@ -42,7 +42,7 @@ Processing high-level outputs for sub-007 ses-03 in first-session space
   Processing cope14 (cope14)
     ⚠️  zstat file not found
     ⚠️  cope file not found
-Finished processing sub-007 ses-03
+Finished processing sub-007 ses-02
 
 Summary:
   Processed zstats: 0/14

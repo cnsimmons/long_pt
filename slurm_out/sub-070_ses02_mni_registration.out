@@ -1,0 +1,50 @@
+Processing high-level outputs for sub-070 ses-02 in first-session space
+  Found transformation matrix: /user_data/csimmon2/long_pt/sub-070/ses-02/anat/anat2ses01.mat
+  Processing cope1 (cope1)
+    ✓ Successfully registered zstat
+    ✓ Successfully registered cope
+  Processing cope2 (cope2)
+    ✓ Successfully registered zstat
+    ✓ Successfully registered cope
+  Processing cope3 (cope3)
+    ✓ Successfully registered zstat
+    ✓ Successfully registered cope
+  Processing cope4 (cope4)
+    ✓ Successfully registered zstat
+    ✓ Successfully registered cope
+  Processing cope5 (cope5)
+    ✓ Successfully registered zstat
+    ✓ Successfully registered cope
+  Processing cope6 (cope6)
+    ✓ Successfully registered zstat
+    ✓ Successfully registered cope
+  Processing cope7 (cope7)
+    ✓ Successfully registered zstat
+    ✓ Successfully registered cope
+  Processing cope8 (cope8)
+    ✓ Successfully registered zstat
+    ✓ Successfully registered cope
+  Processing cope9 (cope9)
+    ✓ Successfully registered zstat
+    ✓ Successfully registered cope
+  Processing cope10 (cope10)
+    ✓ Successfully registered zstat
+    ✓ Successfully registered cope
+  Processing cope11 (cope11)
+    ✓ Successfully registered zstat
+    ✓ Successfully registered cope
+  Processing cope12 (cope12)
+    ✓ Successfully registered zstat
+    ✓ Successfully registered cope
+  Processing cope13 (cope13)
+    ✓ Successfully registered zstat
+    ✓ Successfully registered cope
+  Processing cope14 (cope14)
+    ✓ Successfully registered zstat
+    ✓ Successfully registered cope
+Finished processing sub-070 ses-02
+
+Summary:
+  Processed zstats: 14/14
+  Processed copes: 14/14
+  Reference: /user_data/csimmon2/long_pt/sub-070/ses-01/anat/sub-070_ses-01_T1w_brain.nii.gz
