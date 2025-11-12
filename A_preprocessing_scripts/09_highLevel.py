@@ -15,7 +15,7 @@ data_dir = '/user_data/csimmon2/long_pt'
 CSV_FILE = '/user_data/csimmon2/git_repos/long_pt/long_pt_sub_info.csv'
 task = 'loc'
 
-SESSION_START = {'sub-010': 2, 'sub-018': 2}
+SESSION_START = {'sub-010': 2, 'sub-018': 2, 'sub-068': 2}
 
 first_ses = SESSION_START.get(sub, 1)
 first_ses_str = f"{first_ses:02d}"
