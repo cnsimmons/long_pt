@@ -1,103 +1,92 @@
 #!/bin/bash
-# Create high-level FSF files for session-level analysis
-# UPDATED: Uses first-session registration instead of MNI space
+# Create high-level FSF files (CSV-driven)
 
 dataDir='/user_data/csimmon2/long_pt'
+CSV_FILE='/user_data/csimmon2/git_repos/long_pt/long_pt_sub_info.csv'
 templateFSF="/lab_data/behrmannlab/vlad/ptoc/sub-004/ses-01/derivatives/fsl/loc/HighLevel.fsf"
 
-# Check template exists
-if [ ! -f "$templateFSF" ]; then
-    echo "ERROR: Template high-level FSF not found: $templateFSF"
-    exit 1
-fi
+SKIP_SUBS=("004" "007" "021" "108")
+
+declare -A SESSION_START
+SESSION_START["010"]=2
+SESSION_START["018"]=2
+
+should_skip() {
+    local sub="$1"
+    for skip in "${SKIP_SUBS[@]}"; do
+        [[ "$sub" == "$skip" ]] && return 0
+    done
+    return 1
+}
+
+get_first_session() {
+    echo "${SESSION_START[$1]:-1}"
+}
 
 create_highlevel_fsf() {
     local sub="$1"
     local ses="$2"
-    local runs=("${!3}")
-    
-    echo "  Creating high-level FSF for ses-${ses}"
+    local first_ses="$3"
     
     session_dir="$dataDir/sub-${sub}/ses-${ses}"
     fsf_file="$session_dir/derivatives/fsl/loc/HighLevel.fsf"
     
-    mkdir -p "$(dirname "$fsf_file")"
+    # Auto-detect runs
+    local runs=()
+    for feat_dir in "$session_dir"/derivatives/fsl/loc/run-*/1stLevel.feat; do
+        [ -d "$feat_dir" ] || continue
+        run=$(basename "$(dirname "$feat_dir")" | sed 's/run-//')
+        runs+=("$run")
+    done
     
-    # Copy template
+    [ ${#runs[@]} -eq 0 ] && echo "    No runs found" && return
+    
+    echo "  ses-${ses}: ${#runs[@]} runs"
+    
+    mkdir -p "$(dirname "$fsf_file")"
     cp "$templateFSF" "$fsf_file"
     
-    # Update paths and session info
+    # Update paths
     sed -i "s|/lab_data/behrmannlab/vlad/ptoc|$dataDir|g" "$fsf_file"
     sed -i "s/sub-004/sub-${sub}/g" "$fsf_file"
     sed -i "s/ses-01/ses-${ses}/g" "$fsf_file"
     
-    # CRITICAL: Update standard space registration to use first-session anatomy instead of MNI
-    ses01_anat="$dataDir/sub-${sub}/ses-01/anat/sub-${sub}_ses-01_T1w_brain.nii.gz"
-    sed -i "s|set fmri(regstandard) \".*\"|set fmri(regstandard) \"$ses01_anat\"|g" "$fsf_file"
+    # Use first-session anatomy
+    first_ses_anat="$dataDir/sub-${sub}/ses-${first_ses}/anat/sub-${sub}_ses-${first_ses}_T1w_brain.nii.gz"
+    sed -i "s|set fmri(regstandard) \".*\"|set fmri(regstandard) \"$first_ses_anat\"|g" "$fsf_file"
+    sed -i "s|/opt/fsl/.*/MNI152.*brain|$first_ses_anat|g" "$fsf_file"
     
-    # Also update any other MNI template references to first-session space
-    sed -i "s|/opt/fsl/.*/MNI152.*brain|$ses01_anat|g" "$fsf_file"
-    sed -i "s|/usr/share/fsl/.*/MNI152.*brain|$ses01_anat|g" "$fsf_file"
+    # Update number of runs
+    sed -i "s/set fmri(multiple) [0-9]*/set fmri(multiple) ${#runs[@]}/g" "$fsf_file"
+    sed -i "s/set fmri(npts) [0-9]*/set fmri(npts) ${#runs[@]}/g" "$fsf_file"
     
-    # Update number of inputs
-    local num_runs=${#runs[@]}
-    sed -i "s/set fmri(multiple) 3/set fmri(multiple) $num_runs/g" "$fsf_file"
-    sed -i "s/set fmri(npts) 3/set fmri(npts) $num_runs/g" "$fsf_file"
-    
-    # Update FEAT directory paths
+    # Update feat_files
     for i in "${!runs[@]}"; do
         run_num=$((i + 1))
-        run="${runs[i]}"
-        feat_dir="$session_dir/derivatives/fsl/loc/run-${run}/1stLevel.feat"
+        feat_dir="$session_dir/derivatives/fsl/loc/run-${runs[i]}/1stLevel.feat"
         sed -i "s|set feat_files($run_num) \".*\"|set feat_files($run_num) \"$feat_dir\"|g" "$fsf_file"
     done
-    
-    # Remove extra feat_files if fewer runs
-    if [ $num_runs -lt 3 ]; then
-        for ((i=num_runs+1; i<=3; i++)); do
-            sed -i "/set feat_files($i)/d" "$fsf_file"
-        done
-    fi
-    
-    echo "    Created: $fsf_file"
-    echo "    Using first-session anatomy: $ses01_anat"
 }
 
-echo "Creating high-level FSF files for first-session registration..."
-
-# TC (sub-004)
-echo "TC (sub-004):"
-for ses in "01" "02" "03" "05" "06" "07"; do
-    runs=("01" "02" "03")
-    create_highlevel_fsf "004" "$ses" runs[@]
+tail -n +2 "$CSV_FILE" | while IFS=',' read -r sub rest; do
+    subject=$(echo "$sub" | sed 's/sub-//')
+    should_skip "$subject" && continue
+    
+    echo "=== sub-${subject} ==="
+    
+    IFS=',' read -ra fields <<< "$rest"
+    session_count=0
+    for i in {1..5}; do
+        [[ -n "${fields[$i]}" && "${fields[$i]}" != " " ]] && ((session_count++))
+    done
+    
+    start_ses=$(get_first_session "$subject")
+    first_ses=$(printf "%02d" $start_ses)
+    
+    for ((i=0; i<session_count; i++)); do
+        ses=$(printf "%02d" $((start_ses + i)))
+        create_highlevel_fsf "$subject" "$ses" "$first_ses"
+    done
 done
 
-# UD (sub-007)
-echo "UD (sub-007):"
-for ses in "01" "05"; do
-    runs=("01" "02" "03")
-    create_highlevel_fsf "007" "$ses" runs[@]
-done
-
-# UD ses-03: 2 runs only
-runs=("01" "02")
-create_highlevel_fsf "007" "03" runs[@]
-
-# UD ses-04: 2 runs only
-runs=("01" "02")
-create_highlevel_fsf "007" "04" runs[@]
-
-# OT (sub-021)
-echo "OT (sub-021):"
-for ses in "01" "02" "03"; do
-    runs=("01" "02" "03")
-    create_highlevel_fsf "021" "$ses" runs[@]
-done
-
-echo ""
-echo "High-level FSF files created for first-session registration!"
-echo "All analyses will be registered to ses-01 anatomy instead of MNI space"
-echo ""
-echo "Next steps:"
-echo "1. Run high-level FEAT with updated FSF files"
-echo "2. Update 06_highLevel.py script for first-session registration"
+echo "Complete!"
