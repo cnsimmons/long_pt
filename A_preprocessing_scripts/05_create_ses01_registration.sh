@@ -9,6 +9,7 @@ SKIP_SUBS=("004" "007" "021" "108")
 declare -A SESSION_START
 SESSION_START["010"]=2
 SESSION_START["018"]=2
+SESSION_START["068"]=2
 
 should_skip() {
     local sub="$1"
