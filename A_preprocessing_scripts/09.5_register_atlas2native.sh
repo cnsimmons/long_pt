@@ -1,101 +1,72 @@
 #!/bin/bash
-# register_ho_atlas.sh (CORRECTED)
-# Register Harvard-Oxford atlas FROM MNI space TO subject ses-01 anatomical space
+# Register Harvard-Oxford atlas to subject space (CSV-driven)
 
 BASE_DIR="/user_data/csimmon2/long_pt"
+CSV_FILE="/user_data/csimmon2/git_repos/long_pt/long_pt_sub_info.csv"
 FSLDIR="${FSLDIR:-/usr/local/fsl}"
 ATLAS="${FSLDIR}/data/atlases/HarvardOxford/HarvardOxford-cort-maxprob-thr25-2mm.nii.gz"
 MNI_TEMPLATE="${FSLDIR}/data/standard/MNI152_T1_2mm_brain.nii.gz"
 
+SKIP_SUBS=("004" "007" "021" "108")
+
+declare -A SESSION_START
+SESSION_START["010"]=2
+SESSION_START["018"]=2
+
+should_skip() {
+    for skip in "${SKIP_SUBS[@]}"; do
+        [[ "$1" == "$skip" ]] && return 0
+    done
+    return 1
+}
+
 echo "======================================"
-echo "Registering Harvard-Oxford Atlas to Subject Space"
+echo "Registering Harvard-Oxford Atlas"
 echo "======================================"
-echo "Atlas: ${ATLAS}"
-echo "MNI Template: ${MNI_TEMPLATE}"
-echo ""
 
-# Check files exist
-if [ ! -f "${ATLAS}" ]; then
-    echo "ERROR: Harvard-Oxford atlas not found at ${ATLAS}"
-    exit 1
-fi
+[ ! -f "${ATLAS}" ] && echo "ERROR: Atlas not found" && exit 1
+[ ! -f "${MNI_TEMPLATE}" ] && echo "ERROR: MNI template not found" && exit 1
 
-if [ ! -f "${MNI_TEMPLATE}" ]; then
-    echo "ERROR: MNI template not found at ${MNI_TEMPLATE}"
-    exit 1
-fi
-
-# Process each subject
-for sub in sub-004 sub-007 sub-021; do
-    echo "Processing ${sub}..."
+tail -n +2 "$CSV_FILE" | while IFS=',' read -r sub dob age1 age2 age3 age4 age5 group sex surgery_side intact_hemi rest; do
+    subject=$(echo "$sub" | sed 's/sub-//')
+    should_skip "$subject" && continue
+    [[ "$intact_hemi" == "control" ]] && continue
     
-    ses="ses-01"
-    anat_dir="${BASE_DIR}/${sub}/${ses}/anat"
+    first_ses=$(printf "%02d" ${SESSION_START[$subject]:-1})
+    anat_dir="${BASE_DIR}/sub-${subject}/ses-${first_ses}/anat"
+    subject_anat="${anat_dir}/sub-${subject}_ses-${first_ses}_T1w_brain.nii.gz"
     
-    # Check anatomical exists
-    subject_anat="${anat_dir}/${sub}_${ses}_T1w_brain.nii.gz"
-    if [ ! -f "${subject_anat}" ]; then
-        echo "  ERROR: Anatomical not found: ${subject_anat}"
-        continue
-    fi
+    [ ! -f "$subject_anat" ] && echo "  Skipping sub-${subject}: no anatomy" && continue
     
-    # Output paths
-    mni2subj_mat="${anat_dir}/mni2${sub}_${ses}.mat"
-    atlas_output="${anat_dir}/HarvardOxford_cort_maxprob_${sub}_${ses}.nii.gz"
+    echo "Processing sub-${subject}..."
     
-    # Step 1: Register MNI template to subject anatomical
+    mni2subj_mat="${anat_dir}/mni2sub-${subject}_ses-${first_ses}.mat"
+    atlas_output="${anat_dir}/HarvardOxford_cort_maxprob_sub-${subject}_ses-${first_ses}.nii.gz"
+    
     if [ ! -f "${mni2subj_mat}" ]; then
-        echo "  Step 1: Registering MNI template to subject anatomy..."
-        flirt \
-            -in "${MNI_TEMPLATE}" \
-            -ref "${subject_anat}" \
-            -out "${anat_dir}/mni_in_subjspace_${sub}_${ses}.nii.gz" \
-            -omat "${mni2subj_mat}" \
-            -bins 256 \
-            -cost corratio \
-            -searchrx -90 90 \
-            -searchry -90 90 \
-            -searchrz -90 90 \
-            -dof 12
-        
-        if [ $? -eq 0 ]; then
-            echo "    ✓ Created MNI-to-subject transform"
-        else
-            echo "    ✗ Failed to register MNI to subject"
-            continue
-        fi
+        echo "  Step 1: Registering MNI to subject..."
+        flirt -in "${MNI_TEMPLATE}" -ref "${subject_anat}" \
+              -out "${anat_dir}/mni_in_subjspace_sub-${subject}_ses-${first_ses}.nii.gz" \
+              -omat "${mni2subj_mat}" \
+              -bins 256 -cost corratio \
+              -searchrx -90 90 -searchry -90 90 -searchrz -90 90 -dof 12
+        [ $? -eq 0 ] && echo "    ✓ Transform created" || echo "    ✗ Failed"
     else
-        echo "  ✓ MNI-to-subject transform exists"
+        echo "  ✓ Transform exists"
     fi
     
-    # Step 2: Apply transform to atlas
     if [ ! -f "${atlas_output}" ]; then
-        echo "  Step 2: Applying transform to Harvard-Oxford atlas..."
-        flirt \
-            -in "${ATLAS}" \
-            -ref "${subject_anat}" \
-            -out "${atlas_output}" \
-            -init "${mni2subj_mat}" \
-            -applyxfm \
-            -interp nearestneighbour
-        
-        if [ $? -eq 0 ]; then
-            echo "    ✓ Created atlas in subject space: ${atlas_output}"
-        else
-            echo "    ✗ Failed to transform atlas"
-            continue
-        fi
+        echo "  Step 2: Transforming atlas..."
+        flirt -in "${ATLAS}" -ref "${subject_anat}" -out "${atlas_output}" \
+              -init "${mni2subj_mat}" -applyxfm -interp nearestneighbour
+        [ $? -eq 0 ] && echo "    ✓ Atlas created" || echo "    ✗ Failed"
     else
-        echo "  ✓ Atlas already in subject space"
+        echo "  ✓ Atlas exists"
     fi
     
     echo ""
 done
 
 echo "======================================"
-echo "Atlas registration complete!"
+echo "Complete!"
 echo "======================================"
-echo ""
-echo "Verify registration quality by checking:"
-echo "  - Atlas overlays correctly on subject anatomy"
-echo "  - Ventral temporal regions align with anatomical landmarks"
