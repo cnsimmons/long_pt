@@ -3,7 +3,7 @@ dataDir='/user_data/csimmon2/long_pt'
 CSV_FILE='/user_data/csimmon2/git_repos/long_pt/long_pt_sub_info.csv'
 templateFSF="/lab_data/behrmannlab/vlad/ptoc/sub-004/ses-01/derivatives/fsl/loc/HighLevel.fsf"
 
-SKIP_SUBS=("004" "007" "021" "108")
+SKIP_SUBS=("004" "021" "108")
 declare -A SESSION_START
 SESSION_START["010"]=2
 SESSION_START["018"]=2
@@ -50,10 +50,32 @@ create_highlevel_fsf() {
     sed -i "s/set fmri(multiple) [0-9]*/set fmri(multiple) ${#runs[@]}/g" "$fsf_file"
     sed -i "s/set fmri(npts) [0-9]*/set fmri(npts) ${#runs[@]}/g" "$fsf_file"
     
+    # Update/add feat_files
     for i in "${!runs[@]}"; do
         run_num=$((i + 1))
         feat_dir="$session_dir/derivatives/fsl/loc/run-${runs[i]}/1stLevel.feat"
-        sed -i "s|set feat_files($run_num) \".*\"|set feat_files($run_num) \"$feat_dir\"|g" "$fsf_file"
+        
+        if grep -q "set feat_files($run_num)" "$fsf_file"; then
+            sed -i "s|set feat_files($run_num) \".*\"|set feat_files($run_num) \"$feat_dir\"|g" "$fsf_file"
+        else
+            echo "set feat_files($run_num) \"$feat_dir\"" >> "$fsf_file"
+        fi
+    done
+    
+    # Update/add groupmem
+    for i in "${!runs[@]}"; do
+        run_num=$((i + 1))
+        if ! grep -q "set fmri(groupmem.$run_num)" "$fsf_file"; then
+            echo "set fmri(groupmem.$run_num) 1" >> "$fsf_file"
+        fi
+    done
+
+    # Update/add evg entries
+    for i in "${!runs[@]}"; do
+        run_num=$((i + 1))
+        if ! grep -q "set fmri(evg${run_num}.1)" "$fsf_file"; then
+            echo "set fmri(evg${run_num}.1) 1" >> "$fsf_file"
+        fi
     done
 }
 
@@ -72,3 +94,5 @@ tail -n +2 "$CSV_FILE" | while IFS=',' read -r sub rest; do
         create_highlevel_fsf "$subject" "$ses" "$first_ses"
     done
 done
+
+echo "Complete!"
