@@ -23,18 +23,19 @@ CSV_FILE = '/user_data/csimmon2/git_repos/long_pt/long_pt_sub_info.csv'
 task = 'loc'
 
 # Subjects to skip
-SKIP_SUBS = ['sub-004', 'sub-007', 'sub-021', 'sub-108']
+SKIP_SUBS = ['sub-004', 'sub-021', 'sub-108']
 
 # Special session mappings
 SESSION_START = {
     'sub-010': 2,
-    'sub-018': 2
+    'sub-018': 2,
+    'sub-068': 2
 }
 
 # Job control flags
-run_1stlevel = True
+run_1stlevel = False
 run_registration = False
-run_highlevel = False
+run_highlevel = True
 run_mni_registration = False
 
 def get_sessions_for_subject(row):

@@ -16,7 +16,7 @@ templateSes="01"
 templateRun="01"
 
 # Subjects to skip (already processed)
-SKIP_SUBS=("004" "007" "021" '108' '008' '010')
+SKIP_SUBS=("004" "007" "021" '108' '010')
 
 # Special session mappings
 declare -A SESSION_START

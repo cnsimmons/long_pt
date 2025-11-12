@@ -1,0 +1,9 @@
+Processing sub-049 ses-02
+Found runs: ['01', '02']
+  sub-049 loc run-01
+    Running: flirt -in /user_data/csimmon2/long_pt/sub-049/ses-02/derivatives/fsl/loc/run-01/1stLevel.feat/filtered_func_data.nii.gz -ref /user_data/csimmon2/long_pt/sub-049/ses-02/anat/sub-049_ses-02_T1w_brain.nii.gz -out /user_data/csimmon2/long_pt/sub-049/ses-02/derivatives/fsl/loc/run-01/1stLevel.feat/filtered_func_data_reg.nii.gz -applyxfm -init /user_data/csimmon2/long_pt/sub-049/ses-02/derivatives/fsl/loc/run-01/1stLevel.feat/reg/example_func2standard.mat -interp trilinear
+    ✓ Successfully registered
+  sub-049 loc run-02
+    Running: flirt -in /user_data/csimmon2/long_pt/sub-049/ses-02/derivatives/fsl/loc/run-02/1stLevel.feat/filtered_func_data.nii.gz -ref /user_data/csimmon2/long_pt/sub-049/ses-02/anat/sub-049_ses-02_T1w_brain.nii.gz -out /user_data/csimmon2/long_pt/sub-049/ses-02/derivatives/fsl/loc/run-02/1stLevel.feat/filtered_func_data_reg.nii.gz -applyxfm -init /user_data/csimmon2/long_pt/sub-049/ses-02/derivatives/fsl/loc/run-02/1stLevel.feat/reg/example_func2standard.mat -interp trilinear
+    ✓ Successfully registered
+Finished sub-049 ses-02
