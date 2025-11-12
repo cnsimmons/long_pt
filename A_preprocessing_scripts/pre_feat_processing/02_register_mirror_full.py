@@ -17,7 +17,7 @@ CSV_FILE = '/user_data/csimmon2/git_repos/long_pt/long_pt_sub_info.csv'
 MNI_BRAIN = '/opt/fsl/6.0.3/data/standard/MNI152_T1_2mm_brain.nii.gz'
 
 # Subjects to skip (already processed)
-SKIP_SUBS = ['sub-004', 'sub-007', 'sub-021', 'sub-108']
+SKIP_SUBS = ['sub-004', 'sub-007', 'sub-021', 'sub-108', 'sub-008', 'sub-009', 'sub-010']
 
 # Special session mappings
 SESSION_START = {
