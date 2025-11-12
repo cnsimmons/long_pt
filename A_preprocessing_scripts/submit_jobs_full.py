@@ -35,8 +35,8 @@ SESSION_START = {
 # Job control flags
 run_1stlevel = False
 run_registration = False
-run_highlevel = True
-run_mni_registration = False
+run_highlevel = False
+run_mni_registration = True
 
 def get_sessions_for_subject(row):
     """Count non-empty age columns"""

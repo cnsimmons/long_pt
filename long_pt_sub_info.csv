@@ -1,5 +1,4 @@
 ﻿sub,DOB,age_1,age_2,age_3,age_4,age_5,group,Sex,SurgerySide,intact_hemi,loc,OTC,scanner,pre_post_sx,patient,
-sub-068,1/18/09,12.9,13.4,,,,control,Female,control,control,3,0,prisma_verio,0,0,
 sub-004,4/12/06,7.808,8.369,8.825,10.825,13.075,OTC,Male,right,left,3,1,verio,0,1,
 sub-007,8/27/99,14.703,17.614,18.428,,,nonOTC,Male,left,right,2,0,verio,0,1,
 sub-008,11/13/99,14.775,17.897,,,,OTC,Female,right,left,2,1,verio,0,1,

@@ -7,7 +7,7 @@ FSLDIR="${FSLDIR:-/usr/local/fsl}"
 ATLAS="${FSLDIR}/data/atlases/HarvardOxford/HarvardOxford-cort-maxprob-thr25-2mm.nii.gz"
 MNI_TEMPLATE="${FSLDIR}/data/standard/MNI152_T1_2mm_brain.nii.gz"
 
-SKIP_SUBS=("004" "007" "021" "108")
+SKIP_SUBS=("004" "021" "108")
 
 declare -A SESSION_START
 SESSION_START["010"]=2

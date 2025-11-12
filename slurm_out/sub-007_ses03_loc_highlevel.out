@@ -1,6 +1,9 @@
-child process exited abnormally
+couldn't read file "/user_data/csimmon2/long_pt/sub-007/ses-03/derivatives/fsl/loc/run-01/1stLevel.feat/design.fsf": no such file or directory
     while executing
-"fsl:exec "${FSLDIR}/bin/feat ${fsfroot}.fsf -D $FD -gfeatprep" -b 60 -N feat2_pre -l logs "
+"source ${featdir}/design.fsf"
+    (procedure "feat5:getconname" line 2)
+    invoked from within
+"feat5:getconname $ff_one $nci "
     invoked from within
 "if { $done_something == 0 } {
 
