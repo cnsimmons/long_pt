@@ -18,7 +18,8 @@ SKIP_SUBS = ['sub-004', 'sub-007', 'sub-021', 'sub-108']
 # Special session mappings
 SESSION_START = {
     'sub-010': 2,
-    'sub-018': 2
+    'sub-018': 2,
+    'sub-068': 2
 }
 
 def get_sessions_for_subject(row):
