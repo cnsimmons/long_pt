@@ -10,7 +10,7 @@ from glob import glob
 
 data_dir = '/user_data/csimmon2/long_pt'
 CSV_FILE = '/user_data/csimmon2/git_repos/long_pt/long_pt_sub_info.csv'
-SKIP_SUBS = ['sub-004', 'sub-007', 'sub-021', 'sub-108']
+SKIP_SUBS = ['sub-004', 'sub-021', 'sub-108']
 SESSION_START = {'sub-010': 2, 'sub-018': 2}
 zstats = list(range(1, 15))  # 1-14
 

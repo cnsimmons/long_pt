@@ -5,11 +5,12 @@ dataDir='/user_data/csimmon2/long_pt'
 CSV_FILE='/user_data/csimmon2/git_repos/long_pt/long_pt_sub_info.csv'
 templateFSF="/lab_data/behrmannlab/vlad/ptoc/sub-004/ses-01/derivatives/fsl/loc/HighLevel.fsf"
 
-SKIP_SUBS=("004" "007" "021" "108")
+SKIP_SUBS=("004" "021" "108")
 
 declare -A SESSION_START
 SESSION_START["010"]=2
 SESSION_START["018"]=2
+SESSION_START["068"]=2
 
 should_skip() {
     local sub="$1"
@@ -87,6 +88,10 @@ tail -n +2 "$CSV_FILE" | while IFS=',' read -r sub rest; do
         ses=$(printf "%02d" $((start_ses + i)))
         create_highlevel_fsf "$subject" "$ses" "$first_ses"
     done
+    
+    echo "  Session count: $session_count, start: $(get_first_session "$subject")"  # Debug
 done
+
+
 
 echo "Complete!"
