@@ -110,13 +110,13 @@ create_fsf() {
 }
 
 # Subject and session configuration
-runs=("01" "02" "03")
+runs=("01" "02" "03" "04" '05" "06")')
 
 echo "Processing subjects with data validation..."
 
-# TC (sub-004): sessions 01,02,03,05,06,07
-echo "TC (sub-004):"
-for ses in "01" "02" "03" "05" "06" "07"; do
+# UD (sub-004): sessions 01,02,03,05,06,07
+echo "UD (sub-004):"
+for ses in "01" "02" "03" "05"; do
     echo "  Session ${ses}:"
     for run in "${runs[@]}"; do
         echo "    Run ${run}:"
@@ -128,10 +128,10 @@ for ses in "01" "02" "03" "05" "06" "07"; do
     done
 done
 
-# UD (sub-007): sessions 01,03,04,05
+#  (sub-007): sessions 01,03,04,05
 echo ""
-echo "UD (sub-007):"
-for ses in "01" "03" "04" "05"; do
+echo "OT (sub-007):"
+for ses in "01" "03" "04"; do
     echo "  Session ${ses}:"
     for run in "${runs[@]}"; do
         echo "    Run ${run}:"
@@ -150,9 +150,9 @@ for ses in "01" "03" "04" "05"; do
     done
 done
 
-# OT (sub-021): sessions 01,02,03
+# (sub-021): sessions 01,02,03
 echo ""
-echo "OT (sub-021):"
+echo "TC (sub-021):"
 for ses in "01" "02" "03"; do
     echo "  Session ${ses}:"
     for run in "${runs[@]}"; do
