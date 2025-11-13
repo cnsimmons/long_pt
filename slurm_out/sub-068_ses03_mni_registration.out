@@ -1,2 +1,50 @@
 Processing high-level outputs for sub-068 ses-03 in first-session space
-⚠️  First-session anatomy not found: /user_data/csimmon2/long_pt/sub-068/ses-01/anat/sub-068_ses-01_T1w_brain.nii.gz
+  Found transformation matrix: /user_data/csimmon2/long_pt/sub-068/ses-03/anat/anat2ses02.mat
+  Processing cope1 (cope1)
+    ✓ zstat already processed
+    ✓ cope already processed
+  Processing cope2 (cope2)
+    ✓ zstat already processed
+    ✓ cope already processed
+  Processing cope3 (cope3)
+    ✓ zstat already processed
+    ✓ cope already processed
+  Processing cope4 (cope4)
+    ✓ zstat already processed
+    ✓ cope already processed
+  Processing cope5 (cope5)
+    ✓ zstat already processed
+    ✓ cope already processed
+  Processing cope6 (cope6)
+    ✓ zstat already processed
+    ✓ cope already processed
+  Processing cope7 (cope7)
+    ✓ zstat already processed
+    ✓ cope already processed
+  Processing cope8 (cope8)
+    ✓ zstat already processed
+    ✓ cope already processed
+  Processing cope9 (cope9)
+    ✓ zstat already processed
+    ✓ cope already processed
+  Processing cope10 (cope10)
+    ✓ zstat already processed
+    ✓ cope already processed
+  Processing cope11 (cope11)
+    ✓ zstat already processed
+    ✓ cope already processed
+  Processing cope12 (cope12)
+    ✓ zstat already processed
+    ✓ cope already processed
+  Processing cope13 (cope13)
+    ✓ zstat already processed
+    ✓ cope already processed
+  Processing cope14 (cope14)
+    ✓ zstat already processed
+    ✓ cope already processed
+Finished processing sub-068 ses-03
+
+Summary:
+  Processed zstats: 14/14
+  Processed copes: 14/14
+  Reference: /user_data/csimmon2/long_pt/sub-068/ses-02/anat/sub-068_ses-02_T1w_brain.nii.gz
