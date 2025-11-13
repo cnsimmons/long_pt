@@ -22,7 +22,7 @@ import pandas as pd
 
 # Job parameters
 job_name = 'long_pt_feat'
-mem = 48  # GB
+mem = 16  # GB
 run_time = "1-00:00:00"
 pause_crit = 12  # Number of jobs before pausing
 pause_time = 1   # Minutes to pause
@@ -30,20 +30,20 @@ pause_time = 1   # Minutes to pause
 # Project parameters
 data_dir = '/user_data/csimmon2/long_pt'
 task = 'loc'
-runs = ['01', '02', '03']
+runs = ['01', '02', '03', '04']  # Task runs
 
 # Subject and session mapping
 subject_sessions = {
-    'sub-004': ['01', '02', '03', '05', '06'],  # TC
-    #'sub-007': ['01','03', '04'],        # UD 
-    'sub-021': ['01', '02', '03']        # OT
+    #'sub-004': ['01', '02', '03', '05', '06'],  # UD
+    'sub-007': ['01','03','04']  # OT     
+    #'sub-021': ['01', '02', '03'] # TC       
 }
 
 # Job control flags
 run_1stlevel = False      # Run FEAT first level
 run_registration = True  # Run registration to anatomical space
 run_highlevel = False     # Run high level analysis
-run_mni_registration = True  # Script 09 transforms HighLevel outputs to ses-01 (not MNI). || Previous iteration ran registration of high-level outputs to MNI
+run_mni_registration = False  # Script 09 transforms HighLevel outputs to ses-01 (not MNI). || Previous iteration ran registration of high-level outputs to MNI
 
 def setup_sbatch(job_name, script_name):
     """Create SLURM sbatch script content"""
@@ -120,10 +120,11 @@ for sub, sessions in subject_sessions.items():
                 if (sub == 'sub-004' and ses == '01' and run == '01'):
                     print(f"⏭️  Skipping {sub} ses-{ses} run-{run} (already processed)")
                     continue
-                if (sub == 'sub-007' and ses == '03' and run == '02'):
+                '''
+                if (sub == 'sub-007' and (ses == '03' or ses == '04') and run == '02'):
                     print(f"⏭️  Skipping {sub} ses-{ses} run-{run} (already processed)")
                     continue
-                '''
+            
                 
                 # Check if FSF file exists
                 if os.path.exists(fsf_file):

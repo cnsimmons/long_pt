@@ -4,7 +4,7 @@
 dataDir='/user_data/csimmon2/long_pt'
 CSV_FILE='/user_data/csimmon2/git_repos/long_pt/long_pt_sub_info.csv'
 
-SKIP_SUBS=("004" "007" "021" "108")
+SKIP_SUBS=("004" "021" "108")
 
 declare -A SESSION_START
 SESSION_START["010"]=2
