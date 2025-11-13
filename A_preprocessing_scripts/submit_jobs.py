@@ -41,9 +41,9 @@ subject_sessions = {
 
 # Job control flags
 run_1stlevel = False      # Run FEAT first level
-run_registration = True  # Run registration to anatomical space
+run_registration = False  # Run registration to anatomical space
 run_highlevel = False     # Run high level analysis
-run_mni_registration = False  # Script 09 transforms HighLevel outputs to ses-01 (not MNI). || Previous iteration ran registration of high-level outputs to MNI
+run_mni_registration = True  # Script 09 transforms HighLevel outputs to ses-01 (not MNI). || Previous iteration ran registration of high-level outputs to MNI
 
 def setup_sbatch(job_name, script_name):
     """Create SLURM sbatch script content"""

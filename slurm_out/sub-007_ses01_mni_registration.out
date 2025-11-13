@@ -1,50 +1,50 @@
 Processing high-level outputs for sub-007 ses-01 in first-session space
   Session 01: Maps already in correct space, no registration needed
   Processing cope1 (cope1)
-    ⚠️  zstat file not found
-    ⚠️  cope file not found
+    ✓ zstat already processed
+    ✓ cope already processed
   Processing cope2 (cope2)
-    ⚠️  zstat file not found
-    ⚠️  cope file not found
+    ✓ zstat already processed
+    ✓ cope already processed
   Processing cope3 (cope3)
-    ⚠️  zstat file not found
-    ⚠️  cope file not found
+    ✓ zstat already processed
+    ✓ cope already processed
   Processing cope4 (cope4)
-    ⚠️  zstat file not found
-    ⚠️  cope file not found
+    ✓ zstat already processed
+    ✓ cope already processed
   Processing cope5 (cope5)
-    ⚠️  zstat file not found
-    ⚠️  cope file not found
+    ✓ zstat already processed
+    ✓ cope already processed
   Processing cope6 (cope6)
-    ⚠️  zstat file not found
-    ⚠️  cope file not found
+    ✓ zstat already processed
+    ✓ cope already processed
   Processing cope7 (cope7)
-    ⚠️  zstat file not found
-    ⚠️  cope file not found
+    ✓ zstat already processed
+    ✓ cope already processed
   Processing cope8 (cope8)
-    ⚠️  zstat file not found
-    ⚠️  cope file not found
+    ✓ zstat already processed
+    ✓ cope already processed
   Processing cope9 (cope9)
-    ⚠️  zstat file not found
-    ⚠️  cope file not found
+    ✓ zstat already processed
+    ✓ cope already processed
   Processing cope10 (cope10)
-    ⚠️  zstat file not found
-    ⚠️  cope file not found
+    ✓ zstat already processed
+    ✓ cope already processed
   Processing cope11 (cope11)
-    ⚠️  zstat file not found
-    ⚠️  cope file not found
+    ✓ zstat already processed
+    ✓ cope already processed
   Processing cope12 (cope12)
-    ⚠️  zstat file not found
-    ⚠️  cope file not found
+    ✓ zstat already processed
+    ✓ cope already processed
   Processing cope13 (cope13)
-    ⚠️  zstat file not found
-    ⚠️  cope file not found
+    ✓ zstat already processed
+    ✓ cope already processed
   Processing cope14 (cope14)
-    ⚠️  zstat file not found
-    ⚠️  cope file not found
+    ✓ zstat already processed
+    ✓ cope already processed
 Finished processing sub-007 ses-01
 
 Summary:
-  Processed zstats: 0/14
-  Processed copes: 0/14
+  Processed zstats: 14/14
+  Processed copes: 14/14
   Reference: /user_data/csimmon2/long_pt/sub-007/ses-01/anat/sub-007_ses-01_T1w_brain.nii.gz
