@@ -13,7 +13,7 @@ BASE_DIR = Path('/user_data/csimmon2/long_pt')
 FS_DIR = Path('/lab_data/behrmannlab/hemi/FS')
 CSV_FILE = Path('/user_data/csimmon2/git_repos/long_pt/long_pt_sub_info.csv')
 
-SKIP_SUBS = ['sub-004', 'sub-007', 'sub-021', 'sub-108']
+SKIP_SUBS = ['sub-004', 'sub-021', 'sub-108']
 SESSION_START = {'sub-010': 2, 'sub-018': 2, 'sub-068': 2}
 
 PARCELS = {
