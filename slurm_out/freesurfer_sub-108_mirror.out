@@ -1,0 +1,8 @@
+ERROR: cannot find /user_data/csimmon2/long_pt/sub-108/ses-01/anat/sub-108_ses-01_T1w_brain_mirrored.nii.gz
+Linux mind-0-15 4.18.0-372.32.1.el8_6.x86_64 #1 SMP Fri Oct 28 15:56:52 EDT 2022 x86_64 x86_64 x86_64 GNU/Linux
+
+recon-all -s sub-108_ses01_mirror exited with ERRORS at Sun Nov 16 11:26:02 EST 2025
+
+For more details, see the log file 
+To report a problem, see http://surfer.nmr.mgh.harvard.edu/fswiki/BugReporting
+

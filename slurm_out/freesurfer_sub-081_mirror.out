@@ -1,0 +1,62 @@
+Subject Stamp: freesurfer-linux-centos7_x86_64-7.1.0-20200511-813297b
+Current Stamp: freesurfer-linux-centos7_x86_64-7.1.0-20200511-813297b
+INFO: SUBJECTS_DIR is /user_data/csimmon2/long_pt/derivatives/freesurfer
+Actual FREESURFER_HOME /opt/freesurfer/7.1.0
+Linux mind-0-15 4.18.0-372.32.1.el8_6.x86_64 #1 SMP Fri Oct 28 15:56:52 EDT 2022 x86_64 x86_64 x86_64 GNU/Linux
+Can't locate MNI/Startup.pm in @INC (you may need to install the MNI::Startup module) (@INC contains: /usr/local/lib64/perl5 /usr/local/share/perl5 /usr/lib64/perl5/vendor_perl /usr/share/perl5/vendor_perl /usr/lib64/perl5 /usr/share/perl5) at /opt/freesurfer/7.1.0/mni/bin/nu_correct line 37.
+BEGIN failed--compilation aborted at /opt/freesurfer/7.1.0/mni/bin/nu_correct line 37.
+'/opt/freesurfer/7.1.0/bin/recon-all' -> '/user_data/csimmon2/long_pt/derivatives/freesurfer/sub-081_ses01_mirror/scripts/recon-all.local-copy'
+/user_data/csimmon2/long_pt/derivatives/freesurfer/sub-081_ses01_mirror
+
+ mri_convert /user_data/csimmon2/long_pt/sub-081/ses-01/anat/sub-081_ses-01_T1w_brain_mirrored.nii.gz /user_data/csimmon2/long_pt/derivatives/freesurfer/sub-081_ses01_mirror/mri/orig/001.mgz 
+
+mri_convert /user_data/csimmon2/long_pt/sub-081/ses-01/anat/sub-081_ses-01_T1w_brain_mirrored.nii.gz /user_data/csimmon2/long_pt/derivatives/freesurfer/sub-081_ses01_mirror/mri/orig/001.mgz 
+reading from /user_data/csimmon2/long_pt/sub-081/ses-01/anat/sub-081_ses-01_T1w_brain_mirrored.nii.gz...
+niiRead(): NIFTI_UNITS_UNKNOWN, assuming mm
+niiRead(): detected input as 64 bit double, reading in as 32 bit float
+TR=0.00, TE=0.00, TI=0.00, flip angle=0.00
+i_ras = (0.999579, 0.0215439, 0.0194149)
+j_ras = (-0.0192802, 0.993738, -0.11006)
+k_ras = (-0.0216644, 0.10964, 0.993735)
+writing to /user_data/csimmon2/long_pt/derivatives/freesurfer/sub-081_ses01_mirror/mri/orig/001.mgz...
+@#@FSTIME  2025:11:16:11:26:06 mri_convert N 2 e 0.89 S 0.01 U 0.67 P 76% M 51664 F 2 R 1018 W 0 c 7 w 57 I 8736 O 6032 L 0.96 0.20 0.06
+@#@FSLOADPOST 2025:11:16:11:26:07 mri_convert N 2 0.96 0.20 0.06
+#--------------------------------------------
+#@# MotionCor Sun Nov 16 11:26:07 EST 2025
+Found 1 runs
+/user_data/csimmon2/long_pt/derivatives/freesurfer/sub-081_ses01_mirror/mri/orig/001.mgz
+Checking for (invalid) multi-frame inputs...
+Only one run found so motion
+correction will not be performed. I'll
+copy the run to rawavg and continue.
+
+ cp /user_data/csimmon2/long_pt/derivatives/freesurfer/sub-081_ses01_mirror/mri/orig/001.mgz /user_data/csimmon2/long_pt/derivatives/freesurfer/sub-081_ses01_mirror/mri/rawavg.mgz 
+
+/user_data/csimmon2/long_pt/derivatives/freesurfer/sub-081_ses01_mirror
+
+ mri_convert /user_data/csimmon2/long_pt/derivatives/freesurfer/sub-081_ses01_mirror/mri/rawavg.mgz /user_data/csimmon2/long_pt/derivatives/freesurfer/sub-081_ses01_mirror/mri/orig.mgz --conform 
+
+mri_convert /user_data/csimmon2/long_pt/derivatives/freesurfer/sub-081_ses01_mirror/mri/rawavg.mgz /user_data/csimmon2/long_pt/derivatives/freesurfer/sub-081_ses01_mirror/mri/orig.mgz --conform 
+reading from /user_data/csimmon2/long_pt/derivatives/freesurfer/sub-081_ses01_mirror/mri/rawavg.mgz...
+TR=0.00, TE=0.00, TI=0.00, flip angle=0.00
+i_ras = (0.999579, 0.0215439, 0.0194149)
+j_ras = (-0.0192802, 0.993738, -0.11006)
+k_ras = (-0.0216644, 0.10964, 0.993735)
+changing data type from float to uchar (noscale = 0)...
+MRIchangeType: Building histogram 0 645.339 1000, flo=0, fhi=0.999, dest_type=0
+Reslicing using trilinear interpolation 
+writing to /user_data/csimmon2/long_pt/derivatives/freesurfer/sub-081_ses01_mirror/mri/orig.mgz...
+@#@FSTIME  2025:11:16:11:26:10 mri_convert N 3 e 1.41 S 0.01 U 1.49 P 106% M 63068 F 0 R 6523 W 0 c 8 w 37 I 0 O 2360 L 0.88 0.20 0.06
+@#@FSLOADPOST 2025:11:16:11:26:12 mri_convert N 3 0.88 0.20 0.06
+
+ mri_add_xform_to_header -c /user_data/csimmon2/long_pt/derivatives/freesurfer/sub-081_ses01_mirror/mri/transforms/talairach.xfm /user_data/csimmon2/long_pt/derivatives/freesurfer/sub-081_ses01_mirror/mri/orig.mgz /user_data/csimmon2/long_pt/derivatives/freesurfer/sub-081_ses01_mirror/mri/orig.mgz 
+
+INFO: extension is mgz
+@#@FSTIME  2025:11:16:11:26:12 mri_add_xform_to_header N 4 e 0.28 S 0.00 U 0.42 P 152% M 22620 F 3 R 975 W 0 c 7 w 57 I 72 O 2360 L 0.88 0.20 0.06
+@#@FSLOADPOST 2025:11:16:11:26:12 mri_add_xform_to_header N 4 0.88 0.20 0.06
+#--------------------------------------------
+#@# Talairach Sun Nov 16 11:26:12 EST 2025
+/user_data/csimmon2/long_pt/derivatives/freesurfer/sub-081_ses01_mirror/mri
+
+ mri_nu_correct.mni --no-rescale --i orig.mgz --o orig_nu.mgz --ants-n4 --n 1 --proto-iters 1000 --distance 50 
+
