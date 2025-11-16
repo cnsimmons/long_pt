@@ -22,7 +22,7 @@ for SUBJ in sub-004 sub-007 sub-021; do
     ORIGINAL_ANAT="${ANAT_DIR}/${SUBJ}_ses-01_T1w_brain.nii.gz"
     MIRRORED_ANAT="${ANAT_DIR}/${SUBJ}_ses-01_T1w_brain_mirrored.nii.gz"
     MATRIX_FILE="${ANAT_DIR}/mni2anat.mat"
-    
+     
     # Create matrix once
     echo "Creating transformation matrix..."
     flirt -in ${MNI_REF} -ref ${MIRRORED_ANAT} -omat ${MATRIX_FILE} \
