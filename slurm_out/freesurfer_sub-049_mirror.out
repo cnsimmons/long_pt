@@ -60,3 +60,2011 @@ INFO: extension is mgz
 
  mri_nu_correct.mni --no-rescale --i orig.mgz --o orig_nu.mgz --ants-n4 --n 1 --proto-iters 1000 --distance 50 
 
+/usr/bin/bc
+/user_data/csimmon2/long_pt/derivatives/freesurfer/sub-049_ses01_mirror/mri
+/opt/freesurfer/7.1.0/bin/mri_nu_correct.mni
+--no-rescale --i orig.mgz --o orig_nu.mgz --ants-n4 --n 1 --proto-iters 1000 --distance 50
+nIters 1
+mri_nu_correct.mni 7.1.0
+Linux mind-0-15 4.18.0-372.32.1.el8_6.x86_64 #1 SMP Fri Oct 28 15:56:52 EDT 2022 x86_64 x86_64 x86_64 GNU/Linux
+Sun Nov 16 11:26:12 EST 2025
+Found /dev/shm , will use for temp dir
+tmpdir is /dev/shm/tmp.mri_nu_correct.mni.1978050
+cd /user_data/csimmon2/long_pt/derivatives/freesurfer/sub-049_ses01_mirror/mri
+AntsN4BiasFieldCorrectionFs -i orig.mgz -o /dev/shm/tmp.mri_nu_correct.mni.1978050/nu0.mgz
+Using shrink factor: 4
+mri_convert /dev/shm/tmp.mri_nu_correct.mni.1978050/nu0.mgz orig_nu.mgz --like orig.mgz --conform
+mri_convert /dev/shm/tmp.mri_nu_correct.mni.1978050/nu0.mgz orig_nu.mgz --like orig.mgz --conform 
+reading from /dev/shm/tmp.mri_nu_correct.mni.1978050/nu0.mgz...
+TR=0.00, TE=0.00, TI=0.00, flip angle=0.00
+i_ras = (-1, 0, 0)
+j_ras = (0, 0, -1)
+k_ras = (0, 1, 0)
+INFO: transform src into the like-volume: orig.mgz
+writing to orig_nu.mgz...
+ 
+ 
+Sun Nov 16 11:28:41 EST 2025
+mri_nu_correct.mni done
+@#@FSTIME  2025:11:16:11:26:12 mri_nu_correct.mni N 12 e 148.49 S 0.10 U 148.30 P 99% M 486696 F 0 R 73873 W 0 c 73 w 217 I 2336 O 2496 L 0.88 0.20 0.06
+@#@FSLOADPOST 2025:11:16:11:28:41 mri_nu_correct.mni N 12 11.09 4.86 1.85
+
+ talairach_avi --i orig_nu.mgz --xfm transforms/talairach.auto.xfm --atlas 3T18yoSchwartzReactN32_as_orig 
+
+talairach_avi log file is transforms/talairach_avi.log...
+Started at Sun Nov 16 11:28:41 EST 2025
+Ended   at Sun Nov 16 11:28:57 EST 2025
+talairach_avi done
+@#@FSTIME  2025:11:16:11:28:41 talairach_avi N 6 e 15.92 S 0.51 U 9.13 P 60% M 255464 F 0 R 28534 W 0 c 62 w 3048 I 19080 O 295968 L 11.09 4.86 1.85
+@#@FSLOADPOST 2025:11:16:11:28:57 talairach_avi N 6 9.90 4.90 1.91
+
+ cp transforms/talairach.auto.xfm transforms/talairach.xfm 
+
+lta_convert --src orig.mgz --trg /opt/freesurfer/7.1.0/average/mni305.cor.mgz --inxfm transforms/talairach.xfm --outlta transforms/talairach.xfm.lta --subject fsaverage --ltavox2vox
+7.1.0
+
+--src: orig.mgz src image (geometry).
+--trg: /opt/freesurfer/7.1.0/average/mni305.cor.mgz trg image (geometry).
+--inmni: transforms/talairach.xfm input MNI/XFM transform.
+--outlta: transforms/talairach.xfm.lta output LTA.
+--s: fsaverage subject name
+--ltavox2vox: output LTA as VOX_TO_VOX transform.
+ LTA read, type : 1
+ 1.19950  -0.01111  -0.00272   0.48215;
+ 0.01714   1.12610   0.10427   6.65590;
+ 0.00282  -0.10403   1.19868  -34.27261;
+ 0.00000   0.00000   0.00000   1.00000;
+setting subject to fsaverage
+Writing  LTA to file transforms/talairach.xfm.lta...
+lta_convert successful.
+/user_data/csimmon2/long_pt/derivatives/freesurfer/sub-049_ses01_mirror/mri/transforms /user_data/csimmon2/long_pt/derivatives/freesurfer/sub-049_ses01_mirror/mri 
+/user_data/csimmon2/long_pt/derivatives/freesurfer/sub-049_ses01_mirror/mri 
+#--------------------------------------------
+#@# Talairach Failure Detection Sun Nov 16 11:28:59 EST 2025
+/user_data/csimmon2/long_pt/derivatives/freesurfer/sub-049_ses01_mirror/mri
+
+ talairach_afd -T 0.005 -xfm transforms/talairach.xfm 
+
+talairach_afd: Talairach Transform: transforms/talairach.xfm OK (p=0.8211, pval=0.8469 >= threshold=0.0050)
+@#@FSTIME  2025:11:16:11:28:59 talairach_afd N 4 e 0.00 S 0.00 U 0.00 P 100% M 5288 F 0 R 201 W 0 c 0 w 3 I 0 O 0 L 9.11 4.82 1.90
+@#@FSLOADPOST 2025:11:16:11:28:59 talairach_afd N 4 9.11 4.82 1.90
+
+ awk -f /opt/freesurfer/7.1.0/bin/extract_talairach_avi_QA.awk /user_data/csimmon2/long_pt/derivatives/freesurfer/sub-049_ses01_mirror/mri/transforms/talairach_avi.log 
+
+
+ tal_QC_AZS /user_data/csimmon2/long_pt/derivatives/freesurfer/sub-049_ses01_mirror/mri/transforms/talairach_avi.log 
+
+TalAviQA: 0.96459
+z-score: -3
+#--------------------------------------------
+#@# Nu Intensity Correction Sun Nov 16 11:28:59 EST 2025
+
+ mri_nu_correct.mni --i orig.mgz --o nu.mgz --uchar transforms/talairach.xfm --proto-iters 1000 --distance 50 --n 1 --ants-n4 
+
+/usr/bin/bc
+/user_data/csimmon2/long_pt/derivatives/freesurfer/sub-049_ses01_mirror/mri
+/opt/freesurfer/7.1.0/bin/mri_nu_correct.mni
+--i orig.mgz --o nu.mgz --uchar transforms/talairach.xfm --proto-iters 1000 --distance 50 --n 1 --ants-n4
+nIters 1
+mri_nu_correct.mni 7.1.0
+Linux mind-0-15 4.18.0-372.32.1.el8_6.x86_64 #1 SMP Fri Oct 28 15:56:52 EDT 2022 x86_64 x86_64 x86_64 GNU/Linux
+Sun Nov 16 11:28:59 EST 2025
+Found /dev/shm , will use for temp dir
+tmpdir is /dev/shm/tmp.mri_nu_correct.mni.1981405
+cd /user_data/csimmon2/long_pt/derivatives/freesurfer/sub-049_ses01_mirror/mri
+AntsN4BiasFieldCorrectionFs -i orig.mgz -o /dev/shm/tmp.mri_nu_correct.mni.1981405/nu0.mgz
+Using shrink factor: 4
+mri_binarize --i /dev/shm/tmp.mri_nu_correct.mni.1981405/nu0.mgz --min -1 --o /dev/shm/tmp.mri_nu_correct.mni.1981405/ones.mgz
+
+7.1.0
+cwd /user_data/csimmon2/long_pt/derivatives/freesurfer/sub-049_ses01_mirror/mri
+cmdline mri_binarize --i /dev/shm/tmp.mri_nu_correct.mni.1981405/nu0.mgz --min -1 --o /dev/shm/tmp.mri_nu_correct.mni.1981405/ones.mgz 
+sysname  Linux
+hostname mind-0-15
+machine  x86_64
+user     csimmon2
+
+input      /dev/shm/tmp.mri_nu_correct.mni.1981405/nu0.mgz
+frame      0
+nErode3d   0
+nErode2d   0
+output     /dev/shm/tmp.mri_nu_correct.mni.1981405/ones.mgz
+Binarizing based on threshold
+min        -1
+max        +infinity
+binval        1
+binvalnot     0
+fstart = 0, fend = 0, nframes = 1
+Found 16777216 values in range
+Counting number of voxels in first frame
+Found 16777215 voxels in final mask
+Count: 16777215 16777215.000000 16777216 99.999994
+mri_binarize done
+mri_segstats --id 1 --seg /dev/shm/tmp.mri_nu_correct.mni.1981405/ones.mgz --i orig.mgz --sum /dev/shm/tmp.mri_nu_correct.mni.1981405/sum.junk --avgwf /dev/shm/tmp.mri_nu_correct.mni.1981405/input.mean.dat
+
+7.1.0
+cwd 
+cmdline mri_segstats --id 1 --seg /dev/shm/tmp.mri_nu_correct.mni.1981405/ones.mgz --i orig.mgz --sum /dev/shm/tmp.mri_nu_correct.mni.1981405/sum.junk --avgwf /dev/shm/tmp.mri_nu_correct.mni.1981405/input.mean.dat 
+sysname  Linux
+hostname mind-0-15
+machine  x86_64
+user     csimmon2
+whitesurfname  white
+UseRobust  0
+Loading /dev/shm/tmp.mri_nu_correct.mni.1981405/ones.mgz
+Loading orig.mgz
+Voxel Volume is 1 mm^3
+Generating list of segmentation ids
+Found   1 segmentations
+Computing statistics for each segmentation
+
+Reporting on   1 segmentations
+Using PrintSegStat
+Computing spatial average of each frame
+  0
+Writing to /dev/shm/tmp.mri_nu_correct.mni.1981405/input.mean.dat
+mri_segstats done
+mri_segstats --id 1 --seg /dev/shm/tmp.mri_nu_correct.mni.1981405/ones.mgz --i /dev/shm/tmp.mri_nu_correct.mni.1981405/nu0.mgz --sum /dev/shm/tmp.mri_nu_correct.mni.1981405/sum.junk --avgwf /dev/shm/tmp.mri_nu_correct.mni.1981405/output.mean.dat
+
+7.1.0
+cwd 
+cmdline mri_segstats --id 1 --seg /dev/shm/tmp.mri_nu_correct.mni.1981405/ones.mgz --i /dev/shm/tmp.mri_nu_correct.mni.1981405/nu0.mgz --sum /dev/shm/tmp.mri_nu_correct.mni.1981405/sum.junk --avgwf /dev/shm/tmp.mri_nu_correct.mni.1981405/output.mean.dat 
+sysname  Linux
+hostname mind-0-15
+machine  x86_64
+user     csimmon2
+whitesurfname  white
+UseRobust  0
+Loading /dev/shm/tmp.mri_nu_correct.mni.1981405/ones.mgz
+Loading /dev/shm/tmp.mri_nu_correct.mni.1981405/nu0.mgz
+Voxel Volume is 1 mm^3
+Generating list of segmentation ids
+Found   1 segmentations
+Computing statistics for each segmentation
+
+Reporting on   1 segmentations
+Using PrintSegStat
+Computing spatial average of each frame
+  0
+Writing to /dev/shm/tmp.mri_nu_correct.mni.1981405/output.mean.dat
+mri_segstats done
+mris_calc -o /dev/shm/tmp.mri_nu_correct.mni.1981405/nu0.mgz /dev/shm/tmp.mri_nu_correct.mni.1981405/nu0.mgz mul 1.00982463103236087937
+Saving result to '/dev/shm/tmp.mri_nu_correct.mni.1981405/nu0.mgz' (type = MGH )                       [ ok ]
+mri_convert /dev/shm/tmp.mri_nu_correct.mni.1981405/nu0.mgz nu.mgz --like orig.mgz
+mri_convert /dev/shm/tmp.mri_nu_correct.mni.1981405/nu0.mgz nu.mgz --like orig.mgz 
+reading from /dev/shm/tmp.mri_nu_correct.mni.1981405/nu0.mgz...
+TR=0.00, TE=0.00, TI=0.00, flip angle=0.00
+i_ras = (-1, 0, 0)
+j_ras = (0, 0, -1)
+k_ras = (0, 1, 0)
+INFO: transform src into the like-volume: orig.mgz
+writing to nu.mgz...
+mri_make_uchar nu.mgz transforms/talairach.xfm nu.mgz
+type change took 0 minutes and 3 seconds.
+mapping (49, 232) to ( 3, 110)
+ 
+ 
+Sun Nov 16 11:31:38 EST 2025
+mri_nu_correct.mni done
+@#@FSTIME  2025:11:16:11:28:59 mri_nu_correct.mni N 13 e 159.15 S 0.37 U 160.11 P 100% M 613664 F 0 R 228175 W 0 c 154 w 443 I 0 O 6384 L 9.11 4.82 1.90
+@#@FSLOADPOST 2025:11:16:11:31:38 mri_nu_correct.mni N 13 11.70 7.72 3.46
+
+ mri_add_xform_to_header -c /user_data/csimmon2/long_pt/derivatives/freesurfer/sub-049_ses01_mirror/mri/transforms/talairach.xfm nu.mgz nu.mgz 
+
+INFO: extension is mgz
+@#@FSTIME  2025:11:16:11:31:38 mri_add_xform_to_header N 4 e 0.24 S 0.00 U 0.47 P 195% M 22840 F 0 R 977 W 0 c 9 w 49 I 2080 O 2080 L 11.70 7.72 3.46
+@#@FSLOADPOST 2025:11:16:11:31:38 mri_add_xform_to_header N 4 11.89 7.82 3.51
+#--------------------------------------------
+#@# Intensity Normalization Sun Nov 16 11:31:38 EST 2025
+/user_data/csimmon2/long_pt/derivatives/freesurfer/sub-049_ses01_mirror/mri
+
+ mri_normalize -g 1 -seed 1234 -mprage nu.mgz T1.mgz 
+
+using max gradient = 1.000
+setting seed for random number genererator to 1234
+assuming input volume is MGH (Van der Kouwe) MP-RAGE
+reading mri_src from nu.mgz...
+normalizing image...
+talairach transform
+ 1.19950  -0.01111  -0.00272   0.48215;
+ 0.01714   1.12610   0.10427   6.65590;
+ 0.00282  -0.10403   1.19868  -34.27261;
+ 0.00000   0.00000   0.00000   1.00000;
+processing without aseg, no1d=0
+MRInormInit(): 
+INFO: Modifying talairach volume c_(r,a,s) based on average_305
+MRInormalize(): 
+MRIsplineNormalize(): npeaks = 22
+Starting OpenSpline(): npoints = 22
+building Voronoi diagram...
+performing soap bubble smoothing, sigma = 8...
+
+Iterating 2 times
+---------------------------------
+3d normalization pass 1 of 2
+white matter peak found at 110
+white matter peak found at 109
+gm peak at 61 (61), valley at  0 (-1)
+csf peak at 30, setting threshold to 50
+building Voronoi diagram...
+performing soap bubble smoothing, sigma = 8...
+---------------------------------
+3d normalization pass 2 of 2
+white matter peak found at 110
+white matter peak found at 110
+gm peak at 60 (60), valley at  0 (-1)
+csf peak at 30, setting threshold to 50
+building Voronoi diagram...
+performing soap bubble smoothing, sigma = 8...
+Done iterating ---------------------------------
+writing output to T1.mgz
+3D bias adjustment took 1 minutes and 12 seconds.
+@#@FSTIME  2025:11:16:11:31:38 mri_normalize N 7 e 72.27 S 0.11 U 89.21 P 123% M 583376 F 0 R 31284 W 0 c 58 w 76 I 2080 O 1944 L 11.89 7.82 3.51
+@#@FSLOADPOST 2025:11:16:11:32:51 mri_normalize N 7 13.46 9.05 4.25
+#--------------------------------------------
+#@# Skull Stripping Sun Nov 16 11:32:51 EST 2025
+/user_data/csimmon2/long_pt/derivatives/freesurfer/sub-049_ses01_mirror/mri
+
+ mri_em_register -skull nu.mgz /opt/freesurfer/7.1.0/average/RB_all_withskull_2020_01_02.gca transforms/talairach_with_skull.lta 
+
+aligning to atlas containing skull, setting unknown_nbr_spacing = 5
+
+== Number of threads available to mri_em_register for OpenMP = 4 == 
+reading 1 input volumes...
+logging results to talairach_with_skull.log
+reading '/opt/freesurfer/7.1.0/average/RB_all_withskull_2020_01_02.gca'...
+GCAread took 0 minutes and 1 seconds.
+average std = 23.0   using min determinant for regularization = 52.8
+0 singular and 9205 ill-conditioned covariance matrices regularized
+reading 'nu.mgz'...
+freeing gibbs priors...done.
+accounting for voxel sizes in initial transform
+bounding unknown intensity as < 8.9 or > 556.0 
+total sample mean = 77.3 (1403 zeros)
+************************************************
+spacing=8, using 3292 sample points, tol=1.00e-05...
+************************************************
+register_mri: find_optimal_transform
+find_optimal_transform: nsamples 3292, passno 0, spacing 8
+resetting wm mean[0]: 100 --> 108
+resetting gm mean[0]: 61 --> 61
+input volume #1 is the most T1-like
+using real data threshold=26.0
+skull bounding box = (69, 41, 22) --> (188, 153, 170)
+finding center of left hemi white matter
+using (109, 78, 96) as brain centroid of Right_Cerebral_White_Matter...
+MRImask(): AllowDiffGeom = 1
+mean wm in atlas = 108, using box (94,64,78) --> (123, 91,114) to find MRI wm
+before smoothing, mri peak at 107
+robust fit to distribution - 108 +- 5.3
+after smoothing, mri peak at 108, scaling input intensities by 1.000
+scaling channel 0 by 1
+initial log_p = -4.931
+************************************************
+First Search limited to translation only.
+************************************************
+max log p =    -4.768420 @ (-10.526, 31.579, 10.526)
+max log p =    -4.633729 @ (15.789, -5.263, -5.263)
+max log p =    -4.617622 @ (-2.632, -2.632, -2.632)
+max log p =    -4.617622 @ (0.000, 0.000, 0.000)
+max log p =    -4.598810 @ (0.658, -0.658, 7.237)
+max log p =    -4.598810 @ (0.000, 0.000, 0.000)
+max log p =    -4.598810 @ (0.000, 0.000, 0.000)
+max log p =    -4.598810 @ (0.000, 0.000, 0.000)
+Found translation: (3.3, 23.0, 9.9): log p = -4.599
+****************************************
+Nine parameter search.  iteration 0 nscales = 0 ...
+****************************************
+Result so far: scale 1.000: max_log_p=-4.129, old_max_log_p =-4.599 (thresh=-4.6)
+ 1.23625   0.00000   0.00000  -32.98884;
+ 0.00000   1.23625   0.00000   2.39277;
+ 0.00000   0.00000   1.23625  -14.06349;
+ 0.00000   0.00000   0.00000   1.00000;
+iteration took 0 minutes and 22 seconds.
+****************************************
+Nine parameter search.  iteration 1 nscales = 0 ...
+****************************************
+Result so far: scale 1.000: max_log_p=-4.053, old_max_log_p =-4.129 (thresh=-4.1)
+ 1.32897   0.00000   0.00000  -44.84570;
+ 0.00000   1.30381   0.17165  -22.63068;
+ 0.00000  -0.17165   1.30381  -9.00793;
+ 0.00000   0.00000   0.00000   1.00000;
+iteration took 0 minutes and 22 seconds.
+****************************************
+Nine parameter search.  iteration 2 nscales = 0 ...
+****************************************
+Result so far: scale 1.000: max_log_p=-4.053, old_max_log_p =-4.053 (thresh=-4.0)
+ 1.32897   0.00000   0.00000  -44.84570;
+ 0.00000   1.30381   0.17165  -22.63068;
+ 0.00000  -0.17165   1.30381  -9.00793;
+ 0.00000   0.00000   0.00000   1.00000;
+reducing scale to 0.2500
+iteration took 0 minutes and 21 seconds.
+****************************************
+Nine parameter search.  iteration 3 nscales = 1 ...
+****************************************
+Result so far: scale 0.250: max_log_p=-4.039, old_max_log_p =-4.053 (thresh=-4.0)
+ 1.32826  -0.00562   0.04266  -48.68673;
+ 0.00000   1.30381   0.17165  -22.63068;
+-0.04348  -0.17156   1.30311  -1.50803;
+ 0.00000   0.00000   0.00000   1.00000;
+iteration took 0 minutes and 21 seconds.
+****************************************
+Nine parameter search.  iteration 4 nscales = 1 ...
+****************************************
+Result so far: scale 0.250: max_log_p=-4.036, old_max_log_p =-4.039 (thresh=-4.0)
+ 1.27845   0.00541  -0.04106  -34.71851;
+ 0.00000   1.30381   0.17165  -22.63068;
+ 0.04185  -0.16512   1.25425  -11.74062;
+ 0.00000   0.00000   0.00000   1.00000;
+reducing scale to 0.0625
+iteration took 0 minutes and 21 seconds.
+****************************************
+Nine parameter search.  iteration 5 nscales = 2 ...
+****************************************
+Result so far: scale 0.062: max_log_p=-4.018, old_max_log_p =-4.036 (thresh=-4.0)
+ 1.27741   0.01392  -0.01939  -37.42797;
+-0.01112   1.30202   0.16088  -20.29193;
+ 0.02102  -0.15430   1.25763  -9.22584;
+ 0.00000   0.00000   0.00000   1.00000;
+iteration took 0 minutes and 21 seconds.
+****************************************
+Nine parameter search.  iteration 6 nscales = 2 ...
+****************************************
+Result so far: scale 0.062: max_log_p=-4.015, old_max_log_p =-4.018 (thresh=-4.0)
+ 1.27890   0.01393  -0.01941  -37.61843;
+-0.01109   1.29745   0.16032  -19.72144;
+ 0.02097  -0.15394   1.25468  -8.94366;
+ 0.00000   0.00000   0.00000   1.00000;
+min search scale 0.025000 reached
+***********************************************
+Computing MAP estimate using 3292 samples...
+***********************************************
+dt = 5.00e-06, momentum=0.80, tol=1.00e-05
+l_intensity = 1.0000
+Aligning input volume to GCA...
+Transform matrix
+ 1.27890   0.01393  -0.01941  -37.61843;
+-0.01109   1.29745   0.16032  -19.72144;
+ 0.02097  -0.15394   1.25468  -8.94366;
+ 0.00000   0.00000   0.00000   1.00000;
+nsamples 3292
+Quasinewton: input matrix
+ 1.27890   0.01393  -0.01941  -37.61843;
+-0.01109   1.29745   0.16032  -19.72144;
+ 0.02097  -0.15394   1.25468  -8.94366;
+ 0.00000   0.00000   0.00000   1.00000;
+ IFLAG= -1  LINE SEARCH FAILED. SEE DOCUMENTATION OF ROUTINE MCSRCH ERROR RETURN OF LINE SEARCH: INFO= 3 POSSIBLE CAUSES: FUNCTION OR GRADIENT ARE INCORRECT OR INCORRECT TOLERANCESoutof QuasiNewtonEMA: 009: -log(p) =   -0.0  tol 0.000010
+Resulting transform:
+ 1.27890   0.01393  -0.01941  -37.61843;
+-0.01109   1.29745   0.16032  -19.72144;
+ 0.02097  -0.15394   1.25468  -8.94366;
+ 0.00000   0.00000   0.00000   1.00000;
+
+pass 1, spacing 8: log(p) = -4.015 (old=-4.931)
+transform before final EM align:
+ 1.27890   0.01393  -0.01941  -37.61843;
+-0.01109   1.29745   0.16032  -19.72144;
+ 0.02097  -0.15394   1.25468  -8.94366;
+ 0.00000   0.00000   0.00000   1.00000;
+
+**************************************************
+ EM alignment process ...
+ Computing final MAP estimate using 364986 samples. 
+**************************************************
+dt = 5.00e-06, momentum=0.80, tol=1.00e-07
+l_intensity = 1.0000
+Aligning input volume to GCA...
+Transform matrix
+ 1.27890   0.01393  -0.01941  -37.61843;
+-0.01109   1.29745   0.16032  -19.72144;
+ 0.02097  -0.15394   1.25468  -8.94366;
+ 0.00000   0.00000   0.00000   1.00000;
+nsamples 364986
+Quasinewton: input matrix
+ 1.27890   0.01393  -0.01941  -37.61843;
+-0.01109   1.29745   0.16032  -19.72144;
+ 0.02097  -0.15394   1.25468  -8.94366;
+ 0.00000   0.00000   0.00000   1.00000;
+ IFLAG= -1  LINE SEARCH FAILED. SEE DOCUMENTATION OF ROUTINE MCSRCH ERROR RETURN OF LINE SEARCH: INFO= 6 POSSIBLE CAUSES: FUNCTION OR GRADIENT ARE INCORRECT OR INCORRECT TOLERANCESoutof QuasiNewtonEMA: 011: -log(p) =    4.5  tol 0.000000
+final transform:
+ 1.27890   0.01393  -0.01941  -37.61843;
+-0.01109   1.29745   0.16032  -19.72144;
+ 0.02097  -0.15394   1.25468  -8.94366;
+ 0.00000   0.00000   0.00000   1.00000;
+
+writing output transformation to transforms/talairach_with_skull.lta...
+#VMPC# mri_em_register VmPeak  824492
+FSRUNTIME@ mri_em_register  0.0504 hours 4 threads
+registration took 3 minutes and 1 seconds.
+@#@FSTIME  2025:11:16:11:32:51 mri_em_register N 4 e 181.38 S 1.17 U 640.42 P 353% M 628588 F 0 R 947804 W 0 c 570 w 209 I 0 O 24 L 13.46 9.05 4.25
+@#@FSLOADPOST 2025:11:16:11:35:52 mri_em_register N 4 39.03 23.75 10.84
+
+ mri_watershed -T1 -brain_atlas /opt/freesurfer/7.1.0/average/RB_all_withskull_2020_01_02.gca transforms/talairach_with_skull.lta T1.mgz brainmask.auto.mgz 
+
+
+Mode:          T1 normalized volume
+Mode:          Use the information of atlas (default parms, --help for details)
+
+*********************************************************
+The input file is T1.mgz
+The output file is brainmask.auto.mgz
+Weighting the input with atlas information before watershed
+
+*************************WATERSHED**************************
+Sorting...
+      first estimation of the COG coord: x=128 y=90 z=105 r=53
+      first estimation of the main basin volume: 642519 voxels
+      Looking for seedpoints 
+        2 found in the cerebellum 
+        10 found in the rest of the brain 
+      global maximum in x=106, y=81, z=81, Imax=255
+      CSF=12, WM_intensity=110, WM_VARIANCE=5
+      WM_MIN=110, WM_HALF_MIN=110, WM_HALF_MAX=110, WM_MAX=110 
+      preflooding height equal to 10 percent
+done.
+Analyze...
+
+      main basin size=5897448842 voxels, voxel volume =1.000 
+                     = 5897448842 mmm3 = 5897448.960 cm3
+done.
+PostAnalyze...Basin Prior
+ 38 basins merged thanks to atlas 
+      ***** 0 basin(s) merged in 1 iteration(s)
+      ***** 0 voxel(s) added to the main basin
+done.
+Weighting the input with prior template 
+
+****************TEMPLATE DEFORMATION****************
+
+      second estimation of the COG coord: x=128,y=97, z=95, r=8151 iterations
+^^^^^^^^ couldn't find WM with original limits - expanding ^^^^^^
+
+   GLOBAL      CSF_MIN=1, CSF_intensity=2, CSF_MAX=3 , nb = 46080
+  RIGHT_CER    CSF_MIN=1, CSF_intensity=2, CSF_MAX=3 , nb = 3258
+  LEFT_CER     CSF_MIN=1, CSF_intensity=2, CSF_MAX=3 , nb = 3312
+ RIGHT_BRAIN   CSF_MIN=1, CSF_intensity=2, CSF_MAX=3 , nb = 19566
+ LEFT_BRAIN    CSF_MIN=1, CSF_intensity=2, CSF_MAX=3 , nb = 19620
+    OTHER      CSF_MIN=1, CSF_intensity=2, CSF_MAX=3 , nb = 324
+ Problem with the least square interpolation in GM_MIN calculation.
+   
+                     CSF_MAX  TRANSITION  GM_MIN  GM
+    GLOBAL     
+  before analyzing :    3,      4,        32,   50
+  after  analyzing :    3,      22,        32,   29
+   RIGHT_CER   
+  before analyzing :    3,      4,        36,   56
+  after  analyzing :    3,      25,        36,   32
+   LEFT_CER    
+  before analyzing :    3,      4,        34,   56
+  after  analyzing :    3,      24,        34,   32
+  RIGHT_BRAIN  
+  before analyzing :    3,      4,        30,   50
+  after  analyzing :    3,      21,        30,   28
+  LEFT_BRAIN   
+  before analyzing :    3,      4,        31,   53
+  after  analyzing :    3,      22,        31,   29
+     OTHER     
+  before analyzing :    3,      5,        64,   86
+  after  analyzing :    3,      44,        64,   54
+      mri_strip_skull: done peeling brain
+      highly tesselated surface with 10242 vertices
+      matching...68 iterations
+
+*********************VALIDATION*********************
+curvature mean = -0.014, std = 0.012
+curvature mean = 64.483, std = 6.783
+
+No Rigid alignment: -atlas Mode Off (basic atlas / no registration)
+      before rotation: sse = 1.98, sigma = 3.02
+      after  rotation: sse = 1.98, sigma = 3.02
+Localization of inacurate regions: Erosion-Dilation steps
+      the sse mean is  2.11, its var is  3.16   
+      before Erosion-Dilatation  0.29% of inacurate vertices
+      after  Erosion-Dilatation  0.00% of inacurate vertices
+      Validation of the shape of the surface done.
+Scaling of atlas fields onto current surface fields
+
+********FINAL ITERATIVE TEMPLATE DEFORMATION********
+Compute Local values csf/gray
+Fine Segmentation...36 iterations
+
+      mri_strip_skull: done peeling brain
+
+Brain Size = 1289834 voxels, voxel volume = 1.000 mm3
+           = 1289834 mmm3 = 1289.834 cm3
+MRImask(): AllowDiffGeom = 1
+
+
+******************************
+Saving brainmask.auto.mgz
+done
+mri_watershed utimesec    12.552270
+mri_watershed stimesec    0.186039
+mri_watershed ru_maxrss   802332
+mri_watershed ru_ixrss    0
+mri_watershed ru_idrss    0
+mri_watershed ru_isrss    0
+mri_watershed ru_minflt   265327
+mri_watershed ru_majflt   0
+mri_watershed ru_nswap    0
+mri_watershed ru_inblock  0
+mri_watershed ru_oublock  1944
+mri_watershed ru_msgsnd   0
+mri_watershed ru_msgrcv   0
+mri_watershed ru_nsignals 0
+mri_watershed ru_nvcsw    712
+mri_watershed ru_nivcsw   25
+mri_watershed done
+@#@FSTIME  2025:11:16:11:35:52 mri_watershed N 6 e 8.92 S 0.21 U 12.55 P 143% M 802332 F 0 R 265343 W 0 c 26 w 713 I 0 O 1944 L 39.03 23.75 10.84
+@#@FSLOADPOST 2025:11:16:11:36:01 mri_watershed N 6 36.41 23.69 10.96
+
+ cp brainmask.auto.mgz brainmask.mgz 
+
+#-------------------------------------
+#@# EM Registration Sun Nov 16 11:36:02 EST 2025
+/user_data/csimmon2/long_pt/derivatives/freesurfer/sub-049_ses01_mirror/mri
+
+ mri_em_register -uns 3 -mask brainmask.mgz nu.mgz /opt/freesurfer/7.1.0/average/RB_all_2020-01-02.gca transforms/talairach.lta 
+
+setting unknown_nbr_spacing = 3
+using MR volume brainmask.mgz to mask input volume...
+
+== Number of threads available to mri_em_register for OpenMP = 4 == 
+reading 1 input volumes...
+logging results to talairach.log
+reading '/opt/freesurfer/7.1.0/average/RB_all_2020-01-02.gca'...
+GCAread took 0 minutes and 0 seconds.
+average std = 7.2   using min determinant for regularization = 5.2
+0 singular and 884 ill-conditioned covariance matrices regularized
+reading 'nu.mgz'...
+MRImask(): AllowDiffGeom = 1
+MRImask(): AllowDiffGeom = 1
+MRImask(): AllowDiffGeom = 1
+MRImask(): AllowDiffGeom = 1
+MRImask(): AllowDiffGeom = 1
+freeing gibbs priors...done.
+accounting for voxel sizes in initial transform
+bounding unknown intensity as < 5.9 or > 519.0 
+total sample mean = 79.1 (1017 zeros)
+************************************************
+spacing=8, using 2841 sample points, tol=1.00e-05...
+************************************************
+register_mri: find_optimal_transform
+find_optimal_transform: nsamples 2841, passno 0, spacing 8
+resetting wm mean[0]: 98 --> 107
+resetting gm mean[0]: 61 --> 61
+input volume #1 is the most T1-like
+using real data threshold=25.0
+skull bounding box = (69, 40, 22) --> (188, 153, 170)
+finding center of left hemi white matter
+using (109, 78, 96) as brain centroid of Right_Cerebral_White_Matter...
+MRImask(): AllowDiffGeom = 1
+mean wm in atlas = 107, using box (94,64,78) --> (123, 91,114) to find MRI wm
+before smoothing, mri peak at 107
+robust fit to distribution - 108 +- 5.3
+after smoothing, mri peak at 108, scaling input intensities by 0.991
+scaling channel 0 by 0.990741
+initial log_p = -4.466
+************************************************
+First Search limited to translation only.
+************************************************
+max log p =    -4.149483 @ (-10.526, 31.579, 10.526)
+max log p =    -3.984440 @ (5.263, -15.789, -5.263)
+max log p =    -3.975677 @ (-2.632, 2.632, -2.632)
+max log p =    -3.942652 @ (6.579, 6.579, 3.947)
+max log p =    -3.942257 @ (-0.658, -0.658, -0.658)
+max log p =    -3.942257 @ (0.000, 0.000, 0.000)
+max log p =    -3.942257 @ (0.000, 0.000, 0.000)
+max log p =    -3.942257 @ (0.000, 0.000, 0.000)
+Found translation: (-2.0, 24.3, 5.9): log p = -3.942
+****************************************
+Nine parameter search.  iteration 0 nscales = 0 ...
+****************************************
+Result so far: scale 1.000: max_log_p=-3.434, old_max_log_p =-3.942 (thresh=-3.9)
+ 1.15000   0.00000   0.00000  -21.29006;
+ 0.00000   1.15000   0.00000   10.09988;
+ 0.00000   0.00000   1.15000  -9.00393;
+ 0.00000   0.00000   0.00000   1.00000;
+iteration took 0 minutes and 19 seconds.
+****************************************
+Nine parameter search.  iteration 1 nscales = 0 ...
+****************************************
+Result so far: scale 1.000: max_log_p=-3.434, old_max_log_p =-3.434 (thresh=-3.4)
+ 1.15000   0.00000   0.00000  -21.29006;
+ 0.00000   1.15000   0.00000   10.09988;
+ 0.00000   0.00000   1.15000  -9.00393;
+ 0.00000   0.00000   0.00000   1.00000;
+reducing scale to 0.2500
+iteration took 0 minutes and 18 seconds.
+****************************************
+Nine parameter search.  iteration 2 nscales = 1 ...
+****************************************
+Result so far: scale 0.250: max_log_p=-3.310, old_max_log_p =-3.434 (thresh=-3.4)
+ 1.19313   0.00000   0.00000  -26.84352;
+ 0.00000   1.16825   0.07657  -1.05616;
+ 0.00000  -0.07104   1.08380   6.20312;
+ 0.00000   0.00000   0.00000   1.00000;
+iteration took 0 minutes and 18 seconds.
+****************************************
+Nine parameter search.  iteration 3 nscales = 1 ...
+****************************************
+Result so far: scale 0.250: max_log_p=-3.310, old_max_log_p =-3.310 (thresh=-3.3)
+ 1.19313   0.00000   0.00000  -26.84352;
+ 0.00000   1.16825   0.07657  -1.05616;
+ 0.00000  -0.07104   1.08380   6.20312;
+ 0.00000   0.00000   0.00000   1.00000;
+reducing scale to 0.0625
+iteration took 0 minutes and 18 seconds.
+****************************************
+Nine parameter search.  iteration 4 nscales = 2 ...
+****************************************
+Result so far: scale 0.062: max_log_p=-3.256, old_max_log_p =-3.310 (thresh=-3.3)
+ 1.19245  -0.03859   0.00678  -24.15303;
+ 0.03892   1.16951   0.06820  -5.86289;
+-0.00997  -0.06175   1.08688   4.87380;
+ 0.00000   0.00000   0.00000   1.00000;
+iteration took 0 minutes and 18 seconds.
+****************************************
+Nine parameter search.  iteration 5 nscales = 2 ...
+****************************************
+Result so far: scale 0.062: max_log_p=-3.254, old_max_log_p =-3.256 (thresh=-3.3)
+ 1.19245  -0.03859   0.00678  -24.15303;
+ 0.03897   1.17088   0.06828  -6.00954;
+-0.00997  -0.06175   1.08688   4.87380;
+ 0.00000   0.00000   0.00000   1.00000;
+min search scale 0.025000 reached
+***********************************************
+Computing MAP estimate using 2841 samples...
+***********************************************
+dt = 5.00e-06, momentum=0.80, tol=1.00e-05
+l_intensity = 1.0000
+Aligning input volume to GCA...
+Transform matrix
+ 1.19245  -0.03859   0.00678  -24.15303;
+ 0.03897   1.17088   0.06828  -6.00954;
+-0.00997  -0.06175   1.08688   4.87380;
+ 0.00000   0.00000   0.00000   1.00000;
+nsamples 2841
+Quasinewton: input matrix
+ 1.19245  -0.03859   0.00678  -24.15303;
+ 0.03897   1.17088   0.06828  -6.00954;
+-0.00997  -0.06175   1.08688   4.87380;
+ 0.00000   0.00000   0.00000   1.00000;
+ IFLAG= -1  LINE SEARCH FAILED. SEE DOCUMENTATION OF ROUTINE MCSRCH ERROR RETURN OF LINE SEARCH: INFO= 3 POSSIBLE CAUSES: FUNCTION OR GRADIENT ARE INCORRECT OR INCORRECT TOLERANCESoutof QuasiNewtonEMA: 008: -log(p) =   -0.0  tol 0.000010
+Resulting transform:
+ 1.19245  -0.03859   0.00678  -24.15303;
+ 0.03897   1.17088   0.06828  -6.00954;
+-0.00997  -0.06175   1.08688   4.87380;
+ 0.00000   0.00000   0.00000   1.00000;
+
+pass 1, spacing 8: log(p) = -3.254 (old=-4.466)
+transform before final EM align:
+ 1.19245  -0.03859   0.00678  -24.15303;
+ 0.03897   1.17088   0.06828  -6.00954;
+-0.00997  -0.06175   1.08688   4.87380;
+ 0.00000   0.00000   0.00000   1.00000;
+
+**************************************************
+ EM alignment process ...
+ Computing final MAP estimate using 315638 samples. 
+**************************************************
+dt = 5.00e-06, momentum=0.80, tol=1.00e-07
+l_intensity = 1.0000
+Aligning input volume to GCA...
+Transform matrix
+ 1.19245  -0.03859   0.00678  -24.15303;
+ 0.03897   1.17088   0.06828  -6.00954;
+-0.00997  -0.06175   1.08688   4.87380;
+ 0.00000   0.00000   0.00000   1.00000;
+nsamples 315638
+Quasinewton: input matrix
+ 1.19245  -0.03859   0.00678  -24.15303;
+ 0.03897   1.17088   0.06828  -6.00954;
+-0.00997  -0.06175   1.08688   4.87380;
+ 0.00000   0.00000   0.00000   1.00000;
+ IFLAG= -1  LINE SEARCH FAILED. SEE DOCUMENTATION OF ROUTINE MCSRCH ERROR RETURN OF LINE SEARCH: INFO= 6 POSSIBLE CAUSES: FUNCTION OR GRADIENT ARE INCORRECT OR INCORRECT TOLERANCESoutof QuasiNewtonEMA: 010: -log(p) =    3.8  tol 0.000000
+final transform:
+ 1.19245  -0.03859   0.00678  -24.15303;
+ 0.03897   1.17088   0.06828  -6.00954;
+-0.00997  -0.06175   1.08688   4.87380;
+ 0.00000   0.00000   0.00000   1.00000;
+
+writing output transformation to transforms/talairach.lta...
+#VMPC# mri_em_register VmPeak  811948
+FSRUNTIME@ mri_em_register  0.0377 hours 4 threads
+registration took 2 minutes and 16 seconds.
+@#@FSTIME  2025:11:16:11:36:02 mri_em_register N 7 e 135.65 S 1.08 U 478.02 P 353% M 615956 F 0 R 952566 W 0 c 451 w 178 I 0 O 32 L 36.41 23.69 10.96
+@#@FSLOADPOST 2025:11:16:11:38:18 mri_em_register N 7 34.53 27.05 13.89
+#--------------------------------------
+#@# CA Normalize Sun Nov 16 11:38:18 EST 2025
+/user_data/csimmon2/long_pt/derivatives/freesurfer/sub-049_ses01_mirror/mri
+
+ mri_ca_normalize -c ctrl_pts.mgz -mask brainmask.mgz nu.mgz /opt/freesurfer/7.1.0/average/RB_all_2020-01-02.gca transforms/talairach.lta norm.mgz 
+
+writing control point volume to ctrl_pts.mgz
+using MR volume brainmask.mgz to mask input volume...
+reading 1 input volume
+reading atlas from '/opt/freesurfer/7.1.0/average/RB_all_2020-01-02.gca'...
+reading transform from 'transforms/talairach.lta'...
+reading input volume from nu.mgz...
+MRImask(): AllowDiffGeom = 1
+resetting wm mean[0]: 98 --> 107
+resetting gm mean[0]: 61 --> 61
+input volume #1 is the most T1-like
+using real data threshold=25.0
+skull bounding box = (69, 40, 22) --> (188, 153, 170)
+finding center of left hemi white matter
+using (109, 78, 96) as brain centroid of Right_Cerebral_White_Matter...
+MRImask(): AllowDiffGeom = 1
+mean wm in atlas = 107, using box (94,64,78) --> (123, 91,114) to find MRI wm
+before smoothing, mri peak at 107
+robust fit to distribution - 108 +- 5.3
+after smoothing, mri peak at 108, scaling input intensities by 0.991
+scaling channel 0 by 0.990741
+using 246437 sample points...
+INFO: compute sample coordinates transform
+ 1.19245  -0.03859   0.00678  -24.15303;
+ 0.03897   1.17088   0.06828  -6.00954;
+-0.00997  -0.06175   1.08688   4.87380;
+ 0.00000   0.00000   0.00000   1.00000;
+INFO: transform used
+finding control points in Left_Cerebral_White_Matter....
+found 40230 control points for structure...
+bounding box (129, 39, 27) --> (184, 138, 181)
+Left_Cerebral_White_Matter: limiting intensities to 95.0 --> 123.0
+0 of 213 (0.0%) samples deleted
+finding control points in Right_Cerebral_White_Matter....
+found 39478 control points for structure...
+bounding box (74, 41, 26) --> (130, 142, 181)
+Right_Cerebral_White_Matter: limiting intensities to 96.0 --> 123.0
+0 of 192 (0.0%) samples deleted
+finding control points in Left_Cerebellum_White_Matter....
+found 3105 control points for structure...
+bounding box (131, 111, 49) --> (172, 150, 98)
+Left_Cerebellum_White_Matter: limiting intensities to 111.0 --> 123.0
+16 of 18 (88.9%) samples deleted
+finding control points in Right_Cerebellum_White_Matter....
+found 2710 control points for structure...
+bounding box (93, 111, 46) --> (130, 151, 100)
+Right_Cerebellum_White_Matter: limiting intensities to 91.0 --> 123.0
+0 of 22 (0.0%) samples deleted
+finding control points in Brain_Stem....
+found 3475 control points for structure...
+bounding box (116, 106, 82) --> (145, 165, 109)
+Brain_Stem: limiting intensities to 102.0 --> 123.0
+6 of 9 (66.7%) samples deleted
+using 454 total control points for intensity normalization...
+bias field = 0.985 +- 0.058
+6 of 432 control points discarded
+finding control points in Left_Cerebral_White_Matter....
+found 40230 control points for structure...
+bounding box (129, 39, 27) --> (184, 138, 181)
+Left_Cerebral_White_Matter: limiting intensities to 90.0 --> 120.0
+0 of 326 (0.0%) samples deleted
+finding control points in Right_Cerebral_White_Matter....
+found 39478 control points for structure...
+bounding box (74, 41, 26) --> (130, 142, 181)
+Right_Cerebral_White_Matter: limiting intensities to 91.0 --> 120.0
+0 of 308 (0.0%) samples deleted
+finding control points in Left_Cerebellum_White_Matter....
+found 3105 control points for structure...
+bounding box (131, 111, 49) --> (172, 150, 98)
+Left_Cerebellum_White_Matter: limiting intensities to 88.0 --> 120.0
+11 of 88 (12.5%) samples deleted
+finding control points in Right_Cerebellum_White_Matter....
+found 2710 control points for structure...
+bounding box (93, 111, 46) --> (130, 151, 100)
+Right_Cerebellum_White_Matter: limiting intensities to 88.0 --> 120.0
+2 of 63 (3.2%) samples deleted
+finding control points in Brain_Stem....
+found 3475 control points for structure...
+bounding box (116, 106, 82) --> (145, 165, 109)
+Brain_Stem: limiting intensities to 88.0 --> 120.0
+62 of 141 (44.0%) samples deleted
+using 926 total control points for intensity normalization...
+bias field = 0.997 +- 0.076
+1 of 815 control points discarded
+finding control points in Left_Cerebral_White_Matter....
+found 40230 control points for structure...
+bounding box (129, 39, 27) --> (184, 138, 181)
+Left_Cerebral_White_Matter: limiting intensities to 88.0 --> 120.0
+3 of 350 (0.9%) samples deleted
+finding control points in Right_Cerebral_White_Matter....
+found 39478 control points for structure...
+bounding box (74, 41, 26) --> (130, 142, 181)
+Right_Cerebral_White_Matter: limiting intensities to 88.0 --> 120.0
+0 of 375 (0.0%) samples deleted
+finding control points in Left_Cerebellum_White_Matter....
+found 3105 control points for structure...
+bounding box (131, 111, 49) --> (172, 150, 98)
+Left_Cerebellum_White_Matter: limiting intensities to 88.0 --> 120.0
+37 of 109 (33.9%) samples deleted
+finding control points in Right_Cerebellum_White_Matter....
+found 2710 control points for structure...
+bounding box (93, 111, 46) --> (130, 151, 100)
+Right_Cerebellum_White_Matter: limiting intensities to 88.0 --> 120.0
+25 of 69 (36.2%) samples deleted
+finding control points in Brain_Stem....
+found 3475 control points for structure...
+bounding box (116, 106, 82) --> (145, 165, 109)
+Brain_Stem: limiting intensities to 88.0 --> 120.0
+117 of 180 (65.0%) samples deleted
+using 1083 total control points for intensity normalization...
+bias field = 1.012 +- 0.062
+2 of 887 control points discarded
+writing normalized volume to norm.mgz...
+writing control points to ctrl_pts.mgz
+freeing GCA...done.
+normalization took 1 minutes and 3 seconds.
+@#@FSTIME  2025:11:16:11:38:18 mri_ca_normalize N 8 e 63.40 S 0.30 U 65.19 P 103% M 887512 F 17 R 357686 W 0 c 66 w 339 I 3856 O 2880 L 34.53 27.05 13.89
+@#@FSLOADPOST 2025:11:16:11:39:21 mri_ca_normalize N 8 27.96 26.84 14.73
+#--------------------------------------
+#@# CA Reg Sun Nov 16 11:39:21 EST 2025
+/user_data/csimmon2/long_pt/derivatives/freesurfer/sub-049_ses01_mirror/mri
+
+ mri_ca_register -nobigventricles -T transforms/talairach.lta -align-after -mask brainmask.mgz norm.mgz /opt/freesurfer/7.1.0/average/RB_all_2020-01-02.gca transforms/talairach.m3z 
+
+not handling expanded ventricles...
+using previously computed transform transforms/talairach.lta
+renormalizing sequences with structure alignment, equivalent to:
+	-renormalize
+	-regularize_mean 0.500
+	-regularize 0.500
+using MR volume brainmask.mgz to mask input volume...
+
+== Number of threads available to mri_ca_register for OpenMP = 4 == 
+reading 1 input volumes...
+logging results to talairach.log
+reading input volume 'norm.mgz'...
+MRImask(): AllowDiffGeom = 1
+MRImask(): AllowDiffGeom = 1
+MRImask(): AllowDiffGeom = 1
+MRImask(): AllowDiffGeom = 1
+MRImask(): AllowDiffGeom = 1
+reading GCA '/opt/freesurfer/7.1.0/average/RB_all_2020-01-02.gca'...
+label assignment complete, 0 changed (0.00%)
+freeing gibbs priors...done.
+average std[0] = 5.0
+Starting GCAMregister()
+label assignment complete, 0 changed (0.00%)
+npasses = 1, nlevels = 6
+#pass# 1 of 1 ************************
+enabling zero nodes
+setting smoothness cost coefficient to 0.156
+
+#GCAMreg# pass 0 level1 5 level2 0 tsec 0 sigma 2
+l_jacobian=1.00 l_label=1.00 l_log_likelihood=0.20 l_smoothness=0.16 
+tol=2.50e-01, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=256, sigma=2.0,type=2, relabel=0, neg=no
+
+blurring input image with Gaussian with sigma=2.000...
+GCAMRegisterLevel(): init RMS 0.890606
+#FOTS# QuadFit found better minimum quadopt=(dt=208.879,rms=0.824653) vs oldopt=(dt=92.48,rms=0.844047)
+#GCMRL#    0 dt 208.879121 rms  0.825  7.405% neg 0  invalid 762 tFOTS 3.8090 tGradient 5.1060 tsec 9.2210
+#FOTS# QuadFit found better minimum quadopt=(dt=180.719,rms=0.806718) vs oldopt=(dt=92.48,rms=0.811346)
+#GCMRL#    1 dt 180.718644 rms  0.807  2.175% neg 0  invalid 762 tFOTS 4.1110 tGradient 4.9540 tsec 9.3630
+#FOTS# QuadFit found better minimum quadopt=(dt=230.995,rms=0.794634) vs oldopt=(dt=369.92,rms=0.797448)
+#GCMRL#    2 dt 230.995349 rms  0.795  1.498% neg 0  invalid 762 tFOTS 4.0850 tGradient 4.9430 tsec 9.3380
+#FOTS# QuadFit found better minimum quadopt=(dt=131.068,rms=0.789533) vs oldopt=(dt=92.48,rms=0.790201)
+#GCMRL#    3 dt 131.068493 rms  0.790  0.642% neg 0  invalid 762 tFOTS 4.0060 tGradient 4.9590 tsec 9.2860
+#FOTS# QuadFit found better minimum quadopt=(dt=517.888,rms=0.782201) vs oldopt=(dt=369.92,rms=0.782593)
+#GCMRL#    4 dt 517.888000 rms  0.782  0.929% neg 0  invalid 762 tFOTS 3.9610 tGradient 4.9540 tsec 9.2320
+#FOTS# QuadFit found better minimum quadopt=(dt=97.5785,rms=0.778163) vs oldopt=(dt=92.48,rms=0.778195)
+#GCMRL#    5 dt  97.578475 rms  0.778  0.516% neg 0  invalid 762 tFOTS 4.0270 tGradient 5.0780 tsec 9.4270
+#FOTS# QuadFit found better minimum quadopt=(dt=1775.62,rms=0.769787) vs oldopt=(dt=1479.68,rms=0.769886)
+#GCMRL#    6 dt 1775.616000 rms  0.770  1.076% neg 0  invalid 762 tFOTS 3.9590 tGradient 4.8750 tsec 9.1420
+#FOTS# QuadFit found better minimum quadopt=(dt=131.137,rms=0.765905) vs oldopt=(dt=92.48,rms=0.766421)
+#GCMRL#    7 dt 131.137255 rms  0.766  0.504% neg 0  invalid 762 tFOTS 4.0540 tGradient 4.9940 tsec 9.3610
+#FOTS# QuadFit found better minimum quadopt=(dt=129.472,rms=0.765446) vs oldopt=(dt=92.48,rms=0.765532)
+#GCMRL#    8 dt 129.472000 rms  0.765  0.000% neg 0  invalid 762 tFOTS 4.1420 tGradient 5.1050 tsec 9.5670
+#GCMRL#    9 dt 129.472000 rms  0.765  0.071% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.0270 tsec 5.4130
+#GCMRL#   10 dt 129.472000 rms  0.764  0.106% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.0820 tsec 5.3970
+#GCMRL#   11 dt 129.472000 rms  0.763  0.123% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.0060 tsec 5.3820
+#GCMRL#   12 dt 129.472000 rms  0.762  0.138% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.2920 tsec 5.6160
+#GCMRL#   13 dt 129.472000 rms  0.761  0.157% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.0860 tsec 5.4640
+#GCMRL#   14 dt 129.472000 rms  0.760  0.178% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.1720 tsec 5.5000
+#GCMRL#   15 dt 129.472000 rms  0.758  0.183% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.0520 tsec 5.4130
+#GCMRL#   16 dt 129.472000 rms  0.757  0.174% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.1420 tsec 5.4650
+#GCMRL#   17 dt 129.472000 rms  0.756  0.164% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.0540 tsec 5.3880
+#GCMRL#   18 dt 129.472000 rms  0.754  0.165% neg 0  invalid 762 tFOTS 0.0000 tGradient 4.9750 tsec 5.3130
+#GCMRL#   19 dt 129.472000 rms  0.753  0.171% neg 0  invalid 762 tFOTS 0.0000 tGradient 4.8460 tsec 5.1810
+#GCMRL#   20 dt 129.472000 rms  0.752  0.160% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.1120 tsec 5.4280
+#GCMRL#   21 dt 129.472000 rms  0.751  0.147% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.0050 tsec 5.3240
+#GCMRL#   22 dt 129.472000 rms  0.750  0.136% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.0560 tsec 5.3880
+#GCMRL#   23 dt 129.472000 rms  0.749  0.132% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.0720 tsec 5.3720
+#GCMRL#   24 dt 129.472000 rms  0.748  0.116% neg 0  invalid 762 tFOTS 0.0000 tGradient 4.8980 tsec 5.2150
+#GCMRL#   25 dt 129.472000 rms  0.747  0.101% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.1020 tsec 5.4350
+
+#GCAMreg# pass 0 level1 5 level2 1 tsec 194.755 sigma 0.5
+l_jacobian=1.00 l_label=1.00 l_log_likelihood=0.20 l_smoothness=0.16 
+tol=2.50e-01, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=256, sigma=0.5,type=2, relabel=0, neg=no
+
+blurring input image with Gaussian with sigma=0.500...
+GCAMRegisterLevel(): init RMS 0.748083
+#FOTS# QuadFit found better minimum quadopt=(dt=295.936,rms=0.745869) vs oldopt=(dt=369.92,rms=0.745999)
+#GCMRL#   27 dt 295.936000 rms  0.746  0.296% neg 0  invalid 762 tFOTS 4.3210 tGradient 5.1400 tsec 9.8000
+#FOTS# QuadFit found better minimum quadopt=(dt=129.472,rms=0.745666) vs oldopt=(dt=92.48,rms=0.745698)
+#GCMRL#   28 dt 129.472000 rms  0.746  0.000% neg 0  invalid 762 tFOTS 4.2430 tGradient 5.1390 tsec 9.7100
+#GCMRL#   29 dt 129.472000 rms  0.746  0.010% neg 0  invalid 762 tFOTS 0.0000 tGradient 4.9880 tsec 5.3000
+#GCMRL#   30 dt 129.472000 rms  0.745  0.014% neg 0  invalid 762 tFOTS 0.0000 tGradient 4.9630 tsec 5.2810
+#GCMRL#   31 dt 129.472000 rms  0.745  0.011% neg 0  invalid 762 tFOTS 0.0000 tGradient 4.7360 tsec 5.0570
+#GCMRL#   32 dt 129.472000 rms  0.745  0.009% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.0880 tsec 5.4180
+#FOTS# QuadFit found better minimum quadopt=(dt=1183.74,rms=0.744912) vs oldopt=(dt=1479.68,rms=0.744915)
+#GCMRL#   33 dt 1183.744000 rms  0.745  0.057% neg 0  invalid 762 tFOTS 4.6030 tGradient 5.0010 tsec 9.9240
+#FOTS# QuadFit found better minimum quadopt=(dt=32.368,rms=0.744911) vs oldopt=(dt=23.12,rms=0.744913)
+setting smoothness cost coefficient to 0.615
+
+#GCAMreg# pass 0 level1 4 level2 0 tsec 0 sigma 2
+l_jacobian=1.00 l_label=1.00 l_log_likelihood=0.20 l_smoothness=0.62 
+tol=2.50e-01, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=64, sigma=2.0,type=2, relabel=0, neg=no
+
+blurring input image with Gaussian with sigma=2.000...
+GCAMRegisterLevel(): init RMS 0.754511
+#FOTS# QuadFit found better minimum quadopt=(dt=36.288,rms=0.752631) vs oldopt=(dt=25.92,rms=0.75271)
+#GCMRL#   35 dt  36.288000 rms  0.753  0.249% neg 0  invalid 762 tFOTS 3.9850 tGradient 3.2420 tsec 7.5450
+#FOTS# QuadFit found better minimum quadopt=(dt=36.288,rms=0.75197) vs oldopt=(dt=25.92,rms=0.752087)
+#GCMRL#   36 dt  36.288000 rms  0.752  0.000% neg 0  invalid 762 tFOTS 3.8460 tGradient 3.4200 tsec 7.5980
+#GCMRL#   37 dt  36.288000 rms  0.751  0.102% neg 0  invalid 762 tFOTS 0.0000 tGradient 3.3620 tsec 3.6960
+#GCMRL#   38 dt  36.288000 rms  0.750  0.151% neg 0  invalid 762 tFOTS 0.0000 tGradient 3.4040 tsec 3.7110
+#GCMRL#   39 dt  36.288000 rms  0.749  0.192% neg 0  invalid 762 tFOTS 0.0000 tGradient 3.3430 tsec 3.6680
+#GCMRL#   40 dt  36.288000 rms  0.746  0.287% neg 0  invalid 762 tFOTS 0.0000 tGradient 3.3870 tsec 3.7000
+#GCMRL#   41 dt  36.288000 rms  0.743  0.431% neg 0  invalid 762 tFOTS 0.0000 tGradient 3.2900 tsec 3.6370
+#GCMRL#   42 dt  36.288000 rms  0.739  0.528% neg 0  invalid 762 tFOTS 0.0000 tGradient 3.4380 tsec 3.7670
+#GCMRL#   43 dt  36.288000 rms  0.735  0.591% neg 0  invalid 762 tFOTS 0.0000 tGradient 3.3060 tsec 3.6330
+#GCMRL#   44 dt  36.288000 rms  0.731  0.585% neg 0  invalid 762 tFOTS 0.0000 tGradient 3.5050 tsec 3.8330
+#GCMRL#   45 dt  36.288000 rms  0.727  0.502% neg 0  invalid 762 tFOTS 0.0000 tGradient 3.4690 tsec 3.8270
+#GCMRL#   46 dt  36.288000 rms  0.724  0.399% neg 0  invalid 762 tFOTS 0.0000 tGradient 3.4800 tsec 3.7950
+#GCMRL#   47 dt  36.288000 rms  0.722  0.271% neg 0  invalid 762 tFOTS 0.0000 tGradient 3.4030 tsec 3.7560
+#GCMRL#   48 dt  36.288000 rms  0.721  0.164% neg 0  invalid 762 tFOTS 0.0000 tGradient 3.5100 tsec 3.8510
+#GCMRL#   49 dt  36.288000 rms  0.720  0.076% neg 0  invalid 762 tFOTS 0.0000 tGradient 3.4980 tsec 3.8150
+#GCMRL#   50 dt  36.288000 rms  0.720  0.017% neg 0  invalid 762 tFOTS 0.0000 tGradient 3.4600 tsec 3.8150
+#FOTS# QuadFit found better minimum quadopt=(dt=36.288,rms=0.720232) vs oldopt=(dt=25.92,rms=0.720242)
+#GCMRL#   51 dt  36.288000 rms  0.720  0.000% neg 0  invalid 762 tFOTS 4.6880 tGradient 3.1890 tsec 8.2200
+
+#GCAMreg# pass 0 level1 4 level2 1 tsec 88.918 sigma 0.5
+l_jacobian=1.00 l_label=1.00 l_log_likelihood=0.20 l_smoothness=0.62 
+tol=2.50e-01, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=64, sigma=0.5,type=2, relabel=0, neg=no
+
+blurring input image with Gaussian with sigma=0.500...
+GCAMRegisterLevel(): init RMS 0.721444
+#FOTS# QuadFit found better minimum quadopt=(dt=31.104,rms=0.720101) vs oldopt=(dt=25.92,rms=0.720101)
+#GCMRL#   53 dt  31.104000 rms  0.720  0.186% neg 0  invalid 762 tFOTS 4.5650 tGradient 3.2870 tsec 8.1820
+setting smoothness cost coefficient to 2.353
+
+#GCAMreg# pass 0 level1 3 level2 0 tsec 0 sigma 2
+l_jacobian=1.00 l_label=1.00 l_log_likelihood=0.20 l_smoothness=2.35 
+tol=2.50e-01, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=16, sigma=2.0,type=2, relabel=0, neg=no
+
+blurring input image with Gaussian with sigma=2.000...
+GCAMRegisterLevel(): init RMS 0.747757
+#GCMRL#   55 dt   0.000000 rms  0.747  0.152% neg 0  invalid 762 tFOTS 4.2290 tGradient 2.3410 tsec 6.9250
+
+#GCAMreg# pass 0 level1 3 level2 1 tsec 23.021 sigma 0.5
+l_jacobian=1.00 l_label=1.00 l_log_likelihood=0.20 l_smoothness=2.35 
+tol=2.50e-01, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=16, sigma=0.5,type=2, relabel=0, neg=no
+
+blurring input image with Gaussian with sigma=0.500...
+GCAMRegisterLevel(): init RMS 0.747757
+#GCMRL#   57 dt   0.000000 rms  0.747  0.152% neg 0  invalid 762 tFOTS 3.9610 tGradient 2.3350 tsec 6.6470
+setting smoothness cost coefficient to 8.000
+
+#GCAMreg# pass 0 level1 2 level2 0 tsec 0 sigma 2
+l_jacobian=1.00 l_label=1.00 l_log_likelihood=0.20 l_smoothness=8.00 
+tol=2.50e-01, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=4, sigma=2.0,type=2, relabel=0, neg=no
+
+blurring input image with Gaussian with sigma=2.000...
+GCAMRegisterLevel(): init RMS 0.827953
+#FOTS# QuadFit found better minimum quadopt=(dt=2.49779,rms=0.802283) vs oldopt=(dt=2.88,rms=0.802862)
+#GCMRL#   59 dt   2.497787 rms  0.802  3.100% neg 0  invalid 762 tFOTS 4.4470 tGradient 1.9260 tsec 6.6990
+#FOTS# QuadFit found better minimum quadopt=(dt=1.48333,rms=0.800404) vs oldopt=(dt=0.72,rms=0.80082)
+#GCMRL#   60 dt   1.483333 rms  0.800  0.000% neg 0  invalid 762 tFOTS 4.0530 tGradient 1.9320 tsec 6.3250
+
+#GCAMreg# pass 0 level1 2 level2 1 tsec 24.456 sigma 0.5
+l_jacobian=1.00 l_label=1.00 l_log_likelihood=0.20 l_smoothness=8.00 
+tol=2.50e-01, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=4, sigma=0.5,type=2, relabel=0, neg=no
+
+blurring input image with Gaussian with sigma=0.500...
+GCAMRegisterLevel(): init RMS 0.801385
+#FOTS# QuadFit found better minimum quadopt=(dt=0.252,rms=0.800339) vs oldopt=(dt=0.18,rms=0.800348)
+#GCMRL#   62 dt   0.252000 rms  0.800  0.131% neg 0  invalid 762 tFOTS 4.6420 tGradient 1.8290 tsec 6.8550
+#GCMRL#   63 dt   0.180000 rms  0.800  0.000% neg 0  invalid 762 tFOTS 3.8120 tGradient 2.0060 tsec 6.2210
+setting smoothness cost coefficient to 20.000
+
+#GCAMreg# pass 0 level1 1 level2 0 tsec 0 sigma 2
+l_jacobian=1.00 l_label=1.00 l_log_likelihood=0.20 l_smoothness=20.00 
+tol=2.50e-01, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=1, sigma=2.0,type=2, relabel=0, neg=no
+
+blurring input image with Gaussian with sigma=2.000...
+GCAMRegisterLevel(): init RMS 0.865199
+#FOTS# QuadFit found better minimum quadopt=(dt=0.448,rms=0.861661) vs oldopt=(dt=0.32,rms=0.862054)
+#GCMRL#   65 dt   0.448000 rms  0.862  0.409% neg 0  invalid 762 tFOTS 4.1930 tGradient 1.4590 tsec 6.0120
+#FOTS# QuadFit found better minimum quadopt=(dt=1.024,rms=0.852787) vs oldopt=(dt=1.28,rms=0.85324)
+#GCMRL#   66 dt   1.024000 rms  0.853  1.030% neg 0  invalid 762 tFOTS 4.1300 tGradient 1.5310 tsec 6.0050
+#FOTS# QuadFit found better minimum quadopt=(dt=0.192,rms=0.850831) vs oldopt=(dt=0.32,rms=0.851341)
+#GCMRL#   67 dt   0.192000 rms  0.851  0.000% neg 0  invalid 762 tFOTS 4.5650 tGradient 1.7400 tsec 6.6320
+#GCMRL#   68 dt   0.192000 rms  0.850  0.049% neg 0  invalid 762 tFOTS 0.0000 tGradient 1.5780 tsec 1.8960
+#GCMRL#   69 dt   0.192000 rms  0.850  0.003% neg 0  invalid 762 tFOTS 0.0000 tGradient 1.4180 tsec 1.7630
+#GCMRL#   70 dt   0.192000 rms  0.849  0.164% neg 0  invalid 762 tFOTS 0.0000 tGradient 1.4950 tsec 1.8420
+#GCMRL#   71 dt   0.192000 rms  0.846  0.339% neg 0  invalid 762 tFOTS 0.0000 tGradient 1.6090 tsec 1.9590
+#GCMRL#   72 dt   0.192000 rms  0.844  0.279% neg 0  invalid 762 tFOTS 0.0000 tGradient 1.4930 tsec 1.8340
+#GCMRL#   73 dt   0.192000 rms  0.843  0.097% neg 0  invalid 762 tFOTS 0.0000 tGradient 1.4880 tsec 1.8680
+#GCMRL#   74 dt   0.192000 rms  0.843 -0.062% neg 0  invalid 762 tFOTS 0.0000 tGradient 1.6120 tsec 2.3500
+#FOTS# QuadFit found better minimum quadopt=(dt=0.028,rms=0.842938) vs oldopt=(dt=0.02,rms=0.842938)
+#GCMRL#   75 dt   0.028000 rms  0.843  0.001% neg 0  invalid 762 tFOTS 4.0910 tGradient 1.6490 tsec 6.0710
+#FOTS# QuadFit found better minimum quadopt=(dt=0.028,rms=0.842935) vs oldopt=(dt=0.02,rms=0.842935)
+
+#GCAMreg# pass 0 level1 1 level2 1 tsec 53.135 sigma 0.5
+l_jacobian=1.00 l_label=1.00 l_log_likelihood=0.20 l_smoothness=20.00 
+tol=2.50e-01, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=1, sigma=0.5,type=2, relabel=0, neg=no
+
+blurring input image with Gaussian with sigma=0.500...
+GCAMRegisterLevel(): init RMS 0.843881
+#FOTS# QuadFit found better minimum quadopt=(dt=0.112,rms=0.842774) vs oldopt=(dt=0.08,rms=0.842803)
+#GCMRL#   77 dt   0.112000 rms  0.843  0.131% neg 0  invalid 762 tFOTS 4.2580 tGradient 1.5520 tsec 6.1440
+#FOTS# QuadFit found better minimum quadopt=(dt=0.448,rms=0.842392) vs oldopt=(dt=0.32,rms=0.842417)
+#GCMRL#   78 dt   0.448000 rms  0.842  0.000% neg 0  invalid 762 tFOTS 4.4370 tGradient 1.5970 tsec 6.3890
+#GCMRL#   79 dt   0.448000 rms  0.841  0.158% neg 0  invalid 762 tFOTS 0.0000 tGradient 1.5330 tsec 1.8630
+#GCMRL#   80 dt   0.448000 rms  0.840  0.087% neg 0  invalid 762 tFOTS 0.0000 tGradient 1.5080 tsec 1.9020
+#GCMRL#   81 dt   0.448000 rms  0.840  0.002% neg 0  invalid 762 tFOTS 0.0000 tGradient 1.5540 tsec 1.9310
+#FOTS# QuadFit found better minimum quadopt=(dt=0.448,rms=0.839492) vs oldopt=(dt=0.32,rms=0.839576)
+#GCMRL#   82 dt   0.448000 rms  0.839  0.099% neg 0  invalid 762 tFOTS 4.4720 tGradient 1.6750 tsec 6.4940
+#FOTS# QuadFit found better minimum quadopt=(dt=0.028,rms=0.839487) vs oldopt=(dt=0.02,rms=0.839487)
+#GCMRL#   83 dt   0.028000 rms  0.839  0.000% neg 0  invalid 762 tFOTS 4.4290 tGradient 1.5560 tsec 6.3950
+resetting metric properties...
+setting smoothness cost coefficient to 40.000
+
+#GCAMreg# pass 0 level1 0 level2 0 tsec 0 sigma 2
+l_jacobian=1.00 l_label=1.00 l_log_likelihood=0.20 l_smoothness=40.00 
+tol=2.50e-01, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=0, sigma=2.0,type=2, relabel=0, neg=no
+
+blurring input image with Gaussian with sigma=2.000...
+GCAMRegisterLevel(): init RMS 0.812636
+#FOTS# QuadFit found better minimum quadopt=(dt=0.266875,rms=0.804209) vs oldopt=(dt=0.32,rms=0.804377)
+#GCMRL#   85 dt   0.266875 rms  0.804  1.037% neg 0  invalid 762 tFOTS 4.4200 tGradient 1.1610 tsec 5.9080
+#FOTS# QuadFit found better minimum quadopt=(dt=0.024,rms=0.803947) vs oldopt=(dt=0.02,rms=0.803952)
+#GCMRL#   86 dt   0.024000 rms  0.804  0.000% neg 0  invalid 762 tFOTS 4.7390 tGradient 1.0950 tsec 6.2160
+
+#GCAMreg# pass 0 level1 0 level2 1 tsec 22.901 sigma 0.5
+l_jacobian=1.00 l_label=1.00 l_log_likelihood=0.20 l_smoothness=40.00 
+tol=2.50e-01, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=0, sigma=0.5,type=2, relabel=0, neg=no
+
+blurring input image with Gaussian with sigma=0.500...
+GCAMRegisterLevel(): init RMS 0.804998
+#FOTS# QuadFit found better minimum quadopt=(dt=0.007,rms=0.803923) vs oldopt=(dt=0.005,rms=0.803928)
+#GCMRL#   88 dt   0.007000 rms  0.804  0.134% neg 0  invalid 762 tFOTS 4.7260 tGradient 1.2690 tsec 6.3540
+#FOTS# QuadFit found better minimum quadopt=(dt=0.00175,rms=0.803919) vs oldopt=(dt=0.00125,rms=0.803919)
+#GCMRL#   89 dt   0.001750 rms  0.804  0.000% neg 0  invalid 762 tFOTS 4.5870 tGradient 1.1800 tsec 6.1500
+GCAMregister done in 9.47347 min
+Starting GCAmapRenormalizeWithAlignment() without scales
+renormalizing by structure alignment....
+renormalizing input #0
+gca peak = 0.10253 (16)
+mri peak = 0.08192 ( 5)
+Left_Lateral_Ventricle (4): linear fit = 0.44 x + 0.0 (391 voxels, overlap=0.130)
+Left_Lateral_Ventricle (4): linear fit = 0.44 x + 0.0 (391 voxels, peak =  7), gca=7.0
+gca peak = 0.17690 (16)
+mri peak = 0.09201 ( 8)
+Right_Lateral_Ventricle (43): linear fit = 0.31 x + 0.0 (213 voxels, overlap=0.043)
+Right_Lateral_Ventricle (43): linear fit = 0.40 x + 0.0 (213 voxels, peak =  5), gca=6.4
+gca peak = 0.28275 (96)
+mri peak = 0.07806 (103)
+Right_Pallidum (52): linear fit = 1.07 x + 0.0 (578 voxels, overlap=1.003)
+Right_Pallidum (52): linear fit = 1.07 x + 0.0 (578 voxels, peak = 102), gca=102.2
+gca peak = 0.18948 (93)
+mri peak = 0.09494 (103)
+Left_Pallidum (13): linear fit = 1.08 x + 0.0 (468 voxels, overlap=1.007)
+Left_Pallidum (13): linear fit = 1.08 x + 0.0 (468 voxels, peak = 100), gca=100.0
+gca peak = 0.20755 (55)
+mri peak = 0.06773 (58)
+Right_Hippocampus (53): linear fit = 1.04 x + 0.0 (274 voxels, overlap=0.792)
+Right_Hippocampus (53): linear fit = 1.04 x + 0.0 (274 voxels, peak = 57), gca=57.5
+gca peak = 0.31831 (58)
+mri peak = 0.09704 (58)
+Left_Hippocampus (17): linear fit = 0.92 x + 0.0 (208 voxels, overlap=0.670)
+Left_Hippocampus (17): linear fit = 0.92 x + 0.0 (208 voxels, peak = 53), gca=53.1
+gca peak = 0.11957 (102)
+mri peak = 0.10797 (106)
+Right_Cerebral_White_Matter (41): linear fit = 1.04 x + 0.0 (39330 voxels, overlap=0.576)
+Right_Cerebral_White_Matter (41): linear fit = 1.04 x + 0.0 (39330 voxels, peak = 107), gca=106.6
+gca peak = 0.11429 (102)
+mri peak = 0.11285 (105)
+Left_Cerebral_White_Matter (2): linear fit = 1.03 x + 0.0 (38981 voxels, overlap=0.663)
+Left_Cerebral_White_Matter (2): linear fit = 1.03 x + 0.0 (38981 voxels, peak = 106), gca=105.6
+gca peak = 0.14521 (59)
+mri peak = 0.04912 (55)
+Left_Cerebral_Cortex (3): linear fit = 0.94 x + 0.0 (9208 voxels, overlap=0.987)
+Left_Cerebral_Cortex (3): linear fit = 0.94 x + 0.0 (9208 voxels, peak = 56), gca=55.8
+gca peak = 0.14336 (58)
+mri peak = 0.04574 (59)
+Right_Cerebral_Cortex (42): linear fit = 0.96 x + 0.0 (8083 voxels, overlap=0.999)
+Right_Cerebral_Cortex (42): linear fit = 0.96 x + 0.0 (8083 voxels, peak = 56), gca=56.0
+gca peak = 0.13305 (70)
+mri peak = 0.08078 (68)
+Right_Caudate (50): linear fit = 1.04 x + 0.0 (719 voxels, overlap=0.981)
+Right_Caudate (50): linear fit = 1.04 x + 0.0 (719 voxels, peak = 73), gca=73.1
+gca peak = 0.15761 (71)
+mri peak = 0.08780 (74)
+Left_Caudate (11): linear fit = 1.03 x + 0.0 (468 voxels, overlap=0.987)
+Left_Caudate (11): linear fit = 1.03 x + 0.0 (468 voxels, peak = 73), gca=73.5
+gca peak = 0.13537 (57)
+mri peak = 0.04686 (55)
+Left_Cerebellum_Cortex (8): linear fit = 1.04 x + 0.0 (14300 voxels, overlap=0.991)
+Left_Cerebellum_Cortex (8): linear fit = 1.04 x + 0.0 (14300 voxels, peak = 60), gca=59.6
+gca peak = 0.13487 (56)
+mri peak = 0.04045 (56)
+Right_Cerebellum_Cortex (47): linear fit = 1.04 x + 0.0 (13568 voxels, overlap=0.980)
+Right_Cerebellum_Cortex (47): linear fit = 1.04 x + 0.0 (13568 voxels, peak = 59), gca=58.5
+gca peak = 0.19040 (84)
+mri peak = 0.07582 (91)
+Left_Cerebellum_White_Matter (7): linear fit = 1.07 x + 0.0 (5404 voxels, overlap=0.669)
+Left_Cerebellum_White_Matter (7): linear fit = 1.07 x + 0.0 (5404 voxels, peak = 89), gca=89.5
+gca peak = 0.18871 (83)
+mri peak = 0.06275 (88)
+Right_Cerebellum_White_Matter (46): linear fit = 1.10 x + 0.0 (4488 voxels, overlap=0.496)
+Right_Cerebellum_White_Matter (46): linear fit = 1.10 x + 0.0 (4488 voxels, peak = 91), gca=90.9
+gca peak = 0.24248 (57)
+mri peak = 0.12070 (60)
+Left_Amygdala (18): linear fit = 1.08 x + 0.0 (166 voxels, overlap=0.565)
+Left_Amygdala (18): linear fit = 1.08 x + 0.0 (166 voxels, peak = 61), gca=61.3
+gca peak = 0.35833 (56)
+mri peak = 0.07224 (67)
+Right_Amygdala (54): linear fit = 1.12 x + 0.0 (261 voxels, overlap=0.986)
+Right_Amygdala (54): linear fit = 1.12 x + 0.0 (261 voxels, peak = 62), gca=62.4
+gca peak = 0.12897 (85)
+mri peak = 0.04809 (89)
+Left_Thalamus (10): linear fit = 1.07 x + 0.0 (3722 voxels, overlap=0.910)
+Left_Thalamus (10): linear fit = 1.07 x + 0.0 (3722 voxels, peak = 91), gca=90.5
+gca peak = 0.13127 (83)
+mri peak = 0.05873 (85)
+Right_Thalamus (49): linear fit = 1.07 x + 0.0 (3320 voxels, overlap=0.860)
+Right_Thalamus (49): linear fit = 1.07 x + 0.0 (3320 voxels, peak = 88), gca=88.4
+gca peak = 0.12974 (78)
+mri peak = 0.05738 (85)
+Left_Putamen (12): linear fit = 1.04 x + 0.0 (1325 voxels, overlap=0.986)
+Left_Putamen (12): linear fit = 1.04 x + 0.0 (1325 voxels, peak = 82), gca=81.5
+gca peak = 0.17796 (79)
+mri peak = 0.06838 (85)
+Right_Putamen (51): linear fit = 1.07 x + 0.0 (1416 voxels, overlap=0.997)
+Right_Putamen (51): linear fit = 1.07 x + 0.0 (1416 voxels, peak = 84), gca=84.1
+gca peak = 0.10999 (80)
+mri peak = 0.06771 (89)
+Brain_Stem (16): linear fit = 1.10 x + 0.0 (7379 voxels, overlap=0.416)
+Brain_Stem (16): linear fit = 1.10 x + 0.0 (7379 voxels, peak = 88), gca=87.6
+gca peak = 0.13215 (88)
+mri peak = 0.08501 (100)
+Right_VentralDC (60): linear fit = 1.12 x + 0.0 (977 voxels, overlap=0.405)
+Right_VentralDC (60): linear fit = 1.12 x + 0.0 (977 voxels, peak = 99), gca=99.0
+gca peak = 0.11941 (89)
+mri peak = 0.07609 (98)
+Left_VentralDC (28): linear fit = 1.11 x + 0.0 (949 voxels, overlap=0.551)
+Left_VentralDC (28): linear fit = 1.11 x + 0.0 (949 voxels, peak = 98), gca=98.3
+gca peak = 0.20775 (25)
+uniform distribution in MR - rejecting arbitrary fit
+gca peak = 0.13297 (21)
+mri peak = 0.09887 ( 5)
+Fourth_Ventricle (15): linear fit = 0.57 x + 0.0 (142 voxels, overlap=0.103)
+Fourth_Ventricle (15): linear fit = 0.57 x + 0.0 (142 voxels, peak = 12), gca=12.1
+gca peak Unknown = 0.94777 ( 0)
+gca peak Left_Inf_Lat_Vent = 0.19087 (28)
+gca peak Third_Ventricle = 0.20775 (25)
+gca peak Fourth_Ventricle = 0.13297 (21)
+gca peak CSF = 0.16821 (33)
+gca peak Left_Accumbens_area = 0.32850 (63)
+gca peak Left_undetermined = 0.98480 (28)
+gca peak Left_vessel = 0.40887 (53)
+gca peak Left_choroid_plexus = 0.10898 (46)
+gca peak Right_Inf_Lat_Vent = 0.17798 (26)
+gca peak Right_Accumbens_area = 0.30137 (64)
+gca peak Right_vessel = 0.47828 (52)
+gca peak Right_choroid_plexus = 0.11612 (45)
+gca peak Fifth_Ventricle = 0.59466 (35)
+gca peak WM_hypointensities = 0.10053 (78)
+gca peak non_WM_hypointensities = 0.07253 (60)
+gca peak Optic_Chiasm = 0.25330 (73)
+not using caudate to estimate GM means
+estimating mean gm scale to be 1.01 x + 0.0
+estimating mean wm scale to be 1.04 x + 0.0
+estimating mean csf scale to be 0.42 x + 0.0
+saving intensity scales to talairach.label_intensities.txt
+GCAmapRenormalizeWithAlignment() took 2.26 min
+noneg pre
+Starting GCAMregister()
+label assignment complete, 0 changed (0.00%)
+npasses = 1, nlevels = 6
+#pass# 1 of 1 ************************
+enabling zero nodes
+setting smoothness cost coefficient to 0.008
+
+#GCAMreg# pass 0 level1 5 level2 0 tsec 0 sigma 2
+l_jacobian=1.00 l_label=1.00 l_log_likelihood=0.20 l_smoothness=0.01 
+tol=5.00e-02, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=256, sigma=2.0,type=2, relabel=0, neg=no
+
+blurring input image with Gaussian with sigma=2.000...
+GCAMRegisterLevel(): init RMS 0.833279
+#FOTS# QuadFit found better minimum quadopt=(dt=209.383,rms=0.810891) vs oldopt=(dt=92.48,rms=0.818091)
+#GCMRL#   91 dt 209.382716 rms  0.811  2.687% neg 0  invalid 762 tFOTS 3.9730 tGradient 4.9470 tsec 9.2150
+#FOTS# QuadFit found better minimum quadopt=(dt=191.373,rms=0.803215) vs oldopt=(dt=92.48,rms=0.80574)
+#GCMRL#   92 dt 191.372549 rms  0.803  0.947% neg 0  invalid 762 tFOTS 3.9820 tGradient 4.9540 tsec 9.2400
+#FOTS# QuadFit found better minimum quadopt=(dt=164.683,rms=0.797995) vs oldopt=(dt=92.48,rms=0.799366)
+#GCMRL#   93 dt 164.682927 rms  0.798  0.650% neg 0  invalid 762 tFOTS 3.9880 tGradient 4.9260 tsec 9.2160
+#FOTS# QuadFit found better minimum quadopt=(dt=129.472,rms=0.795666) vs oldopt=(dt=92.48,rms=0.796161)
+#GCMRL#   94 dt 129.472000 rms  0.796  0.292% neg 0  invalid 762 tFOTS 4.2020 tGradient 4.9070 tsec 9.4260
+#FOTS# QuadFit found better minimum quadopt=(dt=517.888,rms=0.78949) vs oldopt=(dt=369.92,rms=0.790683)
+#GCMRL#   95 dt 517.888000 rms  0.789  0.776% neg 0  invalid 762 tFOTS 4.1830 tGradient 4.9810 tsec 9.4750
+#FOTS# QuadFit found better minimum quadopt=(dt=110.976,rms=0.787936) vs oldopt=(dt=92.48,rms=0.788006)
+#GCMRL#   96 dt 110.976000 rms  0.788  0.197% neg 0  invalid 762 tFOTS 4.2820 tGradient 4.9600 tsec 9.5500
+#FOTS# QuadFit found better minimum quadopt=(dt=1183.74,rms=0.782886) vs oldopt=(dt=1479.68,rms=0.783318)
+#GCMRL#   97 dt 1183.744000 rms  0.783  0.641% neg 0  invalid 762 tFOTS 4.0940 tGradient 5.0740 tsec 9.4820
+#GCMRL#   98 dt  92.480000 rms  0.779  0.465% neg 0  invalid 762 tFOTS 4.3580 tGradient 5.1420 tsec 9.8260
+#FOTS# QuadFit found better minimum quadopt=(dt=517.888,rms=0.777449) vs oldopt=(dt=369.92,rms=0.777824)
+#GCMRL#   99 dt 517.888000 rms  0.777  0.231% neg 0  invalid 762 tFOTS 4.2370 tGradient 5.0140 tsec 9.5690
+#FOTS# QuadFit found better minimum quadopt=(dt=129.472,rms=0.776412) vs oldopt=(dt=92.48,rms=0.776572)
+#GCMRL#  100 dt 129.472000 rms  0.776  0.133% neg 0  invalid 762 tFOTS 4.5560 tGradient 4.9800 tsec 9.9270
+#FOTS# QuadFit found better minimum quadopt=(dt=517.888,rms=0.775333) vs oldopt=(dt=369.92,rms=0.775435)
+#GCMRL#  101 dt 517.888000 rms  0.775  0.139% neg 0  invalid 762 tFOTS 4.5970 tGradient 4.2410 tsec 9.1950
+#FOTS# QuadFit found better minimum quadopt=(dt=129.472,rms=0.774077) vs oldopt=(dt=92.48,rms=0.774172)
+#GCMRL#  102 dt 129.472000 rms  0.774  0.162% neg 0  invalid 762 tFOTS 4.5680 tGradient 5.0660 tsec 9.9940
+#FOTS# QuadFit found better minimum quadopt=(dt=129.472,rms=0.773782) vs oldopt=(dt=92.48,rms=0.773834)
+#GCMRL#  103 dt 129.472000 rms  0.774  0.000% neg 0  invalid 762 tFOTS 4.5410 tGradient 4.7900 tsec 9.7070
+#GCMRL#  104 dt 129.472000 rms  0.773  0.064% neg 0  invalid 762 tFOTS 0.0000 tGradient 4.7880 tsec 5.1120
+#GCMRL#  105 dt 129.472000 rms  0.773  0.090% neg 0  invalid 762 tFOTS 0.0000 tGradient 4.9220 tsec 5.3120
+#GCMRL#  106 dt 129.472000 rms  0.772  0.120% neg 0  invalid 762 tFOTS 0.0000 tGradient 4.9850 tsec 5.3160
+#GCMRL#  107 dt 129.472000 rms  0.771  0.139% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.0000 tsec 5.3960
+#GCMRL#  108 dt 129.472000 rms  0.769  0.165% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.1060 tsec 5.4390
+#GCMRL#  109 dt 129.472000 rms  0.768  0.166% neg 0  invalid 762 tFOTS 0.0000 tGradient 4.6380 tsec 5.0280
+#GCMRL#  110 dt 129.472000 rms  0.767  0.166% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.0520 tsec 5.3750
+#GCMRL#  111 dt 129.472000 rms  0.765  0.165% neg 0  invalid 762 tFOTS 0.0000 tGradient 4.9380 tsec 5.3070
+#GCMRL#  112 dt 129.472000 rms  0.764  0.163% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.0670 tsec 5.4240
+#GCMRL#  113 dt 129.472000 rms  0.763  0.153% neg 0  invalid 762 tFOTS 0.0000 tGradient 4.9000 tsec 5.2940
+#GCMRL#  114 dt 129.472000 rms  0.762  0.142% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.0120 tsec 5.3750
+#GCMRL#  115 dt 129.472000 rms  0.761  0.126% neg 0  invalid 762 tFOTS 0.0000 tGradient 4.8500 tsec 5.1870
+#GCMRL#  116 dt 129.472000 rms  0.760  0.121% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.0890 tsec 5.4390
+#GCMRL#  117 dt 129.472000 rms  0.759  0.115% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.0820 tsec 5.4160
+#GCMRL#  118 dt 129.472000 rms  0.758  0.112% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.0250 tsec 5.4060
+#GCMRL#  119 dt 129.472000 rms  0.758  0.106% neg 0  invalid 762 tFOTS 0.0000 tGradient 4.9090 tsec 5.2370
+#GCMRL#  120 dt 129.472000 rms  0.757  0.098% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.1860 tsec 5.5630
+#GCMRL#  121 dt 129.472000 rms  0.756  0.088% neg 0  invalid 762 tFOTS 0.0000 tGradient 4.8590 tsec 5.1900
+#GCMRL#  122 dt 129.472000 rms  0.756  0.081% neg 0  invalid 762 tFOTS 0.0000 tGradient 4.8150 tsec 5.1950
+#GCMRL#  123 dt 129.472000 rms  0.755  0.083% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.1020 tsec 5.4250
+#GCMRL#  124 dt 129.472000 rms  0.754  0.079% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.0300 tsec 5.3700
+#GCMRL#  125 dt 129.472000 rms  0.754  0.081% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.0990 tsec 5.4460
+#GCMRL#  126 dt 129.472000 rms  0.753  0.079% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.1320 tsec 5.4790
+#GCMRL#  127 dt 129.472000 rms  0.753  0.085% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.1050 tsec 5.4500
+#GCMRL#  128 dt 129.472000 rms  0.752  0.090% neg 0  invalid 762 tFOTS 0.0000 tGradient 4.8840 tsec 5.2200
+#GCMRL#  129 dt 129.472000 rms  0.751  0.092% neg 0  invalid 762 tFOTS 0.0000 tGradient 4.9410 tsec 5.3060
+#GCMRL#  130 dt 129.472000 rms  0.750  0.086% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.1760 tsec 5.5120
+#GCMRL#  131 dt 129.472000 rms  0.750  0.076% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.1260 tsec 5.4740
+#GCMRL#  132 dt 129.472000 rms  0.749  0.086% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.0910 tsec 5.4090
+#GCMRL#  133 dt 129.472000 rms  0.749  0.086% neg 0  invalid 762 tFOTS 0.0000 tGradient 4.9840 tsec 5.3530
+#GCMRL#  134 dt 129.472000 rms  0.748  0.079% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.1090 tsec 5.4270
+#GCMRL#  135 dt 129.472000 rms  0.748  0.072% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.1730 tsec 5.5340
+#GCMRL#  136 dt 129.472000 rms  0.747  0.072% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.1790 tsec 5.5160
+#GCMRL#  137 dt 129.472000 rms  0.746  0.072% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.0170 tsec 5.3700
+#GCMRL#  138 dt 129.472000 rms  0.746  0.070% neg 0  invalid 762 tFOTS 0.0000 tGradient 4.5630 tsec 4.8830
+#GCMRL#  139 dt 129.472000 rms  0.745  0.067% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.0580 tsec 5.4050
+#GCMRL#  140 dt 129.472000 rms  0.745  0.060% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.1030 tsec 5.4360
+#GCMRL#  141 dt 129.472000 rms  0.744  0.062% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.0480 tsec 5.3720
+#GCMRL#  142 dt 129.472000 rms  0.744  0.063% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.0170 tsec 5.3500
+#GCMRL#  143 dt 129.472000 rms  0.744  0.059% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.0010 tsec 5.3540
+#GCMRL#  144 dt 129.472000 rms  0.743  0.057% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.0370 tsec 5.3640
+#GCMRL#  145 dt 129.472000 rms  0.743  0.057% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.0520 tsec 5.3730
+#GCMRL#  146 dt 129.472000 rms  0.742  0.060% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.0740 tsec 5.3800
+#GCMRL#  147 dt 129.472000 rms  0.742  0.059% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.0620 tsec 5.3660
+#GCMRL#  148 dt 129.472000 rms  0.741  0.054% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.0410 tsec 5.3520
+#GCMRL#  149 dt 129.472000 rms  0.741  0.049% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.0520 tsec 5.3630
+#GCMRL#  150 dt 129.472000 rms  0.741  0.050% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.0130 tsec 5.3230
+#GCMRL#  151 dt 129.472000 rms  0.740  0.048% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.0500 tsec 5.3500
+#GCMRL#  152 dt 129.472000 rms  0.740  0.049% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.1320 tsec 5.4320
+#GCMRL#  153 dt 129.472000 rms  0.740  0.051% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.1520 tsec 5.4770
+#GCMRL#  154 dt 129.472000 rms  0.739  0.047% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.2090 tsec 5.5240
+#GCMRL#  155 dt 129.472000 rms  0.739  0.046% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.1050 tsec 5.4160
+#GCMRL#  156 dt 129.472000 rms  0.739  0.046% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.1420 tsec 5.4720
+#GCMRL#  157 dt 129.472000 rms  0.738  0.044% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.0340 tsec 5.3380
+#GCMRL#  158 dt 129.472000 rms  0.738  0.048% neg 0  invalid 762 tFOTS 0.0000 tGradient 4.9250 tsec 5.2440
+#GCMRL#  159 dt 129.472000 rms  0.738  0.047% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.0490 tsec 5.3730
+#GCMRL#  160 dt 129.472000 rms  0.737  0.049% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.0210 tsec 5.3530
+#GCMRL#  161 dt 129.472000 rms  0.737  0.049% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.0290 tsec 5.3590
+#GCMRL#  162 dt 129.472000 rms  0.736  0.048% neg 0  invalid 762 tFOTS 0.0000 tGradient 4.9430 tsec 5.2630
+#GCMRL#  163 dt 129.472000 rms  0.736  0.051% neg 0  invalid 762 tFOTS 0.0000 tGradient 4.9950 tsec 5.3200
+#GCMRL#  164 dt 129.472000 rms  0.736  0.047% neg 0  invalid 762 tFOTS 0.0000 tGradient 4.7910 tsec 5.1080
+#GCMRL#  165 dt 129.472000 rms  0.735  0.047% neg 0  invalid 762 tFOTS 0.0000 tGradient 4.8600 tsec 5.1820
+#GCMRL#  166 dt 129.472000 rms  0.735  0.045% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.0980 tsec 5.4150
+#GCMRL#  167 dt 129.472000 rms  0.735  0.046% neg 0  invalid 762 tFOTS 0.0000 tGradient 4.7440 tsec 5.0600
+#GCMRL#  168 dt 129.472000 rms  0.734  0.045% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.0700 tsec 5.3900
+#GCMRL#  169 dt 129.472000 rms  0.734  0.051% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.2250 tsec 5.5370
+#GCMRL#  170 dt 129.472000 rms  0.734  0.045% neg 0  invalid 762 tFOTS 0.0000 tGradient 4.7230 tsec 5.0610
+#GCMRL#  171 dt 129.472000 rms  0.733  0.050% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.2200 tsec 5.5370
+#GCMRL#  172 dt 129.472000 rms  0.733  0.049% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.0680 tsec 5.3930
+#GCMRL#  173 dt 129.472000 rms  0.733  0.046% neg 0  invalid 762 tFOTS 0.0000 tGradient 4.7860 tsec 5.1090
+#GCMRL#  174 dt 129.472000 rms  0.732  0.037% neg 0  invalid 762 tFOTS 0.0000 tGradient 4.9560 tsec 5.2670
+#GCMRL#  175 dt 129.472000 rms  0.732  0.046% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.0900 tsec 5.4210
+#GCMRL#  176 dt 129.472000 rms  0.732  0.044% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.0420 tsec 5.3580
+#GCMRL#  177 dt 129.472000 rms  0.731  0.041% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.0490 tsec 5.3730
+#GCMRL#  178 dt 129.472000 rms  0.731  0.034% neg 0  invalid 762 tFOTS 0.0000 tGradient 4.6430 tsec 4.9540
+#GCMRL#  179 dt 129.472000 rms  0.731  0.037% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.0300 tsec 5.3450
+#GCMRL#  180 dt 129.472000 rms  0.731  0.042% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.0750 tsec 5.3820
+#GCMRL#  181 dt 129.472000 rms  0.730  0.031% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.0270 tsec 5.3480
+#GCMRL#  182 dt 129.472000 rms  0.730  0.029% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.1030 tsec 5.4220
+#GCMRL#  183 dt 129.472000 rms  0.730  0.027% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.1080 tsec 5.4270
+#GCMRL#  184 dt 129.472000 rms  0.730  0.031% neg 0  invalid 762 tFOTS 0.0000 tGradient 4.8150 tsec 5.1290
+#GCMRL#  185 dt 129.472000 rms  0.729  0.037% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.0890 tsec 5.4040
+#GCMRL#  186 dt 129.472000 rms  0.729  0.033% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.0530 tsec 5.3620
+#GCMRL#  187 dt 129.472000 rms  0.729  0.026% neg 0  invalid 762 tFOTS 0.0000 tGradient 4.7610 tsec 5.0640
+#GCMRL#  188 dt 129.472000 rms  0.729  0.022% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.0990 tsec 5.4240
+#GCMRL#  189 dt 129.472000 rms  0.729  0.026% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.0540 tsec 5.3820
+#GCMRL#  190 dt 129.472000 rms  0.728  0.025% neg 0  invalid 762 tFOTS 0.0000 tGradient 4.7550 tsec 5.0730
+#GCMRL#  191 dt 129.472000 rms  0.728  0.026% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.0520 tsec 5.3710
+#GCMRL#  192 dt 129.472000 rms  0.728  0.025% neg 0  invalid 762 tFOTS 0.0000 tGradient 4.7280 tsec 5.0500
+#GCMRL#  193 dt 129.472000 rms  0.728  0.024% neg 0  invalid 762 tFOTS 0.0000 tGradient 4.6740 tsec 5.0230
+#GCMRL#  194 dt 1479.680000 rms  0.728  0.000% neg 0  invalid 762 tFOTS 4.4460 tGradient 4.7310 tsec 9.5200
+
+#GCAMreg# pass 0 level1 5 level2 1 tsec 627.759 sigma 0.5
+l_jacobian=1.00 l_label=1.00 l_log_likelihood=0.20 l_smoothness=0.01 
+tol=5.00e-02, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=256, sigma=0.5,type=2, relabel=0, neg=no
+
+blurring input image with Gaussian with sigma=0.500...
+GCAMRegisterLevel(): init RMS 0.729058
+#FOTS# QuadFit found better minimum quadopt=(dt=129.472,rms=0.727196) vs oldopt=(dt=92.48,rms=0.727321)
+#GCMRL#  196 dt 129.472000 rms  0.727  0.255% neg 0  invalid 762 tFOTS 4.2310 tGradient 5.0630 tsec 9.6300
+#FOTS# QuadFit found better minimum quadopt=(dt=443.904,rms=0.726475) vs oldopt=(dt=369.92,rms=0.726501)
+#GCMRL#  197 dt 443.904000 rms  0.726  0.099% neg 0  invalid 762 tFOTS 4.2230 tGradient 5.1150 tsec 9.6680
+#FOTS# QuadFit found better minimum quadopt=(dt=129.472,rms=0.726319) vs oldopt=(dt=92.48,rms=0.726345)
+#GCMRL#  198 dt 129.472000 rms  0.726  0.000% neg 0  invalid 762 tFOTS 4.4880 tGradient 5.1660 tsec 9.9910
+#GCMRL#  199 dt 129.472000 rms  0.726  0.027% neg 0  invalid 762 tFOTS 0.0000 tGradient 4.3710 tsec 4.6880
+#GCMRL#  200 dt 129.472000 rms  0.726  0.040% neg 0  invalid 762 tFOTS 0.0000 tGradient 4.7770 tsec 5.0870
+#GCMRL#  201 dt 129.472000 rms  0.725  0.047% neg 0  invalid 762 tFOTS 0.0000 tGradient 4.6850 tsec 4.9980
+#GCMRL#  202 dt 129.472000 rms  0.725  0.049% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.1310 tsec 5.4460
+#GCMRL#  203 dt 129.472000 rms  0.725  0.050% neg 0  invalid 762 tFOTS 0.0000 tGradient 4.7690 tsec 5.0780
+#GCMRL#  204 dt 129.472000 rms  0.724  0.047% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.0110 tsec 5.3280
+#GCMRL#  205 dt 129.472000 rms  0.724  0.037% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.0440 tsec 5.3600
+#GCMRL#  206 dt 129.472000 rms  0.724  0.035% neg 0  invalid 762 tFOTS 0.0000 tGradient 4.9800 tsec 5.2980
+#GCMRL#  207 dt 129.472000 rms  0.724  0.030% neg 0  invalid 762 tFOTS 0.0000 tGradient 4.9710 tsec 5.2960
+#GCMRL#  208 dt 129.472000 rms  0.723  0.032% neg 0  invalid 762 tFOTS 0.0000 tGradient 4.9000 tsec 5.2170
+#GCMRL#  209 dt 129.472000 rms  0.723  0.031% neg 0  invalid 762 tFOTS 0.0000 tGradient 4.7940 tsec 5.1260
+#GCMRL#  210 dt 129.472000 rms  0.723  0.031% neg 0  invalid 762 tFOTS 0.0000 tGradient 4.6970 tsec 5.0210
+#GCMRL#  211 dt 129.472000 rms  0.723  0.027% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.0240 tsec 5.3430
+#GCMRL#  212 dt 129.472000 rms  0.723  0.021% neg 0  invalid 762 tFOTS 0.0000 tGradient 5.0730 tsec 5.4140
+#GCMRL#  213 dt 129.472000 rms  0.723  0.019% neg 0  invalid 762 tFOTS 0.0000 tGradient 4.8110 tsec 5.1690
+#GCMRL#  214 dt 369.920000 rms  0.723  0.000% neg 0  invalid 762 tFOTS 4.7370 tGradient 4.9410 tsec 10.0130
+setting smoothness cost coefficient to 0.031
+
+#GCAMreg# pass 0 level1 4 level2 0 tsec 0 sigma 2
+l_jacobian=1.00 l_label=1.00 l_log_likelihood=0.20 l_smoothness=0.03 
+tol=5.00e-02, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=64, sigma=2.0,type=2, relabel=0, neg=no
+
+blurring input image with Gaussian with sigma=2.000...
+GCAMRegisterLevel(): init RMS 0.725614
+#FOTS# QuadFit found better minimum quadopt=(dt=137.181,rms=0.720092) vs oldopt=(dt=103.68,rms=0.720291)
+#GCMRL#  216 dt 137.181435 rms  0.720  0.761% neg 0  invalid 762 tFOTS 4.2120 tGradient 2.7580 tsec 7.3010
+#FOTS# QuadFit found better minimum quadopt=(dt=178.914,rms=0.712147) vs oldopt=(dt=103.68,rms=0.713379)
+#GCMRL#  217 dt 178.914498 rms  0.712  1.103% neg 0  invalid 762 tFOTS 4.1350 tGradient 2.9270 tsec 7.4150
+#FOTS# QuadFit found better minimum quadopt=(dt=70.209,rms=0.708044) vs oldopt=(dt=25.92,rms=0.70907)
+#GCMRL#  218 dt  70.208955 rms  0.708  0.576% neg 0  invalid 762 tFOTS 4.2010 tGradient 3.1120 tsec 7.6370
+#FOTS# QuadFit found better minimum quadopt=(dt=145.152,rms=0.703744) vs oldopt=(dt=103.68,rms=0.704072)
+#GCMRL#  219 dt 145.152000 rms  0.704  0.607% neg 0  invalid 762 tFOTS 4.8350 tGradient 2.8440 tsec 8.0250
+#FOTS# QuadFit found better minimum quadopt=(dt=36.288,rms=0.701196) vs oldopt=(dt=25.92,rms=0.701704)
+#GCMRL#  220 dt  36.288000 rms  0.701  0.362% neg 0  invalid 762 tFOTS 4.1350 tGradient 2.7940 tsec 7.2690
+#FOTS# QuadFit found better minimum quadopt=(dt=145.152,rms=0.697925) vs oldopt=(dt=103.68,rms=0.698534)
+#GCMRL#  221 dt 145.152000 rms  0.698  0.466% neg 0  invalid 762 tFOTS 3.8820 tGradient 2.8080 tsec 7.0290
+#FOTS# QuadFit found better minimum quadopt=(dt=101.176,rms=0.695082) vs oldopt=(dt=103.68,rms=0.695085)
+#GCMRL#  222 dt 101.176471 rms  0.695  0.407% neg 0  invalid 762 tFOTS 4.3830 tGradient 3.2070 tsec 7.9190
+#FOTS# QuadFit found better minimum quadopt=(dt=36.288,rms=0.693627) vs oldopt=(dt=25.92,rms=0.693924)
+#GCMRL#  223 dt  36.288000 rms  0.694  0.209% neg 0  invalid 762 tFOTS 4.5120 tGradient 2.8160 tsec 7.6750
+#GCMRL#  224 dt 414.720000 rms  0.689  0.709% neg 0  invalid 762 tFOTS 3.9220 tGradient 3.1940 tsec 7.4530
+#FOTS# QuadFit found better minimum quadopt=(dt=66.9091,rms=0.684202) vs oldopt=(dt=25.92,rms=0.685424)
+#GCMRL#  225 dt  66.909091 rms  0.684  0.654% neg 0  invalid 762 tFOTS 4.2710 tGradient 2.7610 tsec 7.3410
+#FOTS# QuadFit found better minimum quadopt=(dt=36.288,rms=0.683343) vs oldopt=(dt=25.92,rms=0.683505)
+#GCMRL#  226 dt  36.288000 rms  0.683  0.126% neg 0  invalid 762 tFOTS 3.9190 tGradient 2.7070 tsec 6.9330
+#GCMRL#  227 dt 414.720000 rms  0.680  0.450% neg 0  invalid 762 tFOTS 3.9000 tGradient 2.7770 tsec 6.9880
+#FOTS# QuadFit found better minimum quadopt=(dt=71.1111,rms=0.6769) vs oldopt=(dt=25.92,rms=0.677785)
+#GCMRL#  228 dt  71.111111 rms  0.677  0.495% neg 0  invalid 762 tFOTS 4.2830 tGradient 2.8040 tsec 7.4330
+#FOTS# QuadFit found better minimum quadopt=(dt=36.288,rms=0.676139) vs oldopt=(dt=25.92,rms=0.676253)
+#GCMRL#  229 dt  36.288000 rms  0.676  0.112% neg 0  invalid 762 tFOTS 4.0880 tGradient 3.1450 tsec 7.5750
+#FOTS# QuadFit found better minimum quadopt=(dt=331.776,rms=0.674614) vs oldopt=(dt=414.72,rms=0.674789)
+#GCMRL#  230 dt 331.776000 rms  0.675  0.225% neg 0  invalid 762 tFOTS 4.0260 tGradient 3.0100 tsec 7.3430
+#FOTS# QuadFit found better minimum quadopt=(dt=36.288,rms=0.672353) vs oldopt=(dt=25.92,rms=0.67281)
+#GCMRL#  231 dt  36.288000 rms  0.672  0.335% neg 0  invalid 762 tFOTS 4.0240 tGradient 2.7830 tsec 7.1170
+#FOTS# QuadFit found better minimum quadopt=(dt=331.776,rms=0.670233) vs oldopt=(dt=414.72,rms=0.67038)
+#GCMRL#  232 dt 331.776000 rms  0.670  0.315% neg 0  invalid 762 tFOTS 4.4630 tGradient 2.8390 tsec 7.6670
+#FOTS# QuadFit found better minimum quadopt=(dt=36.288,rms=0.668994) vs oldopt=(dt=25.92,rms=0.66917)
+#GCMRL#  233 dt  36.288000 rms  0.669  0.185% neg 0  invalid 762 tFOTS 4.4460 tGradient 2.8740 tsec 7.6480
+#FOTS# QuadFit found better minimum quadopt=(dt=124.416,rms=0.668393) vs oldopt=(dt=103.68,rms=0.668403)
+#GCMRL#  234 dt 124.416000 rms  0.668  0.090% neg 0  invalid 762 tFOTS 4.5710 tGradient 2.7780 tsec 7.6900
+#GCMRL#  235 dt 103.680000 rms  0.667  0.190% neg 0  invalid 762 tFOTS 4.6560 tGradient 2.7460 tsec 7.7650
+#FOTS# QuadFit found better minimum quadopt=(dt=36.288,rms=0.66676) vs oldopt=(dt=25.92,rms=0.666811)
+#GCMRL#  236 dt  36.288000 rms  0.667  0.054% neg 0  invalid 762 tFOTS 4.6860 tGradient 3.0270 tsec 8.0490
+#GCMRL#  237 dt 414.720000 rms  0.665  0.195% neg 0  invalid 762 tFOTS 4.5210 tGradient 2.8560 tsec 7.7260
+#FOTS# QuadFit found better minimum quadopt=(dt=36.288,rms=0.663697) vs oldopt=(dt=25.92,rms=0.664052)
+#GCMRL#  238 dt  36.288000 rms  0.664  0.265% neg 0  invalid 762 tFOTS 4.8090 tGradient 2.8800 tsec 8.0360
+#FOTS# QuadFit found better minimum quadopt=(dt=145.152,rms=0.662598) vs oldopt=(dt=103.68,rms=0.66283)
+#GCMRL#  239 dt 145.152000 rms  0.663  0.165% neg 0  invalid 762 tFOTS 4.6000 tGradient 2.8560 tsec 7.8130
+#FOTS# QuadFit found better minimum quadopt=(dt=36.288,rms=0.662416) vs oldopt=(dt=25.92,rms=0.66244)
+#GCMRL#  240 dt  36.288000 rms  0.662  0.000% neg 0  invalid 762 tFOTS 4.7440 tGradient 3.0450 tsec 8.1340
+#GCMRL#  241 dt  36.288000 rms  0.662  0.030% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.9610 tsec 3.3000
+#GCMRL#  242 dt  36.288000 rms  0.662  0.057% neg 0  invalid 762 tFOTS 0.0000 tGradient 3.1770 tsec 3.5000
+#GCMRL#  243 dt  36.288000 rms  0.661  0.082% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.8650 tsec 3.1800
+#GCMRL#  244 dt  36.288000 rms  0.661  0.109% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.8540 tsec 3.1790
+#GCMRL#  245 dt  36.288000 rms  0.660  0.129% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.9470 tsec 3.3160
+#GCMRL#  246 dt  36.288000 rms  0.659  0.139% neg 0  invalid 762 tFOTS 0.0000 tGradient 3.0190 tsec 3.3570
+#GCMRL#  247 dt  36.288000 rms  0.658  0.143% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.9070 tsec 3.2630
+#GCMRL#  248 dt  36.288000 rms  0.657  0.149% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.7870 tsec 3.1350
+#GCMRL#  249 dt  36.288000 rms  0.656  0.139% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.8470 tsec 3.1920
+#GCMRL#  250 dt  36.288000 rms  0.655  0.148% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.7530 tsec 3.0730
+#GCMRL#  251 dt  36.288000 rms  0.654  0.158% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.7890 tsec 3.1140
+#GCMRL#  252 dt  36.288000 rms  0.653  0.155% neg 0  invalid 762 tFOTS 0.0000 tGradient 3.0580 tsec 3.3860
+#GCMRL#  253 dt  36.288000 rms  0.652  0.147% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.9880 tsec 3.3470
+#GCMRL#  254 dt  36.288000 rms  0.651  0.139% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.8470 tsec 3.2190
+#GCMRL#  255 dt  36.288000 rms  0.650  0.133% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.8110 tsec 3.1290
+#GCMRL#  256 dt  36.288000 rms  0.649  0.135% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.8500 tsec 3.2000
+#GCMRL#  257 dt  36.288000 rms  0.648  0.136% neg 0  invalid 762 tFOTS 0.0000 tGradient 3.1840 tsec 3.5100
+#GCMRL#  258 dt  36.288000 rms  0.648  0.130% neg 0  invalid 762 tFOTS 0.0000 tGradient 3.0030 tsec 3.3340
+#GCMRL#  259 dt  36.288000 rms  0.647  0.117% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.9340 tsec 3.2580
+#GCMRL#  260 dt  36.288000 rms  0.646  0.114% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.9280 tsec 3.2960
+#GCMRL#  261 dt  36.288000 rms  0.645  0.110% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.8380 tsec 3.2100
+#GCMRL#  262 dt  36.288000 rms  0.645  0.105% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.8580 tsec 3.1810
+#GCMRL#  263 dt  36.288000 rms  0.644  0.120% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.9390 tsec 3.3180
+#GCMRL#  264 dt  36.288000 rms  0.643  0.104% neg 0  invalid 762 tFOTS 0.0000 tGradient 3.2810 tsec 3.6140
+#GCMRL#  265 dt  36.288000 rms  0.643  0.111% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.8750 tsec 3.2380
+#GCMRL#  266 dt  36.288000 rms  0.642  0.111% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.9470 tsec 3.2980
+#GCMRL#  267 dt  36.288000 rms  0.641  0.104% neg 0  invalid 762 tFOTS 0.0000 tGradient 3.0450 tsec 3.3920
+#GCMRL#  268 dt  36.288000 rms  0.641  0.103% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.9980 tsec 3.3890
+#GCMRL#  269 dt  36.288000 rms  0.640  0.103% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.9800 tsec 3.3120
+#GCMRL#  270 dt  36.288000 rms  0.639  0.103% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.9930 tsec 3.3690
+#GCMRL#  271 dt  36.288000 rms  0.639  0.092% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.9130 tsec 3.2360
+#GCMRL#  272 dt  36.288000 rms  0.638  0.088% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.8040 tsec 3.1710
+#GCMRL#  273 dt  36.288000 rms  0.638  0.087% neg 0  invalid 762 tFOTS 0.0000 tGradient 3.0450 tsec 3.3890
+#GCMRL#  274 dt  36.288000 rms  0.637  0.077% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.8780 tsec 3.2270
+#GCMRL#  275 dt  36.288000 rms  0.637  0.075% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.9150 tsec 3.3050
+#GCMRL#  276 dt  36.288000 rms  0.636  0.072% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.7850 tsec 3.0970
+#GCMRL#  277 dt  36.288000 rms  0.636  0.075% neg 0  invalid 762 tFOTS 0.0000 tGradient 3.0350 tsec 3.4000
+#GCMRL#  278 dt  36.288000 rms  0.635  0.067% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.9260 tsec 3.2590
+#GCMRL#  279 dt  36.288000 rms  0.635  0.008% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.8360 tsec 3.3360
+#GCMRL#  280 dt  36.288000 rms  0.635  0.009% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.8830 tsec 3.1920
+#GCMRL#  281 dt  36.288000 rms  0.635  0.017% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.7290 tsec 3.0440
+#GCMRL#  282 dt  36.288000 rms  0.635  0.017% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.7540 tsec 3.0880
+#GCMRL#  283 dt  36.288000 rms  0.635  0.027% neg 0  invalid 762 tFOTS 0.0000 tGradient 3.0360 tsec 3.3580
+#GCMRL#  284 dt  36.288000 rms  0.635  0.025% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.7310 tsec 3.0800
+#GCMRL#  285 dt  36.288000 rms  0.634  0.031% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.8410 tsec 3.1800
+#GCMRL#  286 dt  36.288000 rms  0.634  0.031% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.9760 tsec 3.3310
+#GCMRL#  287 dt  36.288000 rms  0.634  0.034% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.8500 tsec 3.2400
+#GCMRL#  288 dt  36.288000 rms  0.634  0.038% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.8570 tsec 3.2160
+#GCMRL#  289 dt  36.288000 rms  0.633  0.036% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.9140 tsec 3.2440
+#GCMRL#  290 dt  36.288000 rms  0.633  0.036% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.8580 tsec 3.1700
+#GCMRL#  291 dt  36.288000 rms  0.633  0.035% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.8060 tsec 3.1390
+#GCMRL#  292 dt  36.288000 rms  0.633  0.035% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.9980 tsec 3.3440
+#GCMRL#  293 dt  36.288000 rms  0.633  0.041% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.9000 tsec 3.2630
+#GCMRL#  294 dt  36.288000 rms  0.632  0.041% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.8370 tsec 3.1650
+#GCMRL#  295 dt  36.288000 rms  0.632  0.043% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.9080 tsec 3.2700
+#GCMRL#  296 dt  36.288000 rms  0.632  0.040% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.7890 tsec 3.1200
+#GCMRL#  297 dt  36.288000 rms  0.631  0.039% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.9580 tsec 3.3120
+#GCMRL#  298 dt  36.288000 rms  0.631  0.044% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.7940 tsec 3.1440
+#GCMRL#  299 dt  36.288000 rms  0.631  0.037% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.7370 tsec 3.0560
+#GCMRL#  300 dt  36.288000 rms  0.631  0.046% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.6940 tsec 3.0180
+#GCMRL#  301 dt  36.288000 rms  0.630  0.044% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.9550 tsec 3.3020
+#GCMRL#  302 dt  36.288000 rms  0.630  0.044% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.7900 tsec 3.1390
+#GCMRL#  303 dt  36.288000 rms  0.630  0.039% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.9960 tsec 3.3590
+#GCMRL#  304 dt  36.288000 rms  0.630  0.035% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.8160 tsec 3.1690
+#GCMRL#  305 dt  36.288000 rms  0.629  0.037% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.7600 tsec 3.1250
+#GCMRL#  306 dt  36.288000 rms  0.629  0.006% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.9720 tsec 3.5160
+#GCMRL#  307 dt  36.288000 rms  0.629  0.013% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.8400 tsec 3.2020
+#GCMRL#  308 dt  36.288000 rms  0.629  0.009% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.7930 tsec 3.1470
+#FOTS# QuadFit found better minimum quadopt=(dt=36.288,rms=0.629222) vs oldopt=(dt=25.92,rms=0.629223)
+#GCMRL#  309 dt  36.288000 rms  0.629  0.000% neg 0  invalid 762 tFOTS 4.4760 tGradient 2.8960 tsec 7.7400
+#GCMRL#  310 dt  36.288000 rms  0.629  0.002% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.9920 tsec 3.3230
+#GCMRL#  311 dt  36.288000 rms  0.629  0.004% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.9000 tsec 3.2580
+
+#GCAMreg# pass 0 level1 4 level2 1 tsec 437.623 sigma 0.5
+l_jacobian=1.00 l_label=1.00 l_log_likelihood=0.20 l_smoothness=0.03 
+tol=5.00e-02, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=64, sigma=0.5,type=2, relabel=0, neg=no
+
+blurring input image with Gaussian with sigma=0.500...
+GCAMRegisterLevel(): init RMS 0.630786
+#FOTS# QuadFit found better minimum quadopt=(dt=124.416,rms=0.627237) vs oldopt=(dt=103.68,rms=0.627297)
+#GCMRL#  313 dt 124.416000 rms  0.627  0.563% neg 0  invalid 762 tFOTS 4.3610 tGradient 2.7820 tsec 7.4880
+#FOTS# QuadFit found better minimum quadopt=(dt=78.5067,rms=0.626468) vs oldopt=(dt=103.68,rms=0.626557)
+#GCMRL#  314 dt  78.506667 rms  0.626  0.123% neg 0  invalid 762 tFOTS 4.4980 tGradient 2.8580 tsec 7.6840
+#FOTS# QuadFit found better minimum quadopt=(dt=62.208,rms=0.626129) vs oldopt=(dt=103.68,rms=0.626198)
+#GCMRL#  315 dt  62.208000 rms  0.626  0.054% neg 0  invalid 762 tFOTS 4.4990 tGradient 2.9690 tsec 7.8040
+#FOTS# QuadFit found better minimum quadopt=(dt=145.152,rms=0.625513) vs oldopt=(dt=103.68,rms=0.625605)
+#GCMRL#  316 dt 145.152000 rms  0.626  0.098% neg 0  invalid 762 tFOTS 4.5420 tGradient 2.9700 tsec 7.8360
+#FOTS# QuadFit found better minimum quadopt=(dt=36.288,rms=0.625327) vs oldopt=(dt=25.92,rms=0.625357)
+#GCMRL#  317 dt  36.288000 rms  0.625  0.000% neg 0  invalid 762 tFOTS 4.8120 tGradient 2.7920 tsec 7.9600
+#GCMRL#  318 dt  36.288000 rms  0.625  0.019% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.7440 tsec 3.0670
+#GCMRL#  319 dt  36.288000 rms  0.625  0.031% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.9410 tsec 3.2830
+#GCMRL#  320 dt  36.288000 rms  0.625  0.046% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.9140 tsec 3.2550
+#GCMRL#  321 dt  36.288000 rms  0.624  0.057% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.7450 tsec 3.0750
+#GCMRL#  322 dt  36.288000 rms  0.624  0.064% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.7390 tsec 3.0930
+#GCMRL#  323 dt  36.288000 rms  0.624  0.063% neg 0  invalid 762 tFOTS 0.0000 tGradient 3.0160 tsec 3.3610
+#GCMRL#  324 dt  36.288000 rms  0.623  0.057% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.8410 tsec 3.1770
+#GCMRL#  325 dt  36.288000 rms  0.623  0.058% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.8690 tsec 3.2180
+#GCMRL#  326 dt  36.288000 rms  0.622  0.058% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.9900 tsec 3.3280
+#GCMRL#  327 dt  36.288000 rms  0.622  0.061% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.9490 tsec 3.2660
+#GCMRL#  328 dt  36.288000 rms  0.622  0.062% neg 0  invalid 762 tFOTS 0.0000 tGradient 3.0040 tsec 3.3600
+#GCMRL#  329 dt  36.288000 rms  0.621  0.056% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.8900 tsec 3.2230
+#GCMRL#  330 dt  36.288000 rms  0.621  0.058% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.9840 tsec 3.3160
+#GCMRL#  331 dt  36.288000 rms  0.621  0.054% neg 0  invalid 762 tFOTS 0.0000 tGradient 3.1000 tsec 3.4480
+#GCMRL#  332 dt  36.288000 rms  0.620  0.057% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.8110 tsec 3.1420
+#GCMRL#  333 dt  36.288000 rms  0.620  0.061% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.7720 tsec 3.0900
+#GCMRL#  334 dt  36.288000 rms  0.620  0.060% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.8900 tsec 3.2140
+#GCMRL#  335 dt  36.288000 rms  0.619  0.052% neg 0  invalid 762 tFOTS 0.0000 tGradient 3.0730 tsec 3.4030
+#GCMRL#  336 dt  36.288000 rms  0.619  0.047% neg 0  invalid 762 tFOTS 0.0000 tGradient 3.0850 tsec 3.3990
+#GCMRL#  337 dt  36.288000 rms  0.619  0.044% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.8820 tsec 3.2100
+#GCMRL#  338 dt  36.288000 rms  0.618  0.045% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.9790 tsec 3.3200
+#GCMRL#  339 dt  36.288000 rms  0.618  0.046% neg 0  invalid 762 tFOTS 0.0000 tGradient 3.0400 tsec 3.3550
+#GCMRL#  340 dt  36.288000 rms  0.618  0.051% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.8700 tsec 3.2050
+#GCMRL#  341 dt  36.288000 rms  0.618  0.047% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.9420 tsec 3.2870
+#GCMRL#  342 dt  36.288000 rms  0.617  0.044% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.8400 tsec 3.1720
+#GCMRL#  343 dt  36.288000 rms  0.617  0.042% neg 0  invalid 762 tFOTS 0.0000 tGradient 3.0360 tsec 3.3900
+#GCMRL#  344 dt  36.288000 rms  0.617  0.042% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.7680 tsec 3.0900
+#GCMRL#  345 dt  36.288000 rms  0.616  0.042% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.9290 tsec 3.2370
+#GCMRL#  346 dt  36.288000 rms  0.616  0.045% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.7570 tsec 3.0670
+#GCMRL#  347 dt  36.288000 rms  0.616  0.040% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.9150 tsec 3.2530
+#GCMRL#  348 dt  36.288000 rms  0.616  0.035% neg 0  invalid 762 tFOTS 0.0000 tGradient 3.1180 tsec 3.4340
+#GCMRL#  349 dt  36.288000 rms  0.615  0.041% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.7270 tsec 3.0620
+#GCMRL#  350 dt  36.288000 rms  0.615  0.036% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.7290 tsec 3.1020
+#GCMRL#  351 dt  36.288000 rms  0.615  0.040% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.9100 tsec 3.2370
+#GCMRL#  352 dt  36.288000 rms  0.615  0.035% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.7940 tsec 3.1420
+#GCMRL#  353 dt  36.288000 rms  0.615  0.040% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.8450 tsec 3.2410
+#GCMRL#  354 dt  36.288000 rms  0.614  0.036% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.9510 tsec 3.3410
+#GCMRL#  355 dt  36.288000 rms  0.614  0.033% neg 0  invalid 762 tFOTS 0.0000 tGradient 3.0070 tsec 3.3540
+#GCMRL#  356 dt  36.288000 rms  0.614  0.034% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.7860 tsec 3.1520
+#GCMRL#  357 dt  36.288000 rms  0.614  0.031% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.9370 tsec 3.2930
+#GCMRL#  358 dt  36.288000 rms  0.614  0.029% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.7930 tsec 3.1500
+#GCMRL#  359 dt  36.288000 rms  0.613  0.024% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.7680 tsec 3.1630
+#GCMRL#  360 dt  36.288000 rms  0.613  0.031% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.8850 tsec 3.2670
+#GCMRL#  361 dt  36.288000 rms  0.613  0.030% neg 0  invalid 762 tFOTS 0.0000 tGradient 3.0210 tsec 3.3940
+#GCMRL#  362 dt  36.288000 rms  0.613  0.026% neg 0  invalid 762 tFOTS 0.0000 tGradient 3.1880 tsec 3.5510
+#GCMRL#  363 dt  36.288000 rms  0.613  0.032% neg 0  invalid 762 tFOTS 0.0000 tGradient 3.0900 tsec 3.5030
+#GCMRL#  364 dt  36.288000 rms  0.612  0.030% neg 0  invalid 762 tFOTS 0.0000 tGradient 3.2100 tsec 3.5590
+#GCMRL#  365 dt  36.288000 rms  0.612  0.032% neg 0  invalid 762 tFOTS 0.0000 tGradient 3.0120 tsec 3.3820
+#GCMRL#  366 dt  36.288000 rms  0.612  0.028% neg 0  invalid 762 tFOTS 0.0000 tGradient 3.1240 tsec 3.4640
+#GCMRL#  367 dt  36.288000 rms  0.612  0.031% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.9220 tsec 3.2580
+#GCMRL#  368 dt  36.288000 rms  0.612  0.028% neg 0  invalid 762 tFOTS 0.0000 tGradient 3.3190 tsec 3.7100
+#GCMRL#  369 dt  36.288000 rms  0.612  0.024% neg 0  invalid 762 tFOTS 0.0000 tGradient 3.3120 tsec 3.6480
+#GCMRL#  370 dt  36.288000 rms  0.611  0.026% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.9930 tsec 3.3440
+#GCMRL#  371 dt  36.288000 rms  0.611  0.023% neg 0  invalid 762 tFOTS 0.0000 tGradient 3.2330 tsec 3.5970
+#GCMRL#  372 dt  36.288000 rms  0.611  0.022% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.9000 tsec 3.2900
+#FOTS# QuadFit found better minimum quadopt=(dt=145.152,rms=0.611094) vs oldopt=(dt=103.68,rms=0.611107)
+#GCMRL#  373 dt 145.152000 rms  0.611  0.000% neg 0  invalid 762 tFOTS 4.5150 tGradient 3.3320 tsec 8.2320
+setting smoothness cost coefficient to 0.118
+
+#GCAMreg# pass 0 level1 3 level2 0 tsec 0 sigma 2
+l_jacobian=1.00 l_label=1.00 l_log_likelihood=0.20 l_smoothness=0.12 
+tol=5.00e-02, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=16, sigma=2.0,type=2, relabel=0, neg=no
+
+blurring input image with Gaussian with sigma=2.000...
+GCAMRegisterLevel(): init RMS 0.623176
+#FOTS# QuadFit found better minimum quadopt=(dt=23.3143,rms=0.620274) vs oldopt=(dt=32,rms=0.620584)
+#GCMRL#  375 dt  23.314286 rms  0.620  0.466% neg 0  invalid 762 tFOTS 4.7490 tGradient 2.2110 tsec 7.3170
+#FOTS# QuadFit found better minimum quadopt=(dt=44.8,rms=0.617138) vs oldopt=(dt=32,rms=0.617708)
+#GCMRL#  376 dt  44.800000 rms  0.617  0.506% neg 0  invalid 762 tFOTS 4.1770 tGradient 2.2880 tsec 6.8140
+#FOTS# QuadFit found better minimum quadopt=(dt=121.705,rms=0.612331) vs oldopt=(dt=32,rms=0.614104)
+#GCMRL#  377 dt 121.704918 rms  0.612  0.779% neg 0  invalid 762 tFOTS 4.1190 tGradient 2.0910 tsec 6.5320
+#FOTS# QuadFit found better minimum quadopt=(dt=19.9706,rms=0.606104) vs oldopt=(dt=32,rms=0.607647)
+#GCMRL#  378 dt  19.970631 rms  0.606  1.017% neg 0  invalid 762 tFOTS 4.2340 tGradient 1.9890 tsec 6.5870
+#FOTS# QuadFit found better minimum quadopt=(dt=44.8,rms=0.603796) vs oldopt=(dt=32,rms=0.604275)
+#GCMRL#  379 dt  44.800000 rms  0.604  0.381% neg 0  invalid 762 tFOTS 4.2680 tGradient 2.0730 tsec 6.6830
+#FOTS# QuadFit found better minimum quadopt=(dt=52.4626,rms=0.601088) vs oldopt=(dt=32,rms=0.601373)
+#GCMRL#  380 dt  52.462585 rms  0.601  0.448% neg 0  invalid 762 tFOTS 4.2940 tGradient 2.0200 tsec 6.6610
+#FOTS# QuadFit found better minimum quadopt=(dt=11.2,rms=0.599576) vs oldopt=(dt=8,rms=0.599893)
+#GCMRL#  381 dt  11.200000 rms  0.600  0.252% neg 0  invalid 762 tFOTS 4.5690 tGradient 2.1650 tsec 7.0860
+#FOTS# QuadFit found better minimum quadopt=(dt=38.4,rms=0.598402) vs oldopt=(dt=32,rms=0.598438)
+#GCMRL#  382 dt  38.400000 rms  0.598  0.196% neg 0  invalid 762 tFOTS 4.5640 tGradient 2.1850 tsec 7.1110
+#GCMRL#  383 dt  32.000000 rms  0.597  0.302% neg 0  invalid 762 tFOTS 4.3060 tGradient 2.1070 tsec 6.7750
+#FOTS# QuadFit found better minimum quadopt=(dt=25.6,rms=0.595647) vs oldopt=(dt=32,rms=0.595751)
+#GCMRL#  384 dt  25.600000 rms  0.596  0.159% neg 0  invalid 762 tFOTS 4.5080 tGradient 2.1260 tsec 6.9710
+#FOTS# QuadFit found better minimum quadopt=(dt=44.8,rms=0.594015) vs oldopt=(dt=32,rms=0.594146)
+#GCMRL#  385 dt  44.800000 rms  0.594  0.274% neg 0  invalid 762 tFOTS 4.2000 tGradient 2.1690 tsec 6.7180
+#FOTS# QuadFit found better minimum quadopt=(dt=19.2,rms=0.593063) vs oldopt=(dt=32,rms=0.593335)
+#GCMRL#  386 dt  19.200000 rms  0.593  0.160% neg 0  invalid 762 tFOTS 4.2300 tGradient 2.1670 tsec 6.7680
+#FOTS# QuadFit found better minimum quadopt=(dt=44.8,rms=0.591478) vs oldopt=(dt=32,rms=0.591876)
+#GCMRL#  387 dt  44.800000 rms  0.591  0.267% neg 0  invalid 762 tFOTS 3.9820 tGradient 2.0330 tsec 6.3500
+#GCMRL#  388 dt  32.000000 rms  0.591  0.135% neg 0  invalid 762 tFOTS 4.1430 tGradient 2.1520 tsec 6.6550
+#FOTS# QuadFit found better minimum quadopt=(dt=2.4,rms=0.590584) vs oldopt=(dt=2,rms=0.590603)
+#GCMRL#  389 dt   2.400000 rms  0.591  0.000% neg 0  invalid 762 tFOTS 3.6460 tGradient 2.1710 tsec 6.1550
+
+#GCAMreg# pass 0 level1 3 level2 1 tsec 113.889 sigma 0.5
+l_jacobian=1.00 l_label=1.00 l_log_likelihood=0.20 l_smoothness=0.12 
+tol=5.00e-02, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=16, sigma=0.5,type=2, relabel=0, neg=no
+
+blurring input image with Gaussian with sigma=0.500...
+GCAMRegisterLevel(): init RMS 0.592078
+#FOTS# QuadFit found better minimum quadopt=(dt=38.0571,rms=0.587781) vs oldopt=(dt=32,rms=0.587794)
+#GCMRL#  391 dt  38.057143 rms  0.588  0.726% neg 0  invalid 762 tFOTS 4.2010 tGradient 2.1810 tsec 6.7220
+#FOTS# QuadFit found better minimum quadopt=(dt=25.6,rms=0.586279) vs oldopt=(dt=32,rms=0.586353)
+#GCMRL#  392 dt  25.600000 rms  0.586  0.256% neg 0  invalid 762 tFOTS 4.0930 tGradient 2.0420 tsec 6.4740
+#FOTS# QuadFit found better minimum quadopt=(dt=25.6,rms=0.585276) vs oldopt=(dt=32,rms=0.585311)
+#GCMRL#  393 dt  25.600000 rms  0.585  0.171% neg 0  invalid 762 tFOTS 4.6090 tGradient 2.0970 tsec 7.0530
+#GCMRL#  394 dt  32.000000 rms  0.584  0.165% neg 0  invalid 762 tFOTS 4.5250 tGradient 2.0960 tsec 7.0000
+#FOTS# QuadFit found better minimum quadopt=(dt=11.2,rms=0.583672) vs oldopt=(dt=8,rms=0.583809)
+#GCMRL#  395 dt  11.200000 rms  0.584  0.109% neg 0  invalid 762 tFOTS 4.1790 tGradient 2.1860 tsec 6.7100
+#GCMRL#  396 dt   8.000000 rms  0.583  0.000% neg 0  invalid 762 tFOTS 4.2110 tGradient 2.1210 tsec 6.7020
+#GCMRL#  397 dt   0.500000 rms  0.583  0.006% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.1880 tsec 3.2360
+#GCMRL#  398 dt   0.015625 rms  0.583  0.000% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.0910 tsec 3.3490
+#GCMRL#  399 dt   0.003906 rms  0.583  0.000% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.1250 tsec 2.9160
+#FOTS# QuadFit found better minimum quadopt=(dt=0.000683594,rms=0.583395) vs oldopt=(dt=0.000488281,rms=0.583395)
+setting smoothness cost coefficient to 0.400
+
+#GCAMreg# pass 0 level1 2 level2 0 tsec 0 sigma 2
+l_jacobian=1.00 l_label=1.00 l_log_likelihood=0.20 l_smoothness=0.40 
+tol=5.00e-02, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=4, sigma=2.0,type=2, relabel=0, neg=no
+
+blurring input image with Gaussian with sigma=2.000...
+GCAMRegisterLevel(): init RMS 0.609757
+#FOTS# QuadFit found better minimum quadopt=(dt=0,rms=0.608417) vs oldopt=(dt=0,rms=0.608417)
+#GCMRL#  401 dt   0.000000 rms  0.608  0.220% neg 0  invalid 762 tFOTS 4.3900 tGradient 1.6930 tsec 6.4200
+#GCMRL#  402 dt   0.150000 rms  0.608  0.000% neg 0  invalid 762 tFOTS 4.3670 tGradient 1.6520 tsec 6.7020
+
+#GCAMreg# pass 0 level1 2 level2 1 tsec 24.425 sigma 0.5
+l_jacobian=1.00 l_label=1.00 l_log_likelihood=0.20 l_smoothness=0.40 
+tol=5.00e-02, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=4, sigma=0.5,type=2, relabel=0, neg=no
+
+blurring input image with Gaussian with sigma=0.500...
+GCAMRegisterLevel(): init RMS 0.609757
+#GCMRL#  404 dt   0.000000 rms  0.608  0.220% neg 0  invalid 762 tFOTS 4.1510 tGradient 1.8160 tsec 6.3170
+#GCMRL#  405 dt   0.150000 rms  0.608  0.000% neg 0  invalid 762 tFOTS 4.2370 tGradient 1.7170 tsec 6.5770
+setting smoothness cost coefficient to 1.000
+
+#GCAMreg# pass 0 level1 1 level2 0 tsec 0 sigma 2
+l_jacobian=1.00 l_label=1.00 l_log_likelihood=0.20 l_smoothness=1.00 
+tol=5.00e-02, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=1, sigma=2.0,type=2, relabel=0, neg=no
+
+blurring input image with Gaussian with sigma=2.000...
+GCAMRegisterLevel(): init RMS 0.659677
+#FOTS# QuadFit found better minimum quadopt=(dt=2.10326,rms=0.651304) vs oldopt=(dt=1.28,rms=0.652643)
+#GCMRL#  407 dt   2.103261 rms  0.651  1.269% neg 0  invalid 762 tFOTS 3.9340 tGradient 1.3950 tsec 5.7350
+#FOTS# QuadFit found better minimum quadopt=(dt=0.448,rms=0.651099) vs oldopt=(dt=0.32,rms=0.651137)
+#GCMRL#  408 dt   0.448000 rms  0.651  0.000% neg 0  invalid 762 tFOTS 3.9800 tGradient 1.3860 tsec 5.7490
+#GCMRL#  409 dt   0.448000 rms  0.651  0.002% neg 0  invalid 762 tFOTS 0.0000 tGradient 1.4050 tsec 1.7740
+
+#GCAMreg# pass 0 level1 1 level2 1 tsec 24.394 sigma 0.5
+l_jacobian=1.00 l_label=1.00 l_log_likelihood=0.20 l_smoothness=1.00 
+tol=5.00e-02, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=1, sigma=0.5,type=2, relabel=0, neg=no
+
+blurring input image with Gaussian with sigma=0.500...
+GCAMRegisterLevel(): init RMS 0.652274
+#FOTS# QuadFit found better minimum quadopt=(dt=1.536,rms=0.649942) vs oldopt=(dt=1.28,rms=0.649995)
+#GCMRL#  411 dt   1.536000 rms  0.650  0.358% neg 0  invalid 762 tFOTS 4.4240 tGradient 1.3730 tsec 6.1530
+#FOTS# QuadFit found better minimum quadopt=(dt=0.256,rms=0.64991) vs oldopt=(dt=0.32,rms=0.649911)
+#GCMRL#  412 dt   0.256000 rms  0.650  0.000% neg 0  invalid 762 tFOTS 4.3840 tGradient 1.3700 tsec 6.1470
+resetting metric properties...
+setting smoothness cost coefficient to 2.000
+
+#GCAMreg# pass 0 level1 0 level2 0 tsec 0 sigma 2
+l_jacobian=1.00 l_label=1.00 l_log_likelihood=0.20 l_smoothness=2.00 
+tol=5.00e-02, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=0, sigma=2.0,type=2, relabel=0, neg=no
+
+blurring input image with Gaussian with sigma=2.000...
+GCAMRegisterLevel(): init RMS 0.595723
+#FOTS# QuadFit found better minimum quadopt=(dt=0.448,rms=0.573278) vs oldopt=(dt=0.32,rms=0.579188)
+#GCMRL#  414 dt   0.448000 rms  0.573  3.768% neg 0  invalid 762 tFOTS 4.1790 tGradient 1.0590 tsec 5.5730
+#FOTS# QuadFit found better minimum quadopt=(dt=0.448,rms=0.567213) vs oldopt=(dt=0.32,rms=0.568925)
+#GCMRL#  415 dt   0.448000 rms  0.567  1.058% neg 0  invalid 762 tFOTS 4.2680 tGradient 0.9640 tsec 5.5820
+#FOTS# QuadFit found better minimum quadopt=(dt=0.448,rms=0.563265) vs oldopt=(dt=0.32,rms=0.564377)
+#GCMRL#  416 dt   0.448000 rms  0.563  0.696% neg 0  invalid 762 tFOTS 4.2950 tGradient 0.9440 tsec 5.6200
+#FOTS# QuadFit found better minimum quadopt=(dt=0.448,rms=0.561232) vs oldopt=(dt=0.32,rms=0.561789)
+#GCMRL#  417 dt   0.448000 rms  0.561  0.361% neg 0  invalid 762 tFOTS 4.0970 tGradient 1.0000 tsec 5.4640
+#GCMRL#  418 dt   0.320000 rms  0.560  0.251% neg 0  invalid 762 tFOTS 4.1080 tGradient 0.9790 tsec 5.4270
+#FOTS# QuadFit found better minimum quadopt=(dt=0.448,rms=0.558497) vs oldopt=(dt=0.32,rms=0.558862)
+#GCMRL#  419 dt   0.448000 rms  0.558  0.236% neg 0  invalid 762 tFOTS 4.2610 tGradient 0.9510 tsec 5.5750
+#FOTS# QuadFit found better minimum quadopt=(dt=0.112,rms=0.55815) vs oldopt=(dt=0.08,rms=0.558243)
+#GCMRL#  420 dt   0.112000 rms  0.558  0.062% neg 0  invalid 762 tFOTS 3.9190 tGradient 0.9370 tsec 5.2090
+#FOTS# QuadFit found better minimum quadopt=(dt=0.448,rms=0.556986) vs oldopt=(dt=0.32,rms=0.557305)
+#GCMRL#  421 dt   0.448000 rms  0.557  0.209% neg 0  invalid 762 tFOTS 4.0870 tGradient 1.0380 tsec 5.4840
+#FOTS# QuadFit found better minimum quadopt=(dt=0.448,rms=0.556342) vs oldopt=(dt=0.32,rms=0.556506)
+#GCMRL#  422 dt   0.448000 rms  0.556  0.116% neg 0  invalid 762 tFOTS 4.3000 tGradient 0.9860 tsec 5.6260
+#FOTS# QuadFit found better minimum quadopt=(dt=0.448,rms=0.555497) vs oldopt=(dt=0.32,rms=0.555713)
+#GCMRL#  423 dt   0.448000 rms  0.555  0.152% neg 0  invalid 762 tFOTS 4.4390 tGradient 0.9110 tsec 5.7160
+#FOTS# QuadFit found better minimum quadopt=(dt=0.448,rms=0.55511) vs oldopt=(dt=0.32,rms=0.555184)
+#GCMRL#  424 dt   0.448000 rms  0.555  0.070% neg 0  invalid 762 tFOTS 3.9920 tGradient 0.9320 tsec 5.2820
+#FOTS# QuadFit found better minimum quadopt=(dt=0.448,rms=0.554467) vs oldopt=(dt=0.32,rms=0.554619)
+#GCMRL#  425 dt   0.448000 rms  0.554  0.116% neg 0  invalid 762 tFOTS 4.0780 tGradient 0.9840 tsec 5.4220
+#FOTS# QuadFit found better minimum quadopt=(dt=0.448,rms=0.554245) vs oldopt=(dt=0.32,rms=0.554267)
+#GCMRL#  426 dt   0.448000 rms  0.554  0.000% neg 0  invalid 762 tFOTS 3.9770 tGradient 0.9950 tsec 5.3160
+#GCMRL#  427 dt   0.448000 rms  0.554  0.099% neg 0  invalid 762 tFOTS 0.0000 tGradient 0.9270 tsec 1.2510
+#GCMRL#  428 dt   0.448000 rms  0.554  0.021% neg 0  invalid 762 tFOTS 0.0000 tGradient 0.9720 tsec 1.4790
+#GCMRL#  429 dt   0.224000 rms  0.553  0.052% neg 0  invalid 762 tFOTS 0.0000 tGradient 0.9410 tsec 1.5930
+#GCMRL#  430 dt   0.224000 rms  0.553  0.058% neg 0  invalid 762 tFOTS 0.0000 tGradient 0.9820 tsec 1.5290
+#GCMRL#  431 dt   0.224000 rms  0.553  0.071% neg 0  invalid 762 tFOTS 0.0000 tGradient 0.9630 tsec 1.3170
+#GCMRL#  432 dt   0.224000 rms  0.552  0.067% neg 0  invalid 762 tFOTS 0.0000 tGradient 0.9350 tsec 1.2650
+#GCMRL#  433 dt   0.224000 rms  0.552  0.067% neg 0  invalid 762 tFOTS 0.0000 tGradient 1.0420 tsec 1.4160
+#GCMRL#  434 dt   0.224000 rms  0.551  0.071% neg 0  invalid 762 tFOTS 0.0000 tGradient 1.0200 tsec 1.3840
+#GCMRL#  435 dt   0.224000 rms  0.551  0.078% neg 0  invalid 762 tFOTS 0.0000 tGradient 0.9740 tsec 1.3310
+#GCMRL#  436 dt   0.224000 rms  0.551  0.081% neg 0  invalid 762 tFOTS 0.0000 tGradient 1.0110 tsec 1.3440
+#GCMRL#  437 dt   0.224000 rms  0.550  0.070% neg 0  invalid 762 tFOTS 0.0000 tGradient 0.9780 tsec 1.3150
+#GCMRL#  438 dt   0.224000 rms  0.550  0.060% neg 0  invalid 762 tFOTS 0.0000 tGradient 0.9340 tsec 1.3060
+#GCMRL#  439 dt   0.224000 rms  0.550  0.053% neg 0  invalid 762 tFOTS 0.0000 tGradient 1.0020 tsec 1.3880
+#GCMRL#  440 dt   0.224000 rms  0.549  0.042% neg 0  invalid 762 tFOTS 0.0000 tGradient 0.9500 tsec 1.3090
+#GCMRL#  441 dt   0.224000 rms  0.549  0.025% neg 0  invalid 762 tFOTS 0.0000 tGradient 0.9730 tsec 1.3160
+#GCMRL#  442 dt   0.224000 rms  0.549 -0.005% neg 0  invalid 762 tFOTS 0.0000 tGradient 0.9370 tsec 1.6900
+
+#GCAMreg# pass 0 level1 0 level2 1 tsec 107.953 sigma 0.5
+l_jacobian=1.00 l_label=1.00 l_log_likelihood=0.20 l_smoothness=2.00 
+tol=5.00e-02, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=0, sigma=0.5,type=2, relabel=0, neg=no
+
+blurring input image with Gaussian with sigma=0.500...
+GCAMRegisterLevel(): init RMS 0.55049
+#FOTS# QuadFit found better minimum quadopt=(dt=0.384,rms=0.544101) vs oldopt=(dt=0.32,rms=0.544918)
+#GCMRL#  444 dt   0.384000 rms  0.544  1.161% neg 0  invalid 762 tFOTS 3.9010 tGradient 0.9260 tsec 5.1600
+#FOTS# QuadFit found better minimum quadopt=(dt=0.384,rms=0.543032) vs oldopt=(dt=0.32,rms=0.543199)
+#GCMRL#  445 dt   0.384000 rms  0.543  0.196% neg 0  invalid 762 tFOTS 4.0000 tGradient 0.8800 tsec 5.2230
+#FOTS# QuadFit found better minimum quadopt=(dt=0.384,rms=0.542775) vs oldopt=(dt=0.32,rms=0.542804)
+#GCMRL#  446 dt   0.384000 rms  0.543  0.000% neg 0  invalid 762 tFOTS 4.2660 tGradient 0.9180 tsec 5.5430
+GCAMregister done in 30.025 min
+********************* ALLOWING NEGATIVE NODES IN DEFORMATION********************************
+noneg post
+Starting GCAMregister()
+label assignment complete, 0 changed (0.00%)
+npasses = 1, nlevels = 6
+#pass# 1 of 1 ************************
+enabling zero nodes
+setting smoothness cost coefficient to 0.008
+
+#GCAMreg# pass 0 level1 5 level2 0 tsec 0 sigma 2
+l_jacobian=1.00 l_label=1.00 l_log_likelihood=0.20 l_smoothness=0.01 
+tol=2.50e-01, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=256, sigma=2.0,type=2, relabel=0, neg=yes
+
+blurring input image with Gaussian with sigma=2.000...
+GCAMRegisterLevel(): init RMS 0.540797
+#GCMRL#  448 dt  92.480000 rms  0.539  0.257% neg 0  invalid 762 tFOTS 4.7840 tGradient 4.9880 tsec 10.1470
+#FOTS# QuadFit found better minimum quadopt=(dt=129.472,rms=0.539273) vs oldopt=(dt=92.48,rms=0.539298)
+iter 0, gcam->neg = 1
+after 0 iterations, nbhd size=0, neg = 0
+#GCMRL#  449 dt 129.472000 rms  0.539  0.000% neg 0  invalid 762 tFOTS 5.5250 tGradient 5.0180 tsec 11.5350
+iter 0, gcam->neg = 1
+after 1 iterations, nbhd size=0, neg = 0
+#GCMRL#  450 dt 129.472000 rms  0.539  0.022% neg 0  invalid 762 tFOTS 0.0000 tGradient 4.2250 tsec 5.5450
+#GCMRL#  451 dt 129.472000 rms  0.539  0.019% neg 0  invalid 762 tFOTS 0.0000 tGradient 4.1540 tsec 4.5490
+#GCMRL#  452 dt 129.472000 rms  0.539  0.007% neg 0  invalid 762 tFOTS 0.0000 tGradient 4.1750 tsec 4.5460
+#GCMRL#  453 dt 369.920000 rms  0.539  0.030% neg 0  invalid 762 tFOTS 5.0030 tGradient 4.1040 tsec 9.4920
+#FOTS# QuadFit found better minimum quadopt=(dt=55.488,rms=0.538812) vs oldopt=(dt=92.48,rms=0.538832)
+
+#GCAMreg# pass 0 level1 5 level2 1 tsec 64.269 sigma 0.5
+l_jacobian=1.00 l_label=1.00 l_log_likelihood=0.20 l_smoothness=0.01 
+tol=2.50e-01, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=256, sigma=0.5,type=2, relabel=0, neg=yes
+
+blurring input image with Gaussian with sigma=0.500...
+GCAMRegisterLevel(): init RMS 0.540124
+#FOTS# QuadFit found better minimum quadopt=(dt=129.472,rms=0.538195) vs oldopt=(dt=92.48,rms=0.538264)
+#GCMRL#  455 dt 129.472000 rms  0.538  0.357% neg 0  invalid 762 tFOTS 4.8000 tGradient 4.1770 tsec 9.3110
+#FOTS# QuadFit found better minimum quadopt=(dt=129.472,rms=0.537976) vs oldopt=(dt=92.48,rms=0.538001)
+#GCMRL#  456 dt 129.472000 rms  0.538  0.000% neg 0  invalid 762 tFOTS 4.6820 tGradient 4.0540 tsec 9.0890
+#GCMRL#  457 dt 129.472000 rms  0.538  0.039% neg 0  invalid 762 tFOTS 0.0000 tGradient 4.2000 tsec 4.5650
+#GCMRL#  458 dt 129.472000 rms  0.538  0.046% neg 0  invalid 762 tFOTS 0.0000 tGradient 4.2650 tsec 4.5910
+#GCMRL#  459 dt 129.472000 rms  0.537  0.038% neg 0  invalid 762 tFOTS 0.0000 tGradient 4.2460 tsec 4.5820
+#GCMRL#  460 dt 129.472000 rms  0.537  0.059% neg 0  invalid 762 tFOTS 0.0000 tGradient 4.2100 tsec 4.5620
+#GCMRL#  461 dt 129.472000 rms  0.537  0.033% neg 0  invalid 762 tFOTS 0.0000 tGradient 4.3100 tsec 4.7170
+#FOTS# QuadFit found better minimum quadopt=(dt=73.984,rms=0.536787) vs oldopt=(dt=92.48,rms=0.536789)
+setting smoothness cost coefficient to 0.031
+
+#GCAMreg# pass 0 level1 4 level2 0 tsec 0 sigma 2
+l_jacobian=1.00 l_label=1.00 l_log_likelihood=0.20 l_smoothness=0.03 
+tol=2.50e-01, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=64, sigma=2.0,type=2, relabel=0, neg=yes
+
+blurring input image with Gaussian with sigma=2.000...
+GCAMRegisterLevel(): init RMS 0.538164
+#FOTS# QuadFit found better minimum quadopt=(dt=36.288,rms=0.536437) vs oldopt=(dt=25.92,rms=0.536458)
+iter 0, gcam->neg = 1
+after 4 iterations, nbhd size=0, neg = 0
+#GCMRL#  463 dt  36.288000 rms  0.536  0.316% neg 0  invalid 762 tFOTS 5.1610 tGradient 2.3240 tsec 9.6360
+#FOTS# QuadFit found better minimum quadopt=(dt=36.288,rms=0.536203) vs oldopt=(dt=25.92,rms=0.536254)
+iter 0, gcam->neg = 2
+after 5 iterations, nbhd size=0, neg = 0
+#GCMRL#  464 dt  36.288000 rms  0.536  0.000% neg 0  invalid 762 tFOTS 5.1800 tGradient 2.5300 tsec 10.0220
+iter 0, gcam->neg = 1
+after 0 iterations, nbhd size=0, neg = 0
+#GCMRL#  465 dt  36.288000 rms  0.536  0.056% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.4750 tsec 3.5360
+iter 0, gcam->neg = 2
+after 0 iterations, nbhd size=0, neg = 0
+#GCMRL#  466 dt  36.288000 rms  0.536  0.054% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.7460 tsec 3.7510
+iter 0, gcam->neg = 5
+after 8 iterations, nbhd size=1, neg = 0
+#GCMRL#  467 dt  36.288000 rms  0.536  0.009% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.4460 tsec 5.8620
+iter 0, gcam->neg = 13
+after 12 iterations, nbhd size=1, neg = 0
+#GCMRL#  468 dt 414.720000 rms  0.533  0.402% neg 0  invalid 762 tFOTS 4.4910 tGradient 2.4230 tsec 10.6060
+#GCMRL#  469 dt  25.920000 rms  0.533  0.000% neg 0  invalid 762 tFOTS 5.4690 tGradient 2.3960 tsec 8.2130
+
+#GCAMreg# pass 0 level1 4 level2 1 tsec 63.815 sigma 0.5
+l_jacobian=1.00 l_label=1.00 l_log_likelihood=0.20 l_smoothness=0.03 
+tol=2.50e-01, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=64, sigma=0.5,type=2, relabel=0, neg=yes
+
+blurring input image with Gaussian with sigma=0.500...
+GCAMRegisterLevel(): init RMS 0.53468
+#FOTS# QuadFit found better minimum quadopt=(dt=89.6518,rms=0.531347) vs oldopt=(dt=103.68,rms=0.531396)
+iter 0, gcam->neg = 2
+after 8 iterations, nbhd size=1, neg = 0
+#GCMRL#  471 dt  89.651822 rms  0.531  0.619% neg 0  invalid 762 tFOTS 5.6160 tGradient 2.5920 tsec 11.6270
+#FOTS# QuadFit found better minimum quadopt=(dt=36.288,rms=0.530247) vs oldopt=(dt=25.92,rms=0.53045)
+#GCMRL#  472 dt  36.288000 rms  0.530  0.000% neg 0  invalid 762 tFOTS 5.5150 tGradient 2.6360 tsec 8.5570
+#GCMRL#  473 dt  36.288000 rms  0.530  0.063% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.5900 tsec 2.9380
+#GCMRL#  474 dt  36.288000 rms  0.529  0.104% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.3140 tsec 2.6440
+#GCMRL#  475 dt  36.288000 rms  0.529  0.136% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.3740 tsec 2.7040
+#GCMRL#  476 dt  36.288000 rms  0.528  0.117% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.3510 tsec 2.7390
+iter 0, gcam->neg = 1
+after 0 iterations, nbhd size=0, neg = 0
+#GCMRL#  477 dt  36.288000 rms  0.528  0.096% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.4190 tsec 3.5350
+#FOTS# QuadFit found better minimum quadopt=(dt=31.104,rms=0.527475) vs oldopt=(dt=25.92,rms=0.527476)
+#GCMRL#  478 dt  31.104000 rms  0.527  0.000% neg 0  invalid 762 tFOTS 5.3490 tGradient 2.4930 tsec 8.2360
+#GCMRL#  479 dt  31.104000 rms  0.527  0.020% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.4850 tsec 2.8910
+#GCMRL#  480 dt  31.104000 rms  0.527  0.028% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.4390 tsec 2.7990
+#GCMRL#  481 dt  31.104000 rms  0.527  0.028% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.4780 tsec 2.8510
+iter 0, gcam->neg = 1
+after 0 iterations, nbhd size=0, neg = 0
+#GCMRL#  482 dt  31.104000 rms  0.527  0.036% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.3570 tsec 3.2950
+iter 0, gcam->neg = 1
+after 0 iterations, nbhd size=0, neg = 0
+#GCMRL#  483 dt  31.104000 rms  0.527  0.046% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.5340 tsec 3.4660
+#GCMRL#  484 dt  31.104000 rms  0.526  0.056% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.7480 tsec 3.1350
+#GCMRL#  485 dt  31.104000 rms  0.526  0.061% neg 0  invalid 762 tFOTS 0.0000 tGradient 2.5900 tsec 2.9740
+iter 0, gcam->neg = 1
+after 0 iterations, nbhd size=0, neg = 0
+setting smoothness cost coefficient to 0.118
+
+#GCAMreg# pass 0 level1 3 level2 0 tsec 0 sigma 2
+l_jacobian=1.00 l_label=1.00 l_log_likelihood=0.20 l_smoothness=0.12 
+tol=2.50e-01, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=16, sigma=2.0,type=2, relabel=0, neg=yes
+
+blurring input image with Gaussian with sigma=2.000...
+GCAMRegisterLevel(): init RMS 0.527562
+#FOTS# QuadFit found better minimum quadopt=(dt=36.3041,rms=0.523009) vs oldopt=(dt=32,rms=0.523022)
+iter 0, gcam->neg = 12
+after 10 iterations, nbhd size=1, neg = 0
+#GCMRL#  487 dt  36.304094 rms  0.523  0.851% neg 0  invalid 762 tFOTS 5.7850 tGradient 1.8860 tsec 11.8970
+#FOTS# QuadFit found better minimum quadopt=(dt=56.396,rms=0.518638) vs oldopt=(dt=32,rms=0.519303)
+iter 0, gcam->neg = 43
+after 15 iterations, nbhd size=1, neg = 0
+#GCMRL#  488 dt  56.396040 rms  0.519  0.794% neg 0  invalid 762 tFOTS 5.8770 tGradient 1.9100 tsec 13.4110
+#FOTS# QuadFit found better minimum quadopt=(dt=11.2,rms=0.517045) vs oldopt=(dt=8,rms=0.517371)
+iter 0, gcam->neg = 1
+after 6 iterations, nbhd size=1, neg = 0
+#GCMRL#  489 dt  11.200000 rms  0.517  0.359% neg 0  invalid 762 tFOTS 5.3580 tGradient 1.9440 tsec 10.2020
+#FOTS# QuadFit found better minimum quadopt=(dt=38.4,rms=0.515909) vs oldopt=(dt=32,rms=0.515921)
+iter 0, gcam->neg = 9
+after 13 iterations, nbhd size=1, neg = 0
+#GCMRL#  490 dt  38.400000 rms  0.516  0.000% neg 0  invalid 762 tFOTS 5.6980 tGradient 1.9620 tsec 12.8310
+iter 0, gcam->neg = 10
+after 3 iterations, nbhd size=0, neg = 0
+#GCMRL#  491 dt  38.400000 rms  0.514  0.323% neg 0  invalid 762 tFOTS 0.0000 tGradient 1.8920 tsec 3.8070
+iter 0, gcam->neg = 21
+after 13 iterations, nbhd size=1, neg = 0
+#GCMRL#  492 dt  38.400000 rms  0.512  0.541% neg 0  invalid 762 tFOTS 0.0000 tGradient 1.9380 tsec 6.9810
+iter 0, gcam->neg = 19
+after 11 iterations, nbhd size=1, neg = 0
+#GCMRL#  493 dt  38.400000 rms  0.510  0.298% neg 0  invalid 762 tFOTS 0.0000 tGradient 1.8790 tsec 6.3120
+iter 0, gcam->neg = 53
+after 14 iterations, nbhd size=1, neg = 0
+#GCMRL#  494 dt  38.400000 rms  0.508  0.449% neg 0  invalid 762 tFOTS 0.0000 tGradient 1.8920 tsec 7.2490
+iter 0, gcam->neg = 64
+after 17 iterations, nbhd size=1, neg = 0
+#GCMRL#  495 dt  38.400000 rms  0.505  0.437% neg 0  invalid 762 tFOTS 0.0000 tGradient 1.8160 tsec 7.8600
+iter 0, gcam->neg = 91
+after 18 iterations, nbhd size=1, neg = 0
+#GCMRL#  496 dt  38.400000 rms  0.505  0.066% neg 0  invalid 762 tFOTS 0.0000 tGradient 1.8140 tsec 8.3390
+iter 0, gcam->neg = 103
+after 16 iterations, nbhd size=1, neg = 0
+#GCMRL#  497 dt  38.400000 rms  0.504  0.259% neg 0  invalid 762 tFOTS 0.0000 tGradient 1.8450 tsec 7.5910
+iter 0, gcam->neg = 85
+after 15 iterations, nbhd size=1, neg = 0
+#GCMRL#  498 dt  38.400000 rms  0.503  0.244% neg 0  invalid 762 tFOTS 0.0000 tGradient 1.7740 tsec 6.6240
+iter 0, gcam->neg = 72
+after 16 iterations, nbhd size=1, neg = 0
+#GCMRL#  499 dt  38.400000 rms  0.502  0.159% neg 0  invalid 762 tFOTS 0.0000 tGradient 1.7640 tsec 6.9840
+iter 0, gcam->neg = 64
+after 15 iterations, nbhd size=1, neg = 0
+#GCMRL#  500 dt  38.400000 rms  0.501  0.219% neg 0  invalid 762 tFOTS 0.0000 tGradient 1.8560 tsec 7.1390
+iter 0, gcam->neg = 62
+after 14 iterations, nbhd size=1, neg = 0
+#GCMRL#  501 dt  38.400000 rms  0.500  0.060% neg 0  invalid 762 tFOTS 0.0000 tGradient 1.7680 tsec 6.5850
+iter 0, gcam->neg = 48
+after 20 iterations, nbhd size=1, neg = 0
+#GCMRL#  502 dt  38.400000 rms  0.500  0.102% neg 0  invalid 762 tFOTS 0.0000 tGradient 1.7960 tsec 8.1650
+iter 0, gcam->neg = 51
+after 15 iterations, nbhd size=1, neg = 0
+#GCMRL#  503 dt  38.400000 rms  0.499  0.150% neg 0  invalid 762 tFOTS 0.0000 tGradient 1.7950 tsec 6.8500
+iter 0, gcam->neg = 85
+after 16 iterations, nbhd size=1, neg = 0
+#GCMRL#  504 dt  38.400000 rms  0.499  0.117% neg 0  invalid 762 tFOTS 0.0000 tGradient 1.8870 tsec 7.4010
+iter 0, gcam->neg = 117
+after 22 iterations, nbhd size=1, neg = 0
+#GCMRL#  505 dt  38.400000 rms  0.499  0.010% neg 0  invalid 762 tFOTS 0.0000 tGradient 1.7720 tsec 9.3510
+iter 0, gcam->neg = 11
+after 10 iterations, nbhd size=1, neg = 0
+#GCMRL#  506 dt  32.000000 rms  0.498  0.134% neg 0  invalid 762 tFOTS 5.2010 tGradient 1.8010 tsec 10.7260
+#FOTS# QuadFit found better minimum quadopt=(dt=25.6,rms=0.497366) vs oldopt=(dt=32,rms=0.497428)
+iter 0, gcam->neg = 6
+after 1 iterations, nbhd size=0, neg = 0
+#GCMRL#  507 dt  25.600000 rms  0.497  0.000% neg 0  invalid 762 tFOTS 5.1810 tGradient 1.7880 tsec 8.1370
+iter 0, gcam->neg = 11
+after 6 iterations, nbhd size=0, neg = 0
+#GCMRL#  508 dt  25.600000 rms  0.497  0.018% neg 0  invalid 762 tFOTS 0.0000 tGradient 1.8360 tsec 4.2820
+iter 0, gcam->neg = 8
+after 5 iterations, nbhd size=0, neg = 0
+#GCMRL#  509 dt  25.600000 rms  0.497  0.064% neg 0  invalid 762 tFOTS 0.0000 tGradient 1.7400 tsec 3.8710
+iter 0, gcam->neg = 18
+after 6 iterations, nbhd size=0, neg = 0
+#GCMRL#  510 dt  25.600000 rms  0.497  0.032% neg 0  invalid 762 tFOTS 0.0000 tGradient 1.7800 tsec 4.0710
+iter 0, gcam->neg = 15
+after 11 iterations, nbhd size=1, neg = 0
+
+#GCAMreg# pass 0 level1 3 level2 1 tsec 201.543 sigma 0.5
+l_jacobian=1.00 l_label=1.00 l_log_likelihood=0.20 l_smoothness=0.12 
+tol=2.50e-01, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=16, sigma=0.5,type=2, relabel=0, neg=yes
+
+blurring input image with Gaussian with sigma=0.500...
+GCAMRegisterLevel(): init RMS 0.498122
+#FOTS# QuadFit found better minimum quadopt=(dt=37.9459,rms=0.493792) vs oldopt=(dt=32,rms=0.493821)
+iter 0, gcam->neg = 6
+after 8 iterations, nbhd size=1, neg = 0
+#GCMRL#  512 dt  37.945946 rms  0.494  0.867% neg 0  invalid 762 tFOTS 5.2730 tGradient 1.8460 tsec 10.0950
+#FOTS# QuadFit found better minimum quadopt=(dt=23.8072,rms=0.492377) vs oldopt=(dt=32,rms=0.492603)
+iter 0, gcam->neg = 2
+after 1 iterations, nbhd size=0, neg = 0
+#GCMRL#  513 dt  23.807229 rms  0.492  0.289% neg 0  invalid 762 tFOTS 5.0130 tGradient 1.7490 tsec 7.9140
+#FOTS# QuadFit found better minimum quadopt=(dt=11.2,rms=0.491854) vs oldopt=(dt=8,rms=0.491957)
+#GCMRL#  514 dt  11.200000 rms  0.492  0.000% neg 0  invalid 762 tFOTS 5.0130 tGradient 1.8950 tsec 7.2840
+#GCMRL#  515 dt  11.200000 rms  0.492  0.057% neg 0  invalid 762 tFOTS 0.0000 tGradient 1.8510 tsec 2.1910
+iter 0, gcam->neg = 1
+after 0 iterations, nbhd size=0, neg = 0
+#GCMRL#  516 dt  11.200000 rms  0.491  0.101% neg 0  invalid 762 tFOTS 0.0000 tGradient 1.7970 tsec 2.8520
+iter 0, gcam->neg = 4
+after 9 iterations, nbhd size=1, neg = 0
+#GCMRL#  517 dt  11.200000 rms  0.491  0.110% neg 0  invalid 762 tFOTS 0.0000 tGradient 1.9020 tsec 5.3670
+iter 0, gcam->neg = 5
+after 1 iterations, nbhd size=0, neg = 0
+#GCMRL#  518 dt  11.200000 rms  0.490  0.107% neg 0  invalid 762 tFOTS 0.0000 tGradient 1.6420 tsec 2.8120
+iter 0, gcam->neg = 5
+after 2 iterations, nbhd size=0, neg = 0
+#GCMRL#  519 dt  11.200000 rms  0.490  0.094% neg 0  invalid 762 tFOTS 0.0000 tGradient 1.7770 tsec 3.2100
+#FOTS# QuadFit found better minimum quadopt=(dt=44.8,rms=0.489263) vs oldopt=(dt=32,rms=0.489317)
+iter 0, gcam->neg = 1
+after 0 iterations, nbhd size=0, neg = 0
+setting smoothness cost coefficient to 0.400
+
+#GCAMreg# pass 0 level1 2 level2 0 tsec 0 sigma 2
+l_jacobian=1.00 l_label=1.00 l_log_likelihood=0.20 l_smoothness=0.40 
+tol=2.50e-01, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=4, sigma=2.0,type=2, relabel=0, neg=yes
+
+blurring input image with Gaussian with sigma=2.000...
+GCAMRegisterLevel(): init RMS 0.500902
+#FOTS# QuadFit found better minimum quadopt=(dt=1.008,rms=0.499437) vs oldopt=(dt=0.72,rms=0.499452)
+#GCMRL#  521 dt   1.008000 rms  0.499  0.292% neg 0  invalid 762 tFOTS 5.2750 tGradient 1.5100 tsec 7.1490
+#GCMRL#  522 dt   0.720000 rms  0.499  0.000% neg 0  invalid 762 tFOTS 5.5340 tGradient 1.5850 tsec 7.4710
+
+#GCAMreg# pass 0 level1 2 level2 1 tsec 25.751 sigma 0.5
+l_jacobian=1.00 l_label=1.00 l_log_likelihood=0.20 l_smoothness=0.40 
+tol=2.50e-01, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=4, sigma=0.5,type=2, relabel=0, neg=yes
+
+blurring input image with Gaussian with sigma=0.500...
+GCAMRegisterLevel(): init RMS 0.500783
+iter 0, gcam->neg = 2
+after 3 iterations, nbhd size=0, neg = 0
+#GCMRL#  524 dt   2.880000 rms  0.499  0.325% neg 0  invalid 762 tFOTS 5.1530 tGradient 1.5020 tsec 8.5980
+#FOTS# QuadFit found better minimum quadopt=(dt=2.24,rms=0.499075) vs oldopt=(dt=2.88,rms=0.499088)
+#GCMRL#  525 dt   2.240000 rms  0.499  0.000% neg 0  invalid 762 tFOTS 5.2910 tGradient 1.5750 tsec 7.2450
+#GCMRL#  526 dt   2.240000 rms  0.499  0.006% neg 0  invalid 762 tFOTS 0.0000 tGradient 1.5570 tsec 1.9350
+iter 0, gcam->neg = 1
+after 0 iterations, nbhd size=0, neg = 0
+setting smoothness cost coefficient to 1.000
+
+#GCAMreg# pass 0 level1 1 level2 0 tsec 0 sigma 2
+l_jacobian=1.00 l_label=1.00 l_log_likelihood=0.20 l_smoothness=1.00 
+tol=2.50e-01, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=1, sigma=2.0,type=2, relabel=0, neg=yes
+
+blurring input image with Gaussian with sigma=2.000...
+GCAMRegisterLevel(): init RMS 0.514945
+#FOTS# QuadFit found better minimum quadopt=(dt=0.448,rms=0.513379) vs oldopt=(dt=0.32,rms=0.513415)
+#GCMRL#  528 dt   0.448000 rms  0.513  0.304% neg 0  invalid 762 tFOTS 5.1360 tGradient 1.2560 tsec 6.7550
+#FOTS# QuadFit found better minimum quadopt=(dt=0.256,rms=0.513318) vs oldopt=(dt=0.32,rms=0.513321)
+iter 0, gcam->neg = 1
+after 0 iterations, nbhd size=0, neg = 0
+#GCMRL#  529 dt   0.256000 rms  0.513  0.000% neg 0  invalid 762 tFOTS 5.1910 tGradient 1.2680 tsec 7.3870
+
+#GCAMreg# pass 0 level1 1 level2 1 tsec 24.961 sigma 0.5
+l_jacobian=1.00 l_label=1.00 l_log_likelihood=0.20 l_smoothness=1.00 
+tol=2.50e-01, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=1, sigma=0.5,type=2, relabel=0, neg=yes
+
+blurring input image with Gaussian with sigma=0.500...
+GCAMRegisterLevel(): init RMS 0.514625
+#FOTS# QuadFit found better minimum quadopt=(dt=1.024,rms=0.512574) vs oldopt=(dt=1.28,rms=0.512633)
+#GCMRL#  531 dt   1.024000 rms  0.513  0.399% neg 0  invalid 762 tFOTS 5.2610 tGradient 1.2940 tsec 6.9010

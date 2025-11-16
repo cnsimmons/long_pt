@@ -60,3 +60,158 @@ INFO: extension is mgz
 
  mri_nu_correct.mni --no-rescale --i orig.mgz --o orig_nu.mgz --ants-n4 --n 1 --proto-iters 1000 --distance 50 
 
+/usr/bin/bc
+/user_data/csimmon2/long_pt/derivatives/freesurfer/sub-010_ses02_mirror/mri
+/opt/freesurfer/7.1.0/bin/mri_nu_correct.mni
+--no-rescale --i orig.mgz --o orig_nu.mgz --ants-n4 --n 1 --proto-iters 1000 --distance 50
+nIters 1
+mri_nu_correct.mni 7.1.0
+Linux mind-0-15 4.18.0-372.32.1.el8_6.x86_64 #1 SMP Fri Oct 28 15:56:52 EDT 2022 x86_64 x86_64 x86_64 GNU/Linux
+Sun Nov 16 11:26:12 EST 2025
+Found /dev/shm , will use for temp dir
+tmpdir is /dev/shm/tmp.mri_nu_correct.mni.1977968
+cd /user_data/csimmon2/long_pt/derivatives/freesurfer/sub-010_ses02_mirror/mri
+AntsN4BiasFieldCorrectionFs -i orig.mgz -o /dev/shm/tmp.mri_nu_correct.mni.1977968/nu0.mgz
+Using shrink factor: 4
+mri_convert /dev/shm/tmp.mri_nu_correct.mni.1977968/nu0.mgz orig_nu.mgz --like orig.mgz --conform
+mri_convert /dev/shm/tmp.mri_nu_correct.mni.1977968/nu0.mgz orig_nu.mgz --like orig.mgz --conform 
+reading from /dev/shm/tmp.mri_nu_correct.mni.1977968/nu0.mgz...
+TR=0.00, TE=0.00, TI=0.00, flip angle=0.00
+i_ras = (-1, 0, 0)
+j_ras = (0, 0, -1)
+k_ras = (0, 1, 0)
+INFO: transform src into the like-volume: orig.mgz
+writing to orig_nu.mgz...
+ 
+ 
+Sun Nov 16 11:28:41 EST 2025
+mri_nu_correct.mni done
+@#@FSTIME  2025:11:16:11:26:12 mri_nu_correct.mni N 12 e 148.60 S 0.11 U 148.47 P 99% M 486640 F 3 R 78020 W 0 c 74 w 230 I 3048 O 2904 L 0.88 0.20 0.06
+@#@FSLOADPOST 2025:11:16:11:28:41 mri_nu_correct.mni N 12 11.09 4.86 1.85
+
+ talairach_avi --i orig_nu.mgz --xfm transforms/talairach.auto.xfm --atlas 3T18yoSchwartzReactN32_as_orig 
+
+talairach_avi log file is transforms/talairach_avi.log...
+Started at Sun Nov 16 11:28:41 EST 2025
+Ended   at Sun Nov 16 11:28:56 EST 2025
+talairach_avi done
+@#@FSTIME  2025:11:16:11:28:41 talairach_avi N 6 e 15.25 S 0.55 U 8.35 P 58% M 255372 F 2 R 28494 W 0 c 71 w 3213 I 17600 O 295976 L 11.09 4.86 1.85
+@#@FSLOADPOST 2025:11:16:11:28:56 talairach_avi N 6 9.90 4.90 1.91
+
+ cp transforms/talairach.auto.xfm transforms/talairach.xfm 
+
+lta_convert --src orig.mgz --trg /opt/freesurfer/7.1.0/average/mni305.cor.mgz --inxfm transforms/talairach.xfm --outlta transforms/talairach.xfm.lta --subject fsaverage --ltavox2vox
+7.1.0
+
+--src: orig.mgz src image (geometry).
+--trg: /opt/freesurfer/7.1.0/average/mni305.cor.mgz trg image (geometry).
+--inmni: transforms/talairach.xfm input MNI/XFM transform.
+--outlta: transforms/talairach.xfm.lta output LTA.
+--s: fsaverage subject name
+--ltavox2vox: output LTA as VOX_TO_VOX transform.
+ LTA read, type : 1
+ 0.99678  -0.00369   0.00375  -2.45676;
+-0.00202   1.04100   0.01896  -4.27708;
+-0.01371  -0.06840   1.09041  -25.93204;
+ 0.00000   0.00000   0.00000   1.00000;
+setting subject to fsaverage
+Writing  LTA to file transforms/talairach.xfm.lta...
+lta_convert successful.
+/user_data/csimmon2/long_pt/derivatives/freesurfer/sub-010_ses02_mirror/mri/transforms /user_data/csimmon2/long_pt/derivatives/freesurfer/sub-010_ses02_mirror/mri 
+/user_data/csimmon2/long_pt/derivatives/freesurfer/sub-010_ses02_mirror/mri 
+#--------------------------------------------
+#@# Talairach Failure Detection Sun Nov 16 11:28:58 EST 2025
+/user_data/csimmon2/long_pt/derivatives/freesurfer/sub-010_ses02_mirror/mri
+
+ talairach_afd -T 0.005 -xfm transforms/talairach.xfm 
+
+talairach_afd: Talairach Transform: transforms/talairach.xfm OK (p=0.6932, pval=0.4932 >= threshold=0.0050)
+@#@FSTIME  2025:11:16:11:28:58 talairach_afd N 4 e 0.04 S 0.00 U 0.00 P 7% M 5108 F 7 R 197 W 0 c 0 w 20 I 648 O 0 L 9.11 4.82 1.90
+@#@FSLOADPOST 2025:11:16:11:28:58 talairach_afd N 4 9.11 4.82 1.90
+
+ awk -f /opt/freesurfer/7.1.0/bin/extract_talairach_avi_QA.awk /user_data/csimmon2/long_pt/derivatives/freesurfer/sub-010_ses02_mirror/mri/transforms/talairach_avi.log 
+
+
+ tal_QC_AZS /user_data/csimmon2/long_pt/derivatives/freesurfer/sub-010_ses02_mirror/mri/transforms/talairach_avi.log 
+
+TalAviQA: 0.87657
+z-score: -23
+WARNING: Talairach QA check failed!
+z-score of -23 is <= threshold of -9
+
+
+Manual Talairach alignment may be necessary, or
+include the -notal-check flag to skip this test,
+making sure the -notal-check flag follows -all
+or -autorecon1 in the command string.
+See:
+
+http://surfer.nmr.mgh.harvard.edu/fswiki/FsTutorial/Talairach
+
+INFO: Trying MINC mritotal to perform Talairach align...
+
+#--------------------------------------------
+#@# Talairach Sun Nov 16 11:28:58 EST 2025
+/user_data/csimmon2/long_pt/derivatives/freesurfer/sub-010_ses02_mirror/mri
+
+ mri_nu_correct.mni --no-rescale --i orig.mgz --o orig_nu.mgz --ants-n4 --n 1 --proto-iters 1000 --distance 50 
+
+/usr/bin/bc
+/user_data/csimmon2/long_pt/derivatives/freesurfer/sub-010_ses02_mirror/mri
+/opt/freesurfer/7.1.0/bin/mri_nu_correct.mni
+--no-rescale --i orig.mgz --o orig_nu.mgz --ants-n4 --n 1 --proto-iters 1000 --distance 50
+nIters 1
+mri_nu_correct.mni 7.1.0
+Linux mind-0-15 4.18.0-372.32.1.el8_6.x86_64 #1 SMP Fri Oct 28 15:56:52 EDT 2022 x86_64 x86_64 x86_64 GNU/Linux
+Sun Nov 16 11:28:58 EST 2025
+Found /dev/shm , will use for temp dir
+tmpdir is /dev/shm/tmp.mri_nu_correct.mni.1980521
+cd /user_data/csimmon2/long_pt/derivatives/freesurfer/sub-010_ses02_mirror/mri
+AntsN4BiasFieldCorrectionFs -i orig.mgz -o /dev/shm/tmp.mri_nu_correct.mni.1980521/nu0.mgz
+Using shrink factor: 4
+mri_convert /dev/shm/tmp.mri_nu_correct.mni.1980521/nu0.mgz orig_nu.mgz --like orig.mgz --conform
+mri_convert /dev/shm/tmp.mri_nu_correct.mni.1980521/nu0.mgz orig_nu.mgz --like orig.mgz --conform 
+reading from /dev/shm/tmp.mri_nu_correct.mni.1980521/nu0.mgz...
+TR=0.00, TE=0.00, TI=0.00, flip angle=0.00
+i_ras = (-1, 0, 0)
+j_ras = (0, 0, -1)
+k_ras = (0, 1, 0)
+INFO: transform src into the like-volume: orig.mgz
+writing to orig_nu.mgz...
+ 
+ 
+Sun Nov 16 11:31:31 EST 2025
+mri_nu_correct.mni done
+@#@FSTIME  2025:11:16:11:28:58 mri_nu_correct.mni N 12 e 152.14 S 0.12 U 151.96 P 99% M 503060 F 1 R 81554 W 0 c 78 w 220 I 256 O 2904 L 9.11 4.82 1.90
+@#@FSLOADPOST 2025:11:16:11:31:31 mri_nu_correct.mni N 12 11.77 7.66 3.42
+
+ talairach --i orig_nu.mgz --xfm transforms/talairach.auto.xfm 
+
+/user_data/csimmon2/long_pt/derivatives/freesurfer/sub-010_ses02_mirror/mri
+/opt/freesurfer/7.1.0/bin/talairach
+--i orig_nu.mgz --xfm transforms/talairach.auto.xfm
+talairach 7.1.0
+Linux mind-0-15 4.18.0-372.32.1.el8_6.x86_64 #1 SMP Fri Oct 28 15:56:52 EDT 2022 x86_64 x86_64 x86_64 GNU/Linux
+Sun Nov 16 11:31:31 EST 2025
+tmpdir is transforms/tmp.talairach.1981968
+/user_data/csimmon2/long_pt/derivatives/freesurfer/sub-010_ses02_mirror/mri
+mri_convert orig_nu.mgz transforms/tmp.talairach.1981968/src.mnc
+mri_convert orig_nu.mgz transforms/tmp.talairach.1981968/src.mnc 
+reading from orig_nu.mgz...
+TR=0.00, TE=0.00, TI=0.00, flip angle=0.00
+i_ras = (-1, 0, 0)
+j_ras = (0, 0, -1)
+k_ras = (0, 1, 0)
+writing to transforms/tmp.talairach.1981968/src.mnc...
+--------------------------------------------
+MINC_BIN_DIR: Undefined variable.
+Command exited with non-zero status 1
+@#@FSTIME  2025:11:16:11:31:31 talairach N 4 e 0.86 S 0.08 U 0.99 P 124% M 41940 F 3 R 5208 W 0 c 11 w 675 I 3472 O 32864 L 11.77 7.66 3.42
+@#@FSLOADPOST 2025:11:16:11:31:32 talairach N 4 11.77 7.66 3.42
+Linux mind-0-15 4.18.0-372.32.1.el8_6.x86_64 #1 SMP Fri Oct 28 15:56:52 EDT 2022 x86_64 x86_64 x86_64 GNU/Linux
+
+recon-all -s sub-010_ses02_mirror exited with ERRORS at Sun Nov 16 11:31:32 EST 2025
+
+For more details, see the log file /user_data/csimmon2/long_pt/derivatives/freesurfer/sub-010_ses02_mirror/scripts/recon-all.log
+To report a problem, see http://surfer.nmr.mgh.harvard.edu/fswiki/BugReporting
+
