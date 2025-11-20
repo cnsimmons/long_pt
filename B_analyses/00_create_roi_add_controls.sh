@@ -1,4 +1,5 @@
 # Fixed control parcel creation - BOTH hemispheres
+# must load fsl and freesurfer modules before running
 echo "Creating BOTH hemisphere parcels for control subjects..."
 
 while IFS=',' read -r subject_id dob age1 age2 age3 age4 age5 group sex surgery_side intact_hemi loc otc scanner pre_post patient rest; do
@@ -9,9 +10,15 @@ while IFS=',' read -r subject_id dob age1 age2 age3 age4 age5 group sex surgery_
     fi
     
     SUBJECT="$subject_id"
-    FIRST_SES="01"
     
-    echo "Processing control: $SUBJECT (creating BOTH hemispheres)"
+    # Handle special session starts
+    if [[ "$SUBJECT" == "sub-010" ]] || [[ "$SUBJECT" == "sub-018" ]] || [[ "$SUBJECT" == "sub-068" ]]; then
+        FIRST_SES="02"
+    else
+        FIRST_SES="01"
+    fi
+    
+    echo "Processing control: $SUBJECT (starting at ses-${FIRST_SES}, creating BOTH hemispheres)"
     
     FS_APARC="/lab_data/behrmannlab/hemi/FS/${SUBJECT}_ses-${FIRST_SES}/mri/aparc+aseg.mgz"
     OUTPUT_DIR="/user_data/csimmon2/long_pt/$SUBJECT/ses-$FIRST_SES/ROIs"
