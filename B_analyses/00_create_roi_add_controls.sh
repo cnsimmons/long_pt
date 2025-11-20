@@ -28,6 +28,7 @@ while IFS=',' read -r subject_id dob age1 age2 age3 age4 age5 group sex surgery_
     mri_convert "$FS_APARC" "$TEMP_DK" --out_orientation LAS
     
     python3 << EOF
+    
 import nibabel as nib
 import numpy as np
 
