@@ -1,0 +1,11 @@
+Group,Preserved_Hemi,Category_Type,Representational_Change,Spatial_Drift_mm
+OTC,l,Bilateral,0.342,9.606
+OTC,l,Unilateral,0.132,14.606
+OTC,r,Bilateral,0.386,14.29
+OTC,r,Unilateral,0.171,7.877
+control,both,Bilateral,0.243,7.331
+control,both,Unilateral,0.121,9.578
+nonOTC,l,Bilateral,0.102,3.834
+nonOTC,l,Unilateral,0.106,6.384
+nonOTC,r,Bilateral,0.187,5.429
+nonOTC,r,Unilateral,0.163,12.903
