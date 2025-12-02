@@ -35,8 +35,9 @@ runs = ['01', '02', '03', '04']  # Task runs
 # Subject and session mapping
 subject_sessions = {
     #'sub-004': ['01', '02', '03', '05', '06'],  # UD
-    'sub-007': ['01','03','04']  # OT     
-    #'sub-021': ['01', '02', '03'] # TC       
+    #'sub-007': ['01','03','04']  # OT     
+    #'sub-021': ['01', '02', '03'] # TC      
+    'sub-079': ['02']
 }
 
 # Job control flags

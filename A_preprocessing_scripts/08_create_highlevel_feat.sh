@@ -3,7 +3,7 @@ dataDir='/user_data/csimmon2/long_pt'
 CSV_FILE='/user_data/csimmon2/git_repos/long_pt/long_pt_sub_info.csv'
 templateFSF="/lab_data/behrmannlab/vlad/ptoc/sub-004/ses-01/derivatives/fsl/loc/HighLevel.fsf"
 
-SKIP_SUBS=("004" "007" "021" "108")
+SKIP_SUBS=("004" "007" "008" "010" "017" "021" "108")
 declare -A SESSION_START
 SESSION_START["010"]=2
 SESSION_START["018"]=2

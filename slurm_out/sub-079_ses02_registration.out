@@ -1,3 +1,9 @@
 Processing sub-079 ses-02
-Found runs: []
+Found runs: ['01', '02', '03']
+  sub-079 loc run-01
+    ✗ filtered_func_data.nii.gz missing
+  sub-079 loc run-02
+    ✗ filtered_func_data.nii.gz missing
+  sub-079 loc run-03
+    ✗ filtered_func_data.nii.gz missing
 Finished sub-079 ses-02
