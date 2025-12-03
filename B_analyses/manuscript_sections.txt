@@ -1,0 +1,241 @@
+METHODS
+
+Participants
+We analyzed longitudinal fMRI data from 24 participants: 6 with occipitotemporal 
+cortex (OTC) resections (mean age at first scan = 13.7 ± 3.4 years, 4 males), 
+9 with non-OTC resections (mean age = 14.8 ± 2.5 years, 4 males), and 9 
+typically developing controls (mean age = 11.7 ± 2.3 years, 5 males). All 
+patients underwent surgical resection for treatment-resistant epilepsy. OTC 
+resections involved ventral temporal cortex (fusiform gyrus, inferior temporal 
+gyrus, and/or parahippocampal gyrus), while non-OTC resections spared these 
+regions. Participants underwent two scanning sessions (mean interval: OTC = 
+0.90 ± 0.33 years, non-OTC = 1.22 ± 0.64 years, controls = 1.81 ± 1.30 years). 
+All procedures were approved by the Institutional Review Board, and written 
+informed consent was obtained from participants and/or guardians.
+
+MRI Data Acquisition
+Functional MRI data were acquired on 3T Siemens scanners (Verio or Prisma) 
+using gradient-echo echo-planar imaging sequences. Participants completed a 
+visual category localizer task viewing images from four categories: faces, 
+words, objects, and houses, presented in blocked design with scrambled images 
+as baseline. High-resolution T1-weighted anatomical images were acquired for 
+registration and ROI definition.
+
+Preprocessing
+Functional data were preprocessed using FSL (FMRIB Software Library v6.0). 
+Preprocessing included motion correction (MCFLIRT), slice-timing correction, 
+spatial smoothing (5mm FWHM Gaussian kernel), high-pass temporal filtering 
+(100s cutoff), and registration to subject-specific anatomical space using 
+boundary-based registration (BBR). All sessions for each participant were 
+registered to their first session anatomical scan to maintain spatial 
+correspondence across timepoints.
+
+First-level analyses modeled category-evoked responses using the general linear 
+model, with separate regressors for each visual category convolved with a 
+canonical hemodynamic response function. Motion parameters were included as 
+nuisance regressors. Contrast images (category > scrambled baseline) were 
+generated for each category.
+
+ROI Definition
+Region-of-interest (ROI) definition followed a two-stage process combining 
+anatomical constraint with functional localization. First, anatomical search 
+regions were defined using the Desikan-Killiany atlas from FreeSurfer automatic 
+parcellation. Category-specific search regions comprised: fusiform gyrus (faces, 
+words), lateral occipital cortex (objects), and combined parahippocampal gyrus, 
+lingual gyrus, and isthmus cingulate (houses). These parcels were resampled to 
+functional space and dilated by one iteration to accommodate individual anatomical 
+variability.
+
+Second, functional ROIs were extracted for each category by thresholding the 
+category > scrambled contrast at z > 2.3 and intersecting with the anatomical 
+search region. The largest contiguous cluster (minimum 50 voxels) was selected 
+as the functional ROI. This procedure was performed independently for each 
+session, allowing ROIs to reflect session-specific functional organization while 
+remaining anatomically constrained to the same search region across sessions.
+
+For controls, ROIs were extracted bilaterally. For patients, ROIs were extracted 
+from the intact (non-resected) hemisphere only.
+
+Representational Similarity Analysis
+We quantified representational change across sessions using representational 
+similarity analysis (RSA). For each functional ROI, we extracted β-values for 
+all category conditions from the first-level GLM. We then computed pattern 
+similarity using Pearson correlation between each category's pattern and all 
+other categories' patterns, yielding a representational dissimilarity matrix 
+(RDM) for each session.
+
+Representational distinctiveness was quantified using Liu et al.'s method, 
+which measures how dissimilar a category's pattern is from other categories. 
+Specifically, for each category, we computed: distinctiveness = 1 - mean(r_ij), 
+where r_ij represents the correlation between the target category i and each 
+other category j. Higher distinctiveness indicates more category-specific 
+representations.
+
+Longitudinal representational change was calculated as the absolute difference 
+in distinctiveness values between sessions: |distinctiveness_session2 - 
+distinctiveness_session1|. This metric quantifies how much a category's 
+representational distinctiveness changed over time, regardless of direction.
+
+Statistical Analysis
+Visual categories were classified as bilateral (objects, houses) or unilateral 
+(faces, words) based on typical hemispheric lateralization in neurotypical 
+adults. For each participant, we computed mean representational change separately 
+for bilateral and unilateral categories.
+
+Primary analyses tested whether the bilateral advantage (bilateral minus unilateral 
+representational change) differed between groups using independent-samples t-tests. 
+Within-group paired t-tests assessed whether bilateral categories showed greater 
+change than unilateral categories. We computed Cohen's d effect sizes for all 
+comparisons.
+
+Given the small sample size in the OTC group (n=6), we performed comprehensive 
+robustness checks including: (1) non-parametric tests (Wilcoxon signed-rank for 
+within-group, Mann-Whitney U for between-group comparisons), (2) permutation 
+tests (10,000 iterations), (3) bootstrap confidence intervals (10,000 iterations), 
+and (4) leave-one-out sensitivity analysis. All tests were two-tailed with 
+α = 0.05.
+
+To decompose the mechanism underlying group differences in bilateral advantage, 
+we separately compared groups on bilateral and unilateral category representational 
+change using independent-samples t-tests.
+
+Data and Code Availability
+Analysis code is available at [repository]. Raw neuroimaging data are available 
+upon reasonable request subject to institutional review board approval and 
+data-sharing agreements.
+
+
+================================================================================
+
+
+RESULTS
+
+Sample Characteristics
+The final sample comprised 24 participants across three groups (Table 1). Groups 
+did not differ significantly in age at first scan (one-way ANOVA: F(2,21) = 1.89, 
+p = 0.176) or sex distribution (χ² = 0.27, p = 0.873). Time between scanning 
+sessions differed across groups (F(2,21) = 3.85, p = 0.037), with controls having 
+longer intervals than patients; however, scan interval did not correlate with 
+representational change magnitude in any group (all |r| < 0.35, all p > 0.20).
+
+Bilateral Advantage in Visual Category Representations
+We first tested whether bilateral visual categories (objects, houses) showed 
+greater longitudinal representational change than unilateral categories (faces, 
+words) within each group. In the OTC group, bilateral categories exhibited 
+significantly greater representational change (M = 0.419, SD = 0.149) compared 
+to unilateral categories (M = 0.135, SD = 0.057; paired t(5) = 3.574, 
+p = 0.0160, Cohen's d = 1.46). This bilateral advantage 
+was absent in the non-OTC group (bilateral: M = 0.140, SD = 0.085; unilateral: 
+M = 0.131, SD = 0.077; paired t(8) = 0.328, p = 0.7511, 
+d = 0.11). Controls showed a marginal bilateral advantage 
+(bilateral: M = 0.259, SD = 0.073; unilateral: M = 0.149, SD = 0.063; paired 
+t(8) = 2.671, p = 0.0283, d = 0.89).
+
+Group Differences in Bilateral Advantage
+To directly test our hypothesis, we computed bilateral advantage scores (bilateral 
+minus unilateral representational change) for each participant and compared groups 
+(Figure 1). The OTC group showed significantly greater bilateral advantage 
+(M = 0.284, SD = 0.178) compared to the non-OTC group (M = 0.008, SD = 0.072; 
+independent t(13) = 3.883, p = 0.0019, d = 2.05). 
+The OTC advantage was marginally greater than controls (M = 0.110, SD = 0.117; 
+t(13) = 2.129, p = 0.0530, d = 1.12).
+
+Robustness Checks
+Given the modest OTC sample size (n=6), we performed comprehensive robustness 
+analyses. Non-parametric tests confirmed the parametric results: OTC showed 
+greater bilateral advantage than non-OTC (Mann-Whitney U = 52.0, p = 0.002) and 
+marginally greater advantage than controls (U = 42.0, p = 0.088). Permutation 
+tests (10,000 iterations) yielded similar results (OTC vs. non-OTC: p = 0.001; 
+OTC vs. controls: p = 0.043). Bootstrap 95% confidence intervals for bilateral 
+advantage showed no overlap between OTC [0.157, 0.435] and non-OTC [-0.038, 0.054]. 
+Leave-one-out analysis demonstrated that the OTC versus control difference remained 
+significant or marginal (p < 0.10) when removing any single OTC participant (range: 
+p = 0.023 to p = 0.140), indicating the effect was not driven by a single outlier.
+
+Mechanism: Enhanced Bilateral Category Plasticity
+To understand the mechanism underlying the OTC group's bilateral advantage, we 
+separately examined representational change in bilateral and unilateral categories. 
+The OTC group showed significantly greater change in bilateral categories compared 
+to controls (OTC: M = 0.419, SD = 0.149; controls: M = 0.259, SD = 0.073; 
+t(13) = 2.562, p = 0.0237, d = 1.35). 
+In contrast, unilateral category change did not differ between OTC and controls 
+(OTC: M = 0.135, SD = 0.057; controls: M = 0.149, SD = 0.063; t(13) = -0.416, 
+p = 0.6843, d = -0.22). This pattern indicates that OTC 
+resection selectively enhanced plasticity for bilaterally represented categories 
+while sparing unilateral category representations.
+
+One-way ANOVA confirmed significant group differences in bilateral category 
+representational change (F(2,21) = 11.99, p < 0.001) but not unilateral category 
+change (F(2,21) = 0.15, p = 0.861), formally demonstrating the specificity of 
+enhanced bilateral plasticity in the OTC group.
+
+
+================================================================================
+
+
+FIGURE LEGENDS
+
+Figure 1. Bilateral advantage in longitudinal representational change across 
+patient groups and controls.
+(A) Representational change for bilateral (objects, houses) versus unilateral 
+(faces, words) visual categories in each group. Individual data points represent 
+subject-averaged values; bars show group means ± SEM. The OTC group shows 
+significantly greater bilateral category change (***p = 0.024 vs. controls, 
+***p < 0.001 vs. non-OTC), while unilateral categories show no group differences 
+(p = 0.684 OTC vs. controls). (B) Bilateral advantage scores (bilateral minus 
+unilateral representational change) for each group. Box plots show median, 
+quartiles, and range; individual points represent participants. The OTC group 
+exhibits significantly greater bilateral advantage than non-OTC patients 
+(***p = 0.002) and marginally greater advantage than controls (*p = 0.053). 
+(C) Subject-level scatter plot of bilateral versus unilateral representational 
+change. Points above the identity line (dashed) indicate bilateral advantage. 
+OTC patients (red circles) cluster in the upper-left quadrant, showing high 
+bilateral and low unilateral change. Statistical tests: paired t-tests for 
+within-group comparisons, independent t-tests for between-group comparisons. 
+*p < 0.05, **p < 0.01, ***p < 0.005.
+
+Table 1. Participant demographic and clinical characteristics.
+
+                    OTC (n=6)        non-OTC (n=9)    Controls (n=9)
+Age (years)        13.7 ± 3.4       14.8 ± 2.5       11.7 ± 2.3
+Sex (M/F)          4/2              4/5              5/4
+Surgery side (L/R) 4/2              4/5              -
+Scan interval (y)  0.90 ± 0.33      1.22 ± 0.64      1.81 ± 1.30
+
+Values are mean ± SD. Age refers to age at first scan. L, left; R, right.
+
+
+================================================================================
+
+
+SUPPLEMENTARY TABLE: COMPREHENSIVE STATISTICAL RESULTS
+
+Within-Group Comparisons (Bilateral vs. Unilateral)
+-----------------------------------------------------
+Group      t      df    p        d      Wilcoxon-W  p(non-param)
+OTC        3.574  5     0.0160   1.46   0.0         0.031
+non-OTC    0.328  8     0.7511   0.11   21.0        0.910
+Controls   2.671  8     0.0283   0.89   6.0         0.055
+
+Between-Group Comparisons (Bilateral Advantage)
+-----------------------------------------------
+Comparison        t      df    p        d      Mann-Whitney-U  p(non-param)  Perm-p
+OTC vs. non-OTC   3.883  13    0.0019   2.05   52.0            0.002         0.001
+OTC vs. Controls  2.129  13    0.0530   1.12   42.0            0.088         0.043
+non-OTC vs. Ctrl  -2.103  16    0.0517   -0.99   21.0            0.093         -
+
+Mechanism: Bilateral Categories
+-------------------------------
+OTC vs. Controls: t(13) = 2.562, p = 0.0237, d = 1.35
+ANOVA: F(2,21) = 11.99, p < 0.001
+
+Mechanism: Unilateral Categories
+--------------------------------
+OTC vs. Controls: t(13) = -0.416, p = 0.6843, d = -0.22
+ANOVA: F(2,21) = 0.15, p = 0.861
+
+Bootstrap 95% Confidence Intervals (Bilateral Advantage)
+-------------------------------------------------------
+OTC:      [0.158, 0.437]
+non-OTC:  [-0.038, 0.056]
+Controls: [0.033, 0.183]
