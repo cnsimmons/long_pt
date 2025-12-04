@@ -46,10 +46,6 @@ nonOTC073,nonOTC,right,left,Female,,Face,Unilateral,0.801051,3.258549,0.710464,0
 nonOTC073,nonOTC,right,left,Female,,Word,Unilateral,0.924285,12.656151,0.4231,0.09,10.3,10.9,0.5999999999999996
 nonOTC073,nonOTC,right,left,Female,,Object,Bilateral,0.934613,0.367597,0.954259,0.126,10.3,10.9,0.5999999999999996
 nonOTC073,nonOTC,right,left,Female,,House,Bilateral,0.692855,7.404501,0.604105,0.192,10.3,10.9,0.5999999999999996
-OTC079,OTC,left,right,Male,,Face,Unilateral,,,,0.031,16.64,17.34,0.6999999999999993
-OTC079,OTC,left,right,Male,,Word,Unilateral,,,,0.064,16.64,17.34,0.6999999999999993
-OTC079,OTC,left,right,Male,,Object,Bilateral,,,,0.925,16.64,17.34,0.6999999999999993
-OTC079,OTC,left,right,Male,,House,Bilateral,,,,0.418,16.64,17.34,0.6999999999999993
 nonOTC081,nonOTC,left,right,Female,,Face,Unilateral,0.781869,1.528961,0.191955,0.004,14.6,15.0,0.4000000000000003
 nonOTC081,nonOTC,left,right,Female,,Word,Unilateral,0.360744,23.545195,-0.762878,0.577,14.6,15.0,0.4000000000000003
 nonOTC081,nonOTC,left,right,Female,,Object,Bilateral,0.818568,2.967966,0.492852,0.308,14.6,15.0,0.4000000000000003
