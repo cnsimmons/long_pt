@@ -19,7 +19,7 @@ Based on methodologies from:
 - Liu et al. (2025): Longitudinal tracking, category contrasts
 - Nordt et al. (2023): RSM-based distinctiveness, LMM analyses
 
-Author: PhD Research Project
+Author: Claire Simmons PhD Research Project
 """
 
 import warnings
