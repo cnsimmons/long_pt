@@ -1,0 +1,5 @@
+usage: searchlight_decoding_cluster.py [-h] --sub SUB [--ses SES]
+                                       [--cat {Face,Object,House,Word}]
+                                       [--hemi {l,r}] [--all-cats]
+                                       [--cross-session]
+searchlight_decoding_cluster.py: error: argument --sub: expected one argument

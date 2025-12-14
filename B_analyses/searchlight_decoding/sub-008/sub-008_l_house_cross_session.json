@@ -1,0 +1,11 @@
+{
+  "subject": "sub-008",
+  "category": "House",
+  "hemisphere": "l",
+  "category_type": "bilateral",
+  "ses01_mean_acc": 0.5608145951733794,
+  "ses02_mean_acc": 0.49301540235565444,
+  "accuracy_change": -0.06779919281772495,
+  "dice_coefficient": 0.3408858166922683,
+  "cross_temporal_mean": 0.5011091892485516
+}

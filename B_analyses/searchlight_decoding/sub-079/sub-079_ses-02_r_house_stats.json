@@ -1,0 +1,12 @@
+{
+  "volume_above_thresh": 0,
+  "n_clusters": 0,
+  "largest_cluster": 0,
+  "peak_accuracy": 0.5,
+  "mean_accuracy": 0.5,
+  "subject": "sub-079",
+  "session": "02",
+  "category": "House",
+  "hemisphere": "r",
+  "category_type": "bilateral"
+}

@@ -1,0 +1,11 @@
+{
+  "subject": "sub-079",
+  "category": "Word",
+  "hemisphere": "r",
+  "category_type": "unilateral",
+  "ses01_mean_acc": 0.6921619953606164,
+  "ses02_mean_acc": 0.5,
+  "accuracy_change": -0.1921619953606164,
+  "dice_coefficient": 0.0,
+  "cross_temporal_mean": 0.5183234374002426
+}

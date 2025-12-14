@@ -1,0 +1,2 @@
+/var/spool/slurmd/job234863/slurm_script: line 47: 2487792 Killed                  python /user_data/csimmon2/git_repos/long_pt/B_analyses/05_searchlight_decoding/searchlight_decoding_cluster.py --sub $SUB --all-cats --cross-session
+slurmstepd: error: Detected 1 oom-kill event(s) in StepId=234863.batch cgroup. Some of your processes may have been killed by the cgroup out-of-memory handler.

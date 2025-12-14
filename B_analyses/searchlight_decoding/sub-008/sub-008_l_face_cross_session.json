@@ -1,0 +1,11 @@
+{
+  "subject": "sub-008",
+  "category": "Face",
+  "hemisphere": "l",
+  "category_type": "unilateral",
+  "ses01_mean_acc": 0.6332693189635404,
+  "ses02_mean_acc": 0.524487885041657,
+  "accuracy_change": -0.10878143392188344,
+  "dice_coefficient": 0.5138093289689034,
+  "cross_temporal_mean": 0.5008885576702592
+}

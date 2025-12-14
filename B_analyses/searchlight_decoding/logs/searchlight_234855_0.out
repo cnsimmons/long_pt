@@ -1,0 +1,35 @@
+============================================
+Job ID: 234856
+Array Task ID: 0
+Subject: sub-010
+Start time: Sun Dec 14 10:42:43 EST 2025
+============================================
+
+=== sub-010 / ses-01 / Face / l ===
+  ERROR: No mask found
+
+=== sub-010 / ses-02 / Face / l ===
+  ERROR: No mask found
+
+=== sub-010 / ses-01 / Object / l ===
+  ERROR: No mask found
+
+=== sub-010 / ses-02 / Object / l ===
+  ERROR: No mask found
+
+=== sub-010 / ses-01 / House / l ===
+  ERROR: No mask found
+
+=== sub-010 / ses-02 / House / l ===
+  ERROR: No mask found
+
+=== sub-010 / ses-01 / Word / l ===
+  ERROR: No mask found
+
+=== sub-010 / ses-02 / Word / l ===
+  ERROR: No mask found
+
+=== COMPLETE ===
+============================================
+End time: Sun Dec 14 10:42:46 EST 2025
+============================================

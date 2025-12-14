@@ -1,0 +1,12 @@
+{
+  "volume_above_thresh": 16568,
+  "n_clusters": 78,
+  "largest_cluster": 16178,
+  "peak_accuracy": 1.0,
+  "mean_accuracy": 0.6809040413713848,
+  "subject": "sub-079",
+  "session": "01",
+  "category": "Face",
+  "hemisphere": "r",
+  "category_type": "unilateral"
+}

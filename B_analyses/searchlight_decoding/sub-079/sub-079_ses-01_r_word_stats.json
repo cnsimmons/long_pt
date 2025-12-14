@@ -1,0 +1,12 @@
+{
+  "volume_above_thresh": 17244,
+  "n_clusters": 66,
+  "largest_cluster": 17142,
+  "peak_accuracy": 1.0,
+  "mean_accuracy": 0.6921619953606164,
+  "subject": "sub-079",
+  "session": "01",
+  "category": "Word",
+  "hemisphere": "r",
+  "category_type": "unilateral"
+}

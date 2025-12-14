@@ -1,0 +1,11 @@
+{
+  "subject": "sub-021",
+  "category": "Object",
+  "hemisphere": "r",
+  "category_type": "bilateral",
+  "ses01_mean_acc": 0.6550990132627103,
+  "ses02_mean_acc": 0.6678759291471434,
+  "accuracy_change": 0.012776915884433193,
+  "dice_coefficient": 0.8003864621150018,
+  "cross_temporal_mean": 0.504194547610466
+}

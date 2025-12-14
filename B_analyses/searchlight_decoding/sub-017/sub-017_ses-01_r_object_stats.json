@@ -1,0 +1,12 @@
+{
+  "volume_above_thresh": 18415,
+  "n_clusters": 86,
+  "largest_cluster": 18281,
+  "peak_accuracy": 1.0,
+  "mean_accuracy": 0.6381446954639194,
+  "subject": "sub-017",
+  "session": "01",
+  "category": "Object",
+  "hemisphere": "r",
+  "category_type": "bilateral"
+}
