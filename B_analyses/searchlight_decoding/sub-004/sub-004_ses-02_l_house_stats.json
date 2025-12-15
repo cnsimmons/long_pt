@@ -1,12 +1,15 @@
 {
-  "volume_above_thresh": 6964,
-  "n_clusters": 287,
-  "largest_cluster": 4065,
-  "peak_accuracy": 0.9444444444444445,
-  "mean_accuracy": 0.4915919714548678,
+  "volume_above_thresh": 14388,
+  "n_clusters": 135,
+  "largest_cluster": 13360,
+  "peak_accuracy": 1.0,
+  "mean_accuracy": 0.5713310936104423,
   "subject": "sub-004",
   "session": "02",
   "category": "House",
   "hemisphere": "l",
-  "category_type": "bilateral"
+  "category_type": "bilateral",
+  "mask_voxels": 24507,
+  "n_samples": 18,
+  "n_runs": 3
 }

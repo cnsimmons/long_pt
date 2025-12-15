@@ -1,0 +1,17 @@
+{
+  "subject": "sub-004",
+  "comparison": "Face_vs_Object",
+  "comparison_type": "uni_vs_bil",
+  "cat1": "Face",
+  "cat2": "Object",
+  "hemisphere": "l",
+  "anchor_session": "01",
+  "comparison_session": "02",
+  "anchor_mean_acc": 0.6204450902226692,
+  "comp_mean_acc": 0.6487413534021335,
+  "accuracy_change": 0.02829626317946421,
+  "dice_coefficient": 0.8267193741909441,
+  "cross_temporal_mean": 0.5219837810315064,
+  "anchor_volume": 36772,
+  "comp_volume": 35071
+}

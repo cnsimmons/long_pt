@@ -1,0 +1,17 @@
+{
+  "subject": "sub-004",
+  "comparison": "Word_vs_Object",
+  "comparison_type": "uni_vs_bil",
+  "cat1": "Word",
+  "cat2": "Object",
+  "hemisphere": "l",
+  "anchor_session": "01",
+  "comparison_session": "02",
+  "anchor_mean_acc": 0.5853445599393962,
+  "comp_mean_acc": 0.6774995963886093,
+  "accuracy_change": 0.09215503644921319,
+  "dice_coefficient": 0.7696034837008188,
+  "cross_temporal_mean": 0.5087117966295345,
+  "anchor_volume": 28760,
+  "comp_volume": 36458
+}

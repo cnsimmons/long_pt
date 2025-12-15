@@ -1,0 +1,17 @@
+{
+  "subject": "sub-004",
+  "comparison": "Word_vs_House",
+  "comparison_type": "uni_vs_bil",
+  "cat1": "Word",
+  "cat2": "House",
+  "hemisphere": "l",
+  "anchor_session": "01",
+  "comparison_session": "02",
+  "anchor_mean_acc": 0.5422060473246197,
+  "comp_mean_acc": 0.6475607210873705,
+  "accuracy_change": 0.10535467376275076,
+  "dice_coefficient": 0.7013533492550893,
+  "cross_temporal_mean": 0.5221804805509901,
+  "anchor_volume": 20194,
+  "comp_volume": 32564
+}

@@ -1,0 +1,17 @@
+{
+  "subject": "sub-004",
+  "comparison": "Face_vs_Word",
+  "comparison_type": "uni_vs_uni",
+  "cat1": "Face",
+  "cat2": "Word",
+  "hemisphere": "l",
+  "anchor_session": "01",
+  "comparison_session": "02",
+  "anchor_mean_acc": 0.5850476206898533,
+  "comp_mean_acc": 0.6221325562280504,
+  "accuracy_change": 0.03708493553819714,
+  "dice_coefficient": 0.7634229458538433,
+  "cross_temporal_mean": 0.5233217802148535,
+  "anchor_volume": 11590,
+  "comp_volume": 14820
+}

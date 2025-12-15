@@ -8,5 +8,8 @@
   "session": "01",
   "category": "Face",
   "hemisphere": "l",
-  "category_type": "unilateral"
+  "category_type": "unilateral",
+  "mask_voxels": 19331,
+  "n_samples": 18,
+  "n_runs": 3
 }

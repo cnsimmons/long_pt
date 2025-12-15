@@ -1,0 +1,15 @@
+{
+  "volume_above_thresh": 7897,
+  "n_clusters": 168,
+  "largest_cluster": 5901,
+  "peak_accuracy": 1.0,
+  "mean_accuracy": 0.530657104782316,
+  "subject": "sub-007",
+  "session": "01",
+  "category": "House",
+  "hemisphere": "r",
+  "category_type": "bilateral",
+  "mask_voxels": 24263,
+  "n_samples": 12,
+  "n_runs": 2
+}

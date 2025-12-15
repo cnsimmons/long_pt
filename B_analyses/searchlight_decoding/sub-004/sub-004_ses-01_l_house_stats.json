@@ -8,5 +8,8 @@
   "session": "01",
   "category": "House",
   "hemisphere": "l",
-  "category_type": "bilateral"
+  "category_type": "bilateral",
+  "mask_voxels": 24507,
+  "n_samples": 18,
+  "n_runs": 3
 }

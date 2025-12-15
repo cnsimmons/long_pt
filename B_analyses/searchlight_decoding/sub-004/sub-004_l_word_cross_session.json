@@ -3,9 +3,15 @@
   "category": "Word",
   "hemisphere": "l",
   "category_type": "unilateral",
-  "ses01_mean_acc": 0.5805327079705022,
-  "ses02_mean_acc": 0.5277820886428821,
-  "accuracy_change": -0.05275061932762004,
-  "dice_coefficient": 0.5289543798597139,
-  "cross_temporal_mean": 0.4993390006839906
+  "anchor_session": "01",
+  "comparison_session": "02",
+  "anchor_mean_acc": 0.5805327079705022,
+  "comp_mean_acc": 0.6041447531023859,
+  "accuracy_change": 0.023612045131883752,
+  "dice_coefficient": 0.7854483651667207,
+  "cross_temporal_mean": 0.5160594094689589,
+  "anchor_volume": 11815,
+  "comp_volume": 12897,
+  "anchor_clusters": 111,
+  "comp_clusters": 102
 }

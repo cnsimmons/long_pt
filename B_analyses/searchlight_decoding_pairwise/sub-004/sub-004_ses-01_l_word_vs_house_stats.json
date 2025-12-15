@@ -1,0 +1,17 @@
+{
+  "volume_above_thresh": 20194,
+  "n_clusters": 260,
+  "largest_cluster": 18853,
+  "peak_accuracy": 0.9444444444444445,
+  "mean_accuracy": 0.5422060473246197,
+  "subject": "sub-004",
+  "session": "01",
+  "comparison": "Word_vs_House",
+  "cat1": "Word",
+  "cat2": "House",
+  "comparison_type": "uni_vs_bil",
+  "hemisphere": "l",
+  "mask_voxels": 42590,
+  "n_samples": 18,
+  "n_runs": 3
+}

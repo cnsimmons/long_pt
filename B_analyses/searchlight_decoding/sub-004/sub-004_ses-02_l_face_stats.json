@@ -1,12 +1,15 @@
 {
-  "volume_above_thresh": 6727,
-  "n_clusters": 191,
-  "largest_cluster": 6146,
-  "peak_accuracy": 0.9444444444444445,
-  "mean_accuracy": 0.5391369073278959,
+  "volume_above_thresh": 13460,
+  "n_clusters": 83,
+  "largest_cluster": 13245,
+  "peak_accuracy": 1.0,
+  "mean_accuracy": 0.6297484179125068,
   "subject": "sub-004",
   "session": "02",
   "category": "Face",
   "hemisphere": "l",
-  "category_type": "unilateral"
+  "category_type": "unilateral",
+  "mask_voxels": 19331,
+  "n_samples": 18,
+  "n_runs": 3
 }

@@ -1,0 +1,17 @@
+{
+  "volume_above_thresh": 36772,
+  "n_clusters": 72,
+  "largest_cluster": 36431,
+  "peak_accuracy": 1.0,
+  "mean_accuracy": 0.6204450902226692,
+  "subject": "sub-004",
+  "session": "01",
+  "comparison": "Face_vs_Object",
+  "cat1": "Face",
+  "cat2": "Object",
+  "comparison_type": "uni_vs_bil",
+  "hemisphere": "l",
+  "mask_voxels": 44735,
+  "n_samples": 18,
+  "n_runs": 3
+}

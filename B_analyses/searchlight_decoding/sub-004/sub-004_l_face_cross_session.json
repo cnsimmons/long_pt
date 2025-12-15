@@ -3,9 +3,15 @@
   "category": "Face",
   "hemisphere": "l",
   "category_type": "unilateral",
-  "ses01_mean_acc": 0.579986665057277,
-  "ses02_mean_acc": 0.5391369073278959,
-  "accuracy_change": -0.04084975772938115,
-  "dice_coefficient": 0.5867308721241306,
-  "cross_temporal_mean": 0.4981923105662177
+  "anchor_session": "01",
+  "comparison_session": "02",
+  "anchor_mean_acc": 0.579986665057277,
+  "comp_mean_acc": 0.6297484179125068,
+  "accuracy_change": 0.04976175285522977,
+  "dice_coefficient": 0.7793730086929158,
+  "cross_temporal_mean": 0.5196575448761057,
+  "anchor_volume": 11963,
+  "comp_volume": 13460,
+  "anchor_clusters": 101,
+  "comp_clusters": 83
 }

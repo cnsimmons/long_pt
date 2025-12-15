@@ -1,0 +1,12 @@
+------------------------------------------------
+Job ID: 240173
+Array Task ID: 8
+Processing Subject: sub-068
+------------------------------------------------
+--> Python is starting EXCLUSIVE processing for: sub-068
+  Processing Session 01 -> Anchor 02
+  ⚠️  MISSING MATRIX: /user_data/csimmon2/long_pt/sub-068/ses-01/anat/anat2ses02.mat
+  Processing Session 03 -> Anchor 02
+    Skipping run-03: Already done.
+    Registering run-02...
+    Registering run-01...

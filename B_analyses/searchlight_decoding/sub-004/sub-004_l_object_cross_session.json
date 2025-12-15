@@ -3,9 +3,15 @@
   "category": "Object",
   "hemisphere": "l",
   "category_type": "bilateral",
-  "ses01_mean_acc": 0.5677208958368266,
-  "ses02_mean_acc": 0.6734705723019774,
-  "accuracy_change": 0.10574967646515077,
-  "dice_coefficient": 0.7516575108922144,
-  "cross_temporal_mean": 0.5028075515828485
+  "anchor_session": "01",
+  "comparison_session": "02",
+  "anchor_mean_acc": 0.5677208958368266,
+  "comp_mean_acc": 0.6475985330220518,
+  "accuracy_change": 0.07987763718522523,
+  "dice_coefficient": 0.7512787027968223,
+  "cross_temporal_mean": 0.5119568161591147,
+  "anchor_volume": 17174,
+  "comp_volume": 19582,
+  "anchor_clusters": 80,
+  "comp_clusters": 50
 }

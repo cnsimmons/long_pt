@@ -1,0 +1,10 @@
+------------------------------------------------
+Job ID: 240176
+Array Task ID: 2
+Processing Subject: sub-025
+------------------------------------------------
+--> Python is starting EXCLUSIVE processing for: sub-025
+  Processing Session 02 -> Anchor 01
+    Skipping run-03: Already done.
+    Skipping run-02: Already done.
+    Skipping run-01: Already done.

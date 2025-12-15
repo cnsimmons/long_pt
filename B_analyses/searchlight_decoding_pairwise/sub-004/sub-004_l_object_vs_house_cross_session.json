@@ -1,0 +1,17 @@
+{
+  "subject": "sub-004",
+  "comparison": "Object_vs_House",
+  "comparison_type": "bil_vs_bil",
+  "cat1": "Object",
+  "cat2": "House",
+  "hemisphere": "l",
+  "anchor_session": "01",
+  "comparison_session": "02",
+  "anchor_mean_acc": 0.514795840087521,
+  "comp_mean_acc": 0.6013439443566122,
+  "accuracy_change": 0.08654810426909121,
+  "dice_coefficient": 0.586638355956624,
+  "cross_temporal_mean": 0.5119596371972845,
+  "anchor_volume": 19713,
+  "comp_volume": 33035
+}
