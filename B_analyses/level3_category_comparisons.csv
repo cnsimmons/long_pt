@@ -1,0 +1,3 @@
+Measure,Comparison,Mean_Diff,p_value,Significant
+MDS Shift,Face vs Object,-0.04465460763766099,0.4572224602439391,ns
+MDS Shift,Word vs House,-0.10882857003999702,0.04150360389492746,*

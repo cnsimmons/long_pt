@@ -1,0 +1,5 @@
+Measure,Within_OTC_p,Within_OTC_sig,vs_Control_p,vs_Control_sig,vs_nonOTC_p,vs_nonOTC_sig
+Selectivity,0.001,**,0.0348,*,0.0004,***
+Geometry,0.0106,*,0.0182,*,0.0037,**
+Spatial Drift,0.0973,ns,0.1114,ns,0.1765,ns
+MDS,0.0249,*,0.044,*,0.1672,ns
