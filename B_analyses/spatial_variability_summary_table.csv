@@ -1,0 +1,10 @@
+Category Type,Comparison,n1,n2,Mean1 (mm),Mean2 (mm),Test,t,p,Result,Sig
+Unilateral,OTC Reorganizing vs OTC Typical,6,6,16.76,3.53,Paired t-test,2.604,0.048,Reorganizing > Typical,*
+Unilateral,OTC Reorganizing vs nonOTC,6,14,16.76,6.81,Independent t-test,2.245,0.0376,Reorganizing > nonOTC,*
+Unilateral,OTC Reorganizing vs Control,6,14,16.76,7.79,Independent t-test,1.736,0.0997,No difference,
+Unilateral,OTC Typical vs nonOTC,6,14,3.53,6.81,Independent t-test,-1.015,0.3238,No difference,
+Unilateral,OTC Typical vs Control,6,14,3.53,7.79,Independent t-test,-1.02,0.321,No difference,
+Unilateral,nonOTC vs Control,14,14,6.81,7.79,Independent t-test,-0.293,0.7719,No difference,
+Bilateral,OTC vs nonOTC,12,14,10.33,4.32,Independent t-test,1.52,0.1415,No difference,
+Bilateral,OTC vs Control,12,28,10.33,9.36,Independent t-test,0.24,0.8117,No difference,
+Bilateral,nonOTC vs Control,14,28,4.32,9.36,Independent t-test,-1.676,0.1016,No difference,

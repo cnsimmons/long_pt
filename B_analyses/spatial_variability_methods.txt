@@ -1,0 +1,50 @@
+
+1. ROI DEFINITION
+   - Category-selective regions were defined using a functional localizer task
+   - For each category (face, word, object, house), we identified the peak voxel 
+     within an anatomical search mask at each timepoint
+   - Search masks were defined per hemisphere and category (e.g., l_face_searchmask.nii.gz)
+   - Peak voxel = voxel with maximum z-statistic for the relevant contrast within the search mask
+
+2. PEAK COORDINATE EXTRACTION (following Golarai et al., 2007)
+   - For each subject, session, hemisphere, and category, we extracted the MNI 
+     coordinates of the peak voxel
+   - Only peaks with z > 0 within the search mask were included
+   - Coordinates were converted from voxel indices to MNI space using the affine transformation
+
+3. SPATIAL VARIABILITY MEASUREMENT (following Golarai et al., 2007)
+   - Euclidean distance was computed between T1 and T2 peak coordinates:
+     Distance = sqrt((x2-x1)² + (y2-y1)² + (z2-z1)²)
+   - This unsigned measure captures spatial variability regardless of direction
+
+4. SYSTEMATIC DRIFT TESTING (following Dehaene-Lambertz et al., 2018)
+   - Signed coordinate differences (T2 - T1) were computed for each axis:
+     Δx (medial-lateral), Δy (anterior-posterior), Δz (superior-inferior)
+   - One-sample t-tests against zero tested whether drift was systematic/directional
+   - Non-significant results (p > 0.05) indicate peaks fluctuate randomly around a 
+     stable location rather than drifting in a consistent direction
+
+5. HEMISPHERE SELECTION
+   - OTC/nonOTC patients: intact hemisphere only
+   - Controls: right hemisphere for faces, left hemisphere for words (typical lateralization),
+     both hemispheres for bilateral categories (object, house)
+
+6. REORGANIZATION STATUS (OTC patients only, unilateral categories)
+   - "Reorganizing": category normally lateralized to the RESECTED hemisphere
+     • Faces in left hemisphere (RH-resection patients)
+     • Words in right hemisphere (LH-resection patients)
+   - "Typical": category in its native hemisphere
+     • Faces in right hemisphere (LH-resection patients)  
+     • Words in left hemisphere (RH-resection patients)
+
+7. STATISTICAL COMPARISONS
+   - Within-subject (OTC Reorganizing vs Typical): paired t-test
+   - Between-group comparisons: independent samples t-tests
+   - Overall group effects: one-way ANOVA
+
+REFERENCES:
+   - Golarai, G., et al. (2007). Differential development of high-level visual cortex 
+     correlates with category-specific recognition memory. Nature Neuroscience.
+   - Dehaene-Lambertz, G., et al. (2018). The emergence of the visual word form: 
+     Longitudinal evolution of category-specific ventral visual areas during reading 
+     acquisition. PLOS Biology.
