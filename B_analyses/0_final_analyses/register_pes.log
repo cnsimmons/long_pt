@@ -1,0 +1,159 @@
+============================================
+REGISTERING RUN-LEVEL PEs TO STANDARD SPACE
+============================================
+Subjects to process: 25
+
+--- sub-004 ---
+  ses-01: 3 runs (run-01 run-02 run-03)
+    Averaging across runs...
+    ✓ Done (files in /user_data/csimmon2/long_pt/sub-004/ses-01/derivatives/fsl/loc/registered_pes/)
+  ses-02: 3 runs (run-01 run-02 run-03)
+    Averaging across runs...
+    ✓ Done (files in /user_data/csimmon2/long_pt/sub-004/ses-02/derivatives/fsl/loc/registered_pes/)
+  ses-03: 3 runs (run-01 run-02 run-03)
+    Averaging across runs...
+    ✓ Done (files in /user_data/csimmon2/long_pt/sub-004/ses-03/derivatives/fsl/loc/registered_pes/)
+  ses-05: 3 runs (run-01 run-02 run-03)
+    Averaging across runs...
+    ✓ Done (files in /user_data/csimmon2/long_pt/sub-004/ses-05/derivatives/fsl/loc/registered_pes/)
+  ses-06: 3 runs (run-01 run-02 run-03)
+    Averaging across runs...
+    ✓ Done (files in /user_data/csimmon2/long_pt/sub-004/ses-06/derivatives/fsl/loc/registered_pes/)
+  ses-07: no runs found
+--- sub-007 ---
+  ses-01: 3 runs (run-01 run-02 run-03)
+    Averaging across runs...
+    ✓ Done (files in /user_data/csimmon2/long_pt/sub-007/ses-01/derivatives/fsl/loc/registered_pes/)
+  ses-03: 2 runs (run-01 run-02)
+    Averaging across runs...
+    ✓ Done (files in /user_data/csimmon2/long_pt/sub-007/ses-03/derivatives/fsl/loc/registered_pes/)
+  ses-04: 2 runs (run-01 run-02)
+    Averaging across runs...
+    ✓ Done (files in /user_data/csimmon2/long_pt/sub-007/ses-04/derivatives/fsl/loc/registered_pes/)
+--- sub-008 ---
+  ses-01: 6 runs (run-01 run-02 run-03 run-04 run-05 run-06)
+    Averaging across runs...
+    ✓ Done (files in /user_data/csimmon2/long_pt/sub-008/ses-01/derivatives/fsl/loc/registered_pes/)
+  ses-02: 4 runs (run-01 run-02 run-03 run-04)
+    Averaging across runs...
+    ✓ Done (files in /user_data/csimmon2/long_pt/sub-008/ses-02/derivatives/fsl/loc/registered_pes/)
+--- sub-010 ---
+  ses-02: 2 runs (run-01 run-02)
+    Averaging across runs...
+    ✓ Done (files in /user_data/csimmon2/long_pt/sub-010/ses-02/derivatives/fsl/loc/registered_pes/)
+  ses-03: 3 runs (run-01 run-02 run-03)
+    Averaging across runs...
+    ✓ Done (files in /user_data/csimmon2/long_pt/sub-010/ses-03/derivatives/fsl/loc/registered_pes/)
+--- sub-017 ---
+  ses-01: 3 runs (run-01 run-02 run-03)
+    Averaging across runs...
+    ✓ Done (files in /user_data/csimmon2/long_pt/sub-017/ses-01/derivatives/fsl/loc/registered_pes/)
+  ses-02: 3 runs (run-01 run-02 run-03)
+    Averaging across runs...
+    ✓ Done (files in /user_data/csimmon2/long_pt/sub-017/ses-02/derivatives/fsl/loc/registered_pes/)
+  ses-03: 2 runs (run-01 run-02)
+    Averaging across runs...
+    ✓ Done (files in /user_data/csimmon2/long_pt/sub-017/ses-03/derivatives/fsl/loc/registered_pes/)
+  ses-04: 3 runs (run-01 run-02 run-03)
+    Averaging across runs...
+    ✓ Done (files in /user_data/csimmon2/long_pt/sub-017/ses-04/derivatives/fsl/loc/registered_pes/)
+--- sub-018 ---
+  ses-02: 4 runs (run-01 run-02 run-03 run-04)
+    Averaging across runs...
+    ✓ Done (files in /user_data/csimmon2/long_pt/sub-018/ses-02/derivatives/fsl/loc/registered_pes/)
+  ses-03: 3 runs (run-01 run-02 run-03)
+    Averaging across runs...
+    ✓ Done (files in /user_data/csimmon2/long_pt/sub-018/ses-03/derivatives/fsl/loc/registered_pes/)
+--- sub-021 ---
+  ses-01: 3 runs (run-01 run-02 run-03)
+    Averaging across runs...
+    ✓ Done (files in /user_data/csimmon2/long_pt/sub-021/ses-01/derivatives/fsl/loc/registered_pes/)
+  ses-02: 3 runs (run-01 run-02 run-03)
+    Averaging across runs...
+    ✓ Done (files in /user_data/csimmon2/long_pt/sub-021/ses-02/derivatives/fsl/loc/registered_pes/)
+  ses-03: 3 runs (run-01 run-02 run-03)
+    Averaging across runs...
+    ✓ Done (files in /user_data/csimmon2/long_pt/sub-021/ses-03/derivatives/fsl/loc/registered_pes/)
+--- sub-022 ---
+  ses-01: 3 runs (run-01 run-02 run-03)
+    Averaging across runs...
+    ✓ Done (files in /user_data/csimmon2/long_pt/sub-022/ses-01/derivatives/fsl/loc/registered_pes/)
+  ses-02: 3 runs (run-01 run-02 run-03)
+    Averaging across runs...
+    ✓ Done (files in /user_data/csimmon2/long_pt/sub-022/ses-02/derivatives/fsl/loc/registered_pes/)
+--- sub-025 ---
+  ses-01: 3 runs (run-01 run-02 run-03)
+    Averaging across runs...
+    ✓ Done (files in /user_data/csimmon2/long_pt/sub-025/ses-01/derivatives/fsl/loc/registered_pes/)
+  ses-02: 3 runs (run-01 run-02 run-03)
+    Averaging across runs...
+    ✓ Done (files in /user_data/csimmon2/long_pt/sub-025/ses-02/derivatives/fsl/loc/registered_pes/)
+--- sub-027 ---
+  ses-01: 3 runs (run-01 run-02 run-03)
+    Averaging across runs...
+    ✓ Done (files in /user_data/csimmon2/long_pt/sub-027/ses-01/derivatives/fsl/loc/registered_pes/)
+  ses-02: 3 runs (run-01 run-02 run-03)
+    Averaging across runs...
+    ✓ Done (files in /user_data/csimmon2/long_pt/sub-027/ses-02/derivatives/fsl/loc/registered_pes/)
+--- sub-045 ---
+  ses-01: 3 runs (run-01 run-02 run-03)
+    Averaging across runs...
+    ✓ Done (files in /user_data/csimmon2/long_pt/sub-045/ses-01/derivatives/fsl/loc/registered_pes/)
+  ses-02: 3 runs (run-01 run-02 run-03)
+    Averaging across runs...
+    ✓ Done (files in /user_data/csimmon2/long_pt/sub-045/ses-02/derivatives/fsl/loc/registered_pes/)
+  ses-03: 3 runs (run-01 run-02 run-03)
+    Averaging across runs...
+    ✓ Done (files in /user_data/csimmon2/long_pt/sub-045/ses-03/derivatives/fsl/loc/registered_pes/)
+--- sub-047 ---
+  ses-01: 3 runs (run-01 run-02 run-03)
+    Averaging across runs...
+    ✓ Done (files in /user_data/csimmon2/long_pt/sub-047/ses-01/derivatives/fsl/loc/registered_pes/)
+  ses-02: 3 runs (run-01 run-02 run-03)
+    Averaging across runs...
+    ✓ Done (files in /user_data/csimmon2/long_pt/sub-047/ses-02/derivatives/fsl/loc/registered_pes/)
+--- sub-049 ---
+  ses-01: 3 runs (run-01 run-02 run-03)
+    Averaging across runs...
+    ✓ Done (files in /user_data/csimmon2/long_pt/sub-049/ses-01/derivatives/fsl/loc/registered_pes/)
+  ses-02: 2 runs (run-01 run-02)
+    Averaging across runs...
+    ✓ Done (files in /user_data/csimmon2/long_pt/sub-049/ses-02/derivatives/fsl/loc/registered_pes/)
+--- sub-052 ---
+  ses-01: 2 runs (run-01 run-02)
+    Averaging across runs...
+    ✓ Done (files in /user_data/csimmon2/long_pt/sub-052/ses-01/derivatives/fsl/loc/registered_pes/)
+  ses-02: 3 runs (run-01 run-02 run-03)
+    Averaging across runs...
+    ✓ Done (files in /user_data/csimmon2/long_pt/sub-052/ses-02/derivatives/fsl/loc/registered_pes/)
+--- sub-058 ---
+  ses-01: 3 runs (run-01 run-02 run-03)
+    Averaging across runs...
+    ✓ Done (files in /user_data/csimmon2/long_pt/sub-058/ses-01/derivatives/fsl/loc/registered_pes/)
+  ses-02: 3 runs (run-01 run-02 run-03)
+    Averaging across runs...
+    ✓ Done (files in /user_data/csimmon2/long_pt/sub-058/ses-02/derivatives/fsl/loc/registered_pes/)
+--- sub-062 ---
+  ses-01: 3 runs (run-01 run-02 run-03)
+    Averaging across runs...
+    ✓ Done (files in /user_data/csimmon2/long_pt/sub-062/ses-01/derivatives/fsl/loc/registered_pes/)
+  ses-02: 3 runs (run-01 run-02 run-03)
+    Averaging across runs...
+    ✓ Done (files in /user_data/csimmon2/long_pt/sub-062/ses-02/derivatives/fsl/loc/registered_pes/)
+--- sub-064 ---
+  ses-01: 3 runs (run-01 run-02 run-03)
+    Averaging across runs...
+    ✓ Done (files in /user_data/csimmon2/long_pt/sub-064/ses-01/derivatives/fsl/loc/registered_pes/)
+  ses-02: 3 runs (run-01 run-02 run-03)
+    Averaging across runs...
+    ✓ Done (files in /user_data/csimmon2/long_pt/sub-064/ses-02/derivatives/fsl/loc/registered_pes/)
+--- sub-068 ---
+  ses-01: no runs found
+  ses-02: 3 runs (run-01 run-02 run-03)
+    Averaging across runs...
+    ✓ Done (files in /user_data/csimmon2/long_pt/sub-068/ses-02/derivatives/fsl/loc/registered_pes/)
+  ses-03: 3 runs (run-01 run-02 run-03)
+    Averaging across runs...
+    ✓ Done (files in /user_data/csimmon2/long_pt/sub-068/ses-03/derivatives/fsl/loc/registered_pes/)
+--- sub-070 ---
+  ses-01: 3 runs (run-01 run-02 run-03)
